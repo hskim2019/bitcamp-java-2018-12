@@ -3,18 +3,47 @@
  */
 package bitcamp.lms;
 
+import java.sql.Date;
+
 public class App {
 
   public static void main(String[] args) {
+    java.util.Scanner keyboard = new java.util.Scanner(System.in);
     
-    System.out.println("번호: " +1);
-    System.out.println("수업명: 자바 프로젝트 실습");
-    System.out.println("설명: 자바 프로젝트를 통한 자바 언어 활용법 익히기");
-    System.out.println("시작일: 2019-01-02");
-    System.out.println("종료일: 2019-05-28");
+    System.out.print("번호: ");
+    int no = keyboard.nextInt();
+    
+    keyboard.nextLine();
+    
+    System.out.print("수업명: ");
+    String title = keyboard.nextLine();
+    
+    System.out.print("설명: ");
+    String info = keyboard.nextLine();
+    
+    System.out.print("시작일: year-month-date ");
+    Date startDate = Date.valueOf(keyboard.nextLine());
+    
+    System.out.print("종료일: year-month-date ");
+    Date endDate = Date.valueOf(keyboard.nextLine());
+    
     System.out.print("총수업시간: ");
-    System.out.println(1000);
-    System.out.printf("일수업시간: %d 시간\n", 8);
+    int totalHour = keyboard.nextInt();
+    
+    System.out.print("일수업시간: ");
+    int dayHour = keyboard.nextInt();
+    
+    keyboard.close();
+    System.out.println();
 
+    
+    System.out.printf("번호: %d\n", no);
+    System.out.printf("수업명: %s\n", title);
+    System.out.printf("설명: %s\n", info);
+    System.out.printf("시작일: %s\n", startDate);
+    System.out.printf("종료일: %s\n", endDate);
+    System.out.printf("총수업시간: %d시간\n", totalHour);
+    System.out.printf("일수업시간: %d시간\n", dayHour);
+    
   }
 }

@@ -1,13 +1,38 @@
 package bitcamp.lms;
 
+import java.sql.Date;
+
 public class App3 {
 
   public static void main(String[] args) {
     
-    System.out.printf("번호: %d\n", 1);
-    System.out.printf("내용: %s\n", "게시글입니다.");
-    System.out.printf("작성일: %s\n", "2019-01-01");
-    System.out.printf("조회수: %d\n", 0);
+    java.util.Scanner keyboard = new java.util.Scanner(System.in);
     
+    System.out.print("번호: ");
+    int no = Integer.parseInt(keyboard.nextLine());
+        
+    System.out.print("내용: ");
+    String info = keyboard.nextLine();
+    
+    Date creatDate = new Date(System.currentTimeMillis());
+        
+    int countView = 0;
+    
+    keyboard.close();
+    System.out.println();
+    
+    System.out.printf("번호: %s\n", no);
+    System.out.printf("내용: %s\n", info);
+    System.out.println("작성일: " +creatDate);
+    System.out.println("조회수: " +countView);
+    
+  
   }
 }
+
+/*번호: 1
+내용: 게시글입니다.
+작성일: 2019-01-01
+조회수: 0
+```
+*/
