@@ -4,28 +4,35 @@
 package bitcamp.lms;
 
 import java.sql.Date;
+import java.util.Scanner;
 
 public class App {
 
   public static void main(String[] args) {
-    java.util.Scanner keyboard = new java.util.Scanner(System.in);
+    
+    // 키보드 입력 스트림(System.in)을 스캐너 객체에 연결한다
+    // => 스캐너는 입력 스트림으로 들어온 문자열을 줄 단위로 잘라주는 역할
+//    java.util.Scanner keyboard = new java.util.Scanner(System.in);
+    Scanner keyboard = new Scanner(System.in);
     
     System.out.print("번호: ");
     int no = keyboard.nextInt();
     
-    keyboard.nextLine();
+//    keyboard.nextLine();
     
     System.out.print("수업명: ");
-    String title = keyboard.nextLine();
+    String title = keyboard.next();
     
     System.out.print("설명: ");
-    String info = keyboard.nextLine();
+    String info = keyboard.next();
     
     System.out.print("시작일: year-month-date ");
-    Date startDate = Date.valueOf(keyboard.nextLine());
+    Date startDate = Date.valueOf(keyboard.next());
+    //(   )안의 값을 날짜 종류의 데이터로 바꿈
+    // Date startDate => 데이터가 날짜이므로 그릇을 Date로 준비
     
     System.out.print("종료일: year-month-date ");
-    Date endDate = Date.valueOf(keyboard.nextLine());
+    Date endDate = Date.valueOf(keyboard.next());
     
     System.out.print("총수업시간: ");
     int totalHour = keyboard.nextInt();
@@ -34,6 +41,8 @@ public class App {
     int dayHour = keyboard.nextInt();
     
     keyboard.close();
+    // 분필, 볼펜처럼 반드시 닫아야 하는 메서드와 닫지 않아도 괜찮은 메서드 있음
+    
     System.out.println();
 
     

@@ -10,6 +10,7 @@ public class App3 {
     
     System.out.print("번호: ");
     int no = Integer.parseInt(keyboard.nextLine());
+    // Integer (도구함:Class) parseInt(Integer 안의 기능:method)
         
     System.out.print("내용: ");
     String info = keyboard.nextLine();
