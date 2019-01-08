@@ -9,5 +9,8 @@ public class Test04 {
      // 5와 2는 지정해주지 않으면 int임
     //  5(int) / 2(int) = 2.5(x) 2(o)
     //   2 + 3.2(float) = 5.2f
+    
+    double r1 = (double)5 / 2+ 3;
+    System.out.println(r1);
   }
 }

@@ -1,4 +1,4 @@
-// 콘솔로 출력하기 III - 형식을 갖춰 날짜 값 출력하
+// 콘솔로 출력하기 III - 형식을 갖춰 날짜 값 출력하기
 package ch02;
 
 public class Test13 {

@@ -9,50 +9,65 @@ import java.util.Scanner;
 public class App {
 
   public static void main(String[] args) {
-    
-    // 키보드 입력 스트림(System.in)을 스캐너 객체에 연결한다
-    // => 스캐너는 입력 스트림으로 들어온 문자열을 줄 단위로 잘라주는 역할
-//    java.util.Scanner keyboard = new java.util.Scanner(System.in);
+
     Scanner keyboard = new Scanner(System.in);
+        
+    int[] no = new int[10] ;
+    String[] title = new String[10];
+    String[] info = new String[10]; 
+    Date[] startDate = new Date[10];
+    Date[] endDate = new Date[10];
+    int[] totalHour = new int[10];
+    int[] dayHour = new int[10];
     
+    int i = 0;
+    while(i <no.length) {
     System.out.print("번호: ");
-    int no = keyboard.nextInt();
-    
-//    keyboard.nextLine();
+    no[i] = Integer.parseInt(keyboard.nextLine());
     
     System.out.print("수업명: ");
-    String title = keyboard.next();
+    title[i] = keyboard.nextLine();
     
     System.out.print("설명: ");
-    String info = keyboard.next();
+    info[i] = keyboard.nextLine();
     
     System.out.print("시작일: year-month-date ");
-    Date startDate = Date.valueOf(keyboard.next());
+    startDate[i] = Date.valueOf(keyboard.nextLine());
     //(   )안의 값을 날짜 종류의 데이터로 바꿈
     // Date startDate => 데이터가 날짜이므로 그릇을 Date로 준비
     
     System.out.print("종료일: year-month-date ");
-    Date endDate = Date.valueOf(keyboard.next());
+    endDate[i] = Date.valueOf(keyboard.nextLine());
     
     System.out.print("총수업시간: ");
-    int totalHour = keyboard.nextInt();
+    totalHour[i] = Integer.parseInt(keyboard.nextLine());
     
     System.out.print("일수업시간: ");
-    int dayHour = keyboard.nextInt();
-    
-    keyboard.close();
-    // 분필, 볼펜처럼 반드시 닫아야 하는 메서드와 닫지 않아도 괜찮은 메서드 있음
-    
+    dayHour[i] = Integer.parseInt(keyboard.nextLine());
+  
     System.out.println();
-
     
-    System.out.printf("번호: %d\n", no);
-    System.out.printf("수업명: %s\n", title);
-    System.out.printf("설명: %s\n", info);
-    System.out.printf("시작일: %s\n", startDate);
-    System.out.printf("종료일: %s\n", endDate);
-    System.out.printf("총수업시간: %d시간\n", totalHour);
-    System.out.printf("일수업시간: %d시간\n", dayHour);
+    System.out.printf("번호: %d\n", no[i]);
+    System.out.printf("수업명: %s\n", title[i]);
+    System.out.printf("설명: %s\n", info[i]);
+    System.out.printf("시작일: %s\n", startDate[i]);
+    System.out.printf("종료일: %s\n", endDate[i]);
+    System.out.printf("총수업시간: %d시간\n", totalHour[i]);
+    System.out.printf("일수업시간: %d시간\n", dayHour[i]);
+    //keyboard.close();
+    // 분필, 볼펜처럼 반드시 닫아야 하는 메서드와 닫지 않아도 괜찮은 메서드 있음
+    ++i;
+    System.out.println();
+    System.out.print("계속 하시겠습니까?(Y/n)");
+    String str = keyboard.nextLine();
+    if (!str.equalsIgnoreCase("Y") && !str.equalsIgnoreCase("")) 
+      break;
+    }
+        
+    for (int a = 0; a < i; a++) {
+    System.out.printf("%d, %s\t, %s ~ %s, %d\n", no[a], title[a], startDate[a], endDate[a], totalHour[a]);
+    }
+    
     
   }
 }

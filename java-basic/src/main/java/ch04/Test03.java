@@ -54,7 +54,7 @@ public class Test03 {
     double d9 = d7+ d8;
     System.out.println(d9);
     
-    
+//    arr1 = new int[5];
     //암시적 형변환의 규칙
    // byte,short,char => int => long => float => double
     // 예1) byte + short + char - float + long + int + double
