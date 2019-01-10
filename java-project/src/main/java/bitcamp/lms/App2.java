@@ -8,42 +8,37 @@ public class App2 {
     
     java.util.Scanner keyboard = new java.util.Scanner(System.in);
     
-    final int LENGTH = 10;
-    
-    int[] no = new int[LENGTH];
-    String[] name = new String[LENGTH];
-    String[] email = new String[LENGTH];
-    int[] pw = new int[LENGTH];
-    String[] picName = new String[LENGTH];
-    String[] phoneNumber = new String[LENGTH];
-    Date[] date = new Date[LENGTH];
+    final int length = 10;
+    Board[] app2 = new Board[length];
     
     int i = 0;
-    while(i < LENGTH) {
+    while(i < length) {
+
+      Board main = new Board();
       
     System.out.print("번호? ");
-    no[i] = Integer.parseInt(keyboard.nextLine());
+    
+    main.no = Integer.parseInt(keyboard.nextLine());
     
     System.out.print("이름? ");
-    name[i] = keyboard.nextLine();
+    main.name = keyboard.nextLine();
     
     System.out.print("이메일? ");
-    email[i] = keyboard.nextLine();
+    main.email = keyboard.nextLine();
     
     System.out.print("암호? ");
-    pw[i] = Integer.parseInt(keyboard.nextLine());
+    main.pw = Integer.parseInt(keyboard.nextLine());
         
     System.out.print("사진이름? ");
-    picName[i] = keyboard.nextLine();
+    main.picName = keyboard.nextLine();
     
     System.out.print("전화? ");
-    phoneNumber[i] = keyboard.nextLine();
+    main.phoneNumber = keyboard.nextLine();
     
     System.out.print("가입일? ");
-    date[i] = Date.valueOf(keyboard.nextLine());
+    main.date = Date.valueOf(keyboard.nextLine());
     
-    System.out.println();
-    
+    app2[i] = main;
     i++;
     
     System.out.print("\n계속 입력하시겠습니까?(Y/n)");
@@ -56,17 +51,9 @@ public class App2 {
     keyboard.close();
     
     for(int a = 0; a < i; a++) {
-      System.out.printf("%d, %s, %s\t, %s\t, %s\n", no[a], name[a], email[a], phoneNumber[a], date[a]);
+      System.out.printf("%d, %s, %s\t, %s\t, %s\n", 
+          app2[a].no, app2[a].name, app2[a].email, app2[a].phoneNumber, app2[a].date);
       }
   }
 }
 
-/*
-번호: 1
-이름: 홍길동
-이메일: hong@test.com
-암호: 1111
-사진: hong.png
-전화: 1111-2222
-가입일: 2019-01-01
-*/

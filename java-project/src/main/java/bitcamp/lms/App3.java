@@ -8,24 +8,24 @@ public class App3 {
     
     java.util.Scanner keyboard = new java.util.Scanner(System.in);
     
-    final int LENGTH = 10;
-    
-    int[] no = new int[LENGTH];
-    String[] info = new String[LENGTH];
-    Date[] creatDate = new Date[LENGTH];
-    int[] countView = new int[LENGTH];
+    final int length = 10;
+    Member[] app3 = new Member[length];
         
     int i = 0;
-    while(i < LENGTH) {
+    while(i < length) {
+      
+      Member main = new Member();
+      
     System.out.print("번호: ");
-    no[i] = Integer.parseInt(keyboard.nextLine());
+    main.no = Integer.parseInt(keyboard.nextLine());
             
     System.out.print("내용: ");
-    info[i] = keyboard.nextLine();
+    main.info = keyboard.nextLine();
     
-    creatDate[i] = new Date(System.currentTimeMillis());
-    countView[i] = 0;
+    main.creatDate = new Date(System.currentTimeMillis());
+    main.countView = 0;
     
+    app3[i] = main;
     i++;
        
     System.out.print("\n계속 입력하시겠습니까?(Y/n) ");
@@ -38,8 +38,7 @@ public class App3 {
     keyboard.close();
 
     for(int a = 0; a < i; a++) {
-    System.out.printf("%d,%s,\t, %s, %d", no[a], info[a], creatDate[a], countView[a] );
-    System.out.println();
+    System.out.printf("%d,%-10s, %s, %4d\n", app3[a].no, app3[a].info, app3[a].creatDate, app3[a].countView);
     }
   
   }

@@ -9,58 +9,61 @@ import java.util.Scanner;
 public class App {
 
   public static void main(String[] args) {
-
+    
     Scanner keyboard = new Scanner(System.in);
-    
+
     final int length = 10;
+    Lesson[] app = new Lesson[length]; // 배열 레퍼런스
     
-    int[] no = new int[length] ;
-    String[] title = new String[length];
-    String[] info = new String[length]; 
-    Date[] startDate = new Date[length];
-    Date[] endDate = new Date[length];
-    int[] totalHour = new int[length];
-    int[] dayHour = new int[length];
-    
-    int index = 0;
-    while(index < 10) {
-    System.out.print("번호? ");
-    no[index] = Integer.parseInt(keyboard.nextLine());
-    
-    System.out.print("수업명? ");
-    title[index] = keyboard.nextLine();
-    
-    System.out.print("설명? ");
-    info[index] = keyboard.nextLine();
-    
-    System.out.print("시작일? ");
-    startDate[index] = Date.valueOf(keyboard.nextLine());
-    
-    System.out.print("종료일? ");
-    endDate[index] = Date.valueOf(keyboard.nextLine());
-    
-    System.out.print("총수업시간? ");
-    totalHour[index] = Integer.parseInt(keyboard.nextLine());
-    
-    System.out.print("일수업시간? ");
-    dayHour[index] = Integer.parseInt(keyboard.nextLine());
-  
-    index++;
-    
-    System.out.print("\n계속 하시겠습니까?(Y/n)");
-    String str = keyboard.nextLine();
-    System.out.println();
-    if (!str.equalsIgnoreCase("Y") && !str.equals("")) 
-      break;
-    }
+    int i = 0;
+    while (i < length) {
+      
+      Lesson main = new Lesson(); 
+      
+      System.out.print("번호? ");
+      main.no = Integer.parseInt(keyboard.nextLine());
+      
+      System.out.print("수업명? ");
+      main.title = keyboard.nextLine();
+      
+      System.out.print("수업내용 ? ");
+      main.info = keyboard.nextLine();
+      
+      System.out.print("시작일 ? ");
+      main.startDate = Date.valueOf(keyboard.nextLine());
+      
+      System.out.print("종료일 ? ");
+      main.endDate = Date.valueOf(keyboard.nextLine());
+      
+      System.out.print("총수업일 ? ");
+      main.totalHour = Integer.parseInt(keyboard.nextLine());
+      
+      System.out.print("일수업일? ");
+      main.dayHour = Integer.parseInt(keyboard.nextLine());
+      
+      app[i] = main;
+      i++;
+      
+      System.out.print("\n계속 입력하시겠습니까?(Y/n) ");
+      String str = keyboard.nextLine();
+      System.out.println();
+      if(!str.equalsIgnoreCase("y") && !str.equals("")) {
+        break;
+      }
+    }// while end
     
     keyboard.close();
     
-    int count = 0;
-    while(count < index) {
-    System.out.printf("%d, %-20s, %s ~ %s, %4d\n", no[count], title[count], startDate[count], endDate[count], totalHour[count]);
-     count++;
-    }
+    System.out.println();
     
-  }
-}
+    int c = 0;
+    while(c < i) {
+      System.out.printf("%d, %-20s, %s ~ %s, %4d\n", app[c].no, app[c].title, app[c].startDate, app[c].endDate, app[c].totalHour);
+      c++;
+    }
+
+
+  } // main end
+
+}// class end
+
