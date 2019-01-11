@@ -7,7 +7,9 @@ public class Test11 {
 
   public static void main(String[] args) {
     // 다른 패키지의 클래스를 사용하려면 다음과 같이 패키지명까지 지정해야 한다
-    ch07.sub.Score12 s1 = new ch07.sub.Score12();
+
+        ch07.sub.Score12 s1 = new ch07.sub.Score12();
+    
     // 문제는 코드가 길어진다는 것이다
     // 이를 해결하기 위해 자바는 import라는 명령 제공
     // 클래스를 사용하기 전에 미리 해당 클래스가 어느 패키지에 있는지 지정한 다음에 사용

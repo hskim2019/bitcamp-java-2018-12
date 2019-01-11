@@ -7,7 +7,7 @@ class My2 {
   static String member = "회원";
   static String guest = "손님";
 
-  //인스턴스 필드 -heap
+  //인스턴스 필드 - new 명령을 실행하면 heap에 생성
   String name;
   int age;
   String userType;

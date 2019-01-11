@@ -1,4 +1,4 @@
-// 클래스 문법의 또 다른 용도 (수정필요)
+// 클래스 문법의 또 다른 용도 - 클래스 사용 전
 package ch08;
 
 import java.util.Scanner;
@@ -25,7 +25,7 @@ public class Test06 {
         return; //main() 메서드를 그만 실행하고 나간다. 즉 JVM 종료
     }
     
-    System.out.printf("%d %s %d = ?\n", a, op, b);
+    System.out.printf("%d %s %d = %d\n", a, op, b, result);
   }
   
   static int plus(int a, int b) {
