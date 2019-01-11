@@ -15,13 +15,14 @@ public class Test08 {
   public static void main(String[] args) {
     
     // 낱개 변수 선언
-    int v1, v2, v3;
-    
+    int v1, v2, v3;     //    System.out.println(v1);
+
     // int 배열 선언
-    int[] values = new int[3];
-    // values : 배열의 주소를 담는 변수
-//    System.out.println(v1);
-    System.out.println("1:" + values[0]);
+    int[] values = new int[3];  // values : 배열의 주소를 담는 변수
+    System.out.println("values[0]:" + values[0]);
+    System.out.println("values[1]:" + values[1]);
+    System.out.println("values[2]:" + values[2]);
+    
     
     // s1은 레퍼런스 주소
     Score s1, s2, s3;
