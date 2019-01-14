@@ -12,6 +12,7 @@ public class App {
 
 
   public static void main(String[] args) {
+    //LessonHandler의 keyboard 와 App class 의 keyboard가 같은 객체를 가리키게
     LessonHandler.keyboard = keyboard;
     MemberHandler.keyboard = keyboard;
     BoardHandler.keyboard = keyboard;
