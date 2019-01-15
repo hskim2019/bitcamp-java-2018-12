@@ -1,15 +1,13 @@
-package com.bitcamp.lms.test.domain;
+package com.bitcamp.lms.domain;
 
 import java.sql.Date;
 
 public class Lesson {
-
   public int no;
   public String title;
-  public String content;
+  public String contents;
   public Date startDate;
   public Date endDate;
-  public int totalHour;
-  public int dayHour;
-  
+  public int totalHours;
+  public int dayHours;
 }

@@ -11,14 +11,14 @@ public class App {
   static Scanner keyboard = new Scanner(System.in);
 
   public static void main(String[] args) {
-    LessonHandler lesson = new LessonHandler(keyboard);
-//    lesson.keyboard = keyboard;
-    MemberHandler member = new MemberHandler(keyboard);
-//    member.keyboard = keyboard;
-    BoardHandler board1 = new BoardHandler(keyboard);
-//    board1.keyboard = keyboard;
-    BoardHandler board2 = new BoardHandler(keyboard);
-//    board2.keyboard = keyboard;
+    LessonHandler lesson = new LessonHandler();
+    lesson.keyboard = keyboard; //해당부분 생략해도 경고가 뜨지 않음, 해당 부분을 반드시 넣게 하려면 생성자 필요
+    MemberHandler member = new MemberHandler();
+    member.keyboard = keyboard;
+    BoardHandler board1 = new BoardHandler();
+    board1.keyboard = keyboard;
+    BoardHandler board2 = new BoardHandler();
+    board2.keyboard = keyboard;
 
     
     

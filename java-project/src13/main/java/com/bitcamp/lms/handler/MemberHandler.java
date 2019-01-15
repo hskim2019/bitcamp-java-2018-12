@@ -12,10 +12,6 @@ public class MemberHandler {
   static Member[] members = new Member[LENGTH];
   int memberIdx = 0;
   
-  public MemberHandler (Scanner key) {
-    this.keyboard = key;
-  }
-  
   public void listMember() {
     for (int j = 0; j < memberIdx; j++) {
       System.out.printf("%3d, %-4s, %-20s, %-15s, %s\n", 

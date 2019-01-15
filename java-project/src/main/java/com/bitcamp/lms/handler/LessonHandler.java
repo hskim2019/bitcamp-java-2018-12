@@ -7,8 +7,14 @@ import com.bitcamp.lms.domain.Lesson;
 public class LessonHandler {
   public Scanner keyboard;
   static final int LENGTH = 10;
-  static Lesson[] lessons = new Lesson[LENGTH];
+  Lesson[] lessons = new Lesson[LENGTH];
   int lessonIdx = 0;
+  
+  //생성자
+  public LessonHandler(Scanner keyboard) {
+    this.keyboard = keyboard;
+  }
+  
   
   public void listLesson() {
     for (int j = 0; j < lessonIdx; j++) {

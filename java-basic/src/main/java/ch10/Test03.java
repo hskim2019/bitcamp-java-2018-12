@@ -1,10 +1,10 @@
-// 인스턴스 필드의 초기화 - 인스턴스를 만들어 쓰는 개발자가 직접 초기화를 수행하기 (수정필요)
+// 인스턴스 필드의 초기화 - 인스턴스를 만들어 쓰는 개발자가 직접 초기화를 수행하기
 package ch10;
 
 class Monitor1 {
   // 인스턴스 변수(클래스 변수 포함)가 생성되면 0으로 자동 초기화 된다
-  // byte, short, int, long, float, double, booean, char = 0
-  // 주의! 로컬변수는 아님
+  // byte, short, int, long, float, double, boolean, char = 0
+  // 주의! 로컬변수는 자동 초기화되지 않는다
  int bright; // 밝기 (0% ~ 100%)
  int contrast; // 명암 (0% ~ 100%)
  int widthRes; // 해상도 너비
@@ -17,7 +17,6 @@ class Monitor1 {
    System.out.printf("해상도(%d x %d)\n", this.widthRes, this.heightRes);
    System.out.println("-----------------------------------------");
  }
- 
 }
 
 public class Test03 {

@@ -11,12 +11,7 @@ public class BoardHandler {
   
   Board[] boards = new Board[LENGTH];
   int boardIdx = 0;
-  
-  //생성자
-  public BoardHandler (Scanner keyboard) {
-    this.keyboard = keyboard;
-  }
-  
+
   public void listBoard() {
     for (int j = 0; j < boardIdx; j++) {
       System.out.printf("%3d, %-20s, %s, %d\n", 

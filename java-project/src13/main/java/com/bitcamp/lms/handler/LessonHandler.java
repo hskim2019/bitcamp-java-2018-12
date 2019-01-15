@@ -1,30 +1,26 @@
-package com.bitcamp.lms.test.handler;
+package com.bitcamp.lms.handler;
 
 import java.sql.Date;
 import java.util.Scanner;
-import com.bitcamp.lms.test.domain.Lesson;
+import com.bitcamp.lms.domain.Lesson;
 
 public class LessonHandler {
-
   public Scanner keyboard;
   static final int LENGTH = 10;
-  
-  Lesson[] lessons = new Lesson[LENGTH];
+  static Lesson[] lessons = new Lesson[LENGTH];
   int lessonIdx = 0;
   
   public void listLesson() {
-    int count = 0;
-    while(count < lessonIdx) {
-      System.out.printf("%d, %-20s, %s ~ %s, %4d\n"
-          ,lessons[count].no,lessons[count].title, lessons[count].startDate, lessons[count].endDate , lessons[count].totalHour );
-      count++;
+    for (int j = 0; j < lessonIdx; j++) {
+      System.out.printf("%3d, %-15s, %10s ~ %10s, %4d\n", 
+          lessons[j].no, lessons[j].title, lessons[j].startDate, 
+          lessons[j].endDate, lessons[j].totalHours);
     }
-    System.out.println();
   }
 
   public void addLesson() {
     Lesson lesson = new Lesson();
-    
+
     System.out.print("번호? ");
     lesson.no = Integer.parseInt(keyboard.nextLine());
 
@@ -32,7 +28,7 @@ public class LessonHandler {
     lesson.title = keyboard.nextLine();
 
     System.out.print("설명? ");
-    lesson.content = keyboard.nextLine();
+    lesson.contents = keyboard.nextLine();
 
     System.out.print("시작일? ");
     lesson.startDate = Date.valueOf(keyboard.nextLine());
@@ -41,13 +37,16 @@ public class LessonHandler {
     lesson.endDate = Date.valueOf(keyboard.nextLine());
 
     System.out.print("총수업시간? ");
-    lesson.totalHour = Integer.parseInt(keyboard.nextLine());
+    lesson.totalHours = Integer.parseInt(keyboard.nextLine());
 
     System.out.print("일수업시간? ");
-    lesson.dayHour = Integer.parseInt(keyboard.nextLine());
+    lesson.dayHours = Integer.parseInt(keyboard.nextLine());
 
-    System.out.println("저장하였습니다.\n");
+    // i 번째 배열에 수업 정보를 담고 있는 Lesson 객체(의 주소)를 보관한다.
+    lessons[lessonIdx] = lesson;
+    lessonIdx++;
 
-    lessons[lessonIdx++] = lesson;
+    System.out.println("저장하였습니다.");
+
   }
 }
