@@ -1,5 +1,6 @@
 package com.bitcamp.lms;
 
+import java.sql.Date;
 import java.util.Scanner;
 import com.bitcamp.lms.handler.BoardHandler;
 import com.bitcamp.lms.handler.LessonHandler;
@@ -19,6 +20,7 @@ public class App {
     BoardHandler board2 = new BoardHandler(keyboard);
 //    board2.keyboard = keyboard;
 
+    
     
     while (true) {
       String command = prompt();

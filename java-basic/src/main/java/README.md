@@ -73,7 +73,7 @@
 - 로컬변수와 인스턴스 필드의 초기화                     ch07 Test07
 - 인스턴스 배열                                     ch07 Test08
 - 패키지 멤버 클래스와 중첩 클래스                      ch07 Test09
-- 패키지 접근 범위(public)                           ch07 Test10
+- 패키지 접근 범위(public)                           ch07 Test10 & ch12.c
 - import (다른 패키지 클래스 사용하기)                  ch07 Test11
 
 # 클래스2
@@ -89,10 +89,10 @@
 - 클래스 필드가 필요한 이유 I - 클래스 메서드만 이용           ch09 Test01
 - 클래스 필드가 필요한 이유 II  - 클래스 필드+클래스메서드 사용  ch09 Test02
 - 클래스 필드의 한계                                     ch09 Test03
+
 - 인스턴스 필드가 필요한 이유                              ch09 Test04
 - 인스턴스 필드 - that & static 필드 사용                 ch09 Test05
 - 인스턴스 메서드의 등장 - this & 인스턴스 메서드 사용         ch09 Test06
-
 - 클래스 필드와 인스턴스 필드                              ch10 Test01
 - 인스턴스 멤버(인스턴스필드, 블록, 생성자,메서드)             ch10 Test02
 - 인스턴스 필드의 초기화I,II - 초기화 문장                   ch10 Test03 - Test04
@@ -117,5 +117,13 @@
 - 기타 메서드 (String.format, String.valueof)             ch11 Test06
 - StringBuffer 클래스                                    ch11 Test07
 - StringBuffer 클래스 - equals()                         ch11 Test08
+- Wrapper 클래스                                         ch11 Test09
+- Wrapper 클래스와 오토박싱/오토언박싱                        ch11 Test10
+- Wrapper 클래스 생성자                                    ch11 Test11
 
+- 캡슐화가 필요한 이유                                      ch12. a
+- 캡슐화 & getter/setter                                 ch12. b
+
+- 클래스 상속이 필요한 이유                                  ch13. a
+- 클래스 상속 방법                                         ch13. b
 
