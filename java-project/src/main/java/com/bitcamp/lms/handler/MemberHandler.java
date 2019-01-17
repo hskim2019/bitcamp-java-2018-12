@@ -7,15 +7,16 @@ import com.bitcamp.lms.domain.Member;
 public class MemberHandler {
 
   Scanner keyboard;
-  MemberList memberList = new MemberList();
+  ArrayList memberList = new ArrayList();
   
   public MemberHandler (Scanner key) {
     this.keyboard = key;
   }
   
   public void listMember() {
-    Member[] members = memberList.toArray();
-    for (Member member : members ) {
+    Object[] objects = memberList.toArray();
+    for (Object object : objects ) {
+      Member member = (Member) object;
       System.out.printf("%3d, %-4s, %-20s, %-15s, %s\n", 
           member.getNo(), member.getName(), member.getEmail(), 
           member.getTel(), member.getRegisteredDate());

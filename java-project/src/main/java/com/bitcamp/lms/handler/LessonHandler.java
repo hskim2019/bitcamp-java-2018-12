@@ -6,7 +6,7 @@ import com.bitcamp.lms.domain.Lesson;
 
 public class LessonHandler {
   Scanner keyboard;
-  LessonList lessonList = new LessonList();
+  ArrayList lessonList = new ArrayList();
 
   //생성자
   public LessonHandler(Scanner keyboard) {
@@ -15,8 +15,9 @@ public class LessonHandler {
 
 
   public void listLesson() {
-    Lesson[] lessons = lessonList.toArray();
-    for(Lesson lesson : lessons) {
+    Object[] objects = lessonList.toArray();
+    for(Object object : objects) {
+      Lesson lesson = (Lesson) object;
       System.out.printf("%3d, %-15s, %10s ~ %10s, %4d\n", 
           lesson.getNo(), lesson.getTitle(), lesson.getStartDate(), 
           lesson.getEndDate(), lesson.getTotalHours());

@@ -7,7 +7,7 @@ import com.bitcamp.lms.domain.Board;
 public class BoardHandler {
 
   Scanner keyboard;
-  BoardList boardList = new BoardList();
+  ArrayList boardList = new ArrayList();
   
   //생성자
   public BoardHandler (Scanner keyboard) {
@@ -15,11 +15,12 @@ public class BoardHandler {
   }
   
   public void listBoard() {
-    Board[] boards = boardList.toArray(); // 추가  목록을 배열로 만들어라
+    Object[] objects = boardList.toArray(); // 추가  목록을 배열로 만들어라
     // for - each 문으로 변경로
     // for (Board board : boards) { board.getNo() ....}
     //     값을받아줄변수  : 모두 출력할 배열 변수 이름
-    for (Board board : boards) { // 옆에 for는 위의 for-each문으로 대체
+    for (Object object : objects) { // 옆에 for는 위의 for-each문으로 대체
+       Board board = (Board) object;
       System.out.printf("%3d, %-20s, %s, %d\n", 
           board.getNo(), board.getContents(), board.getCreatedDate(), board.getViewCount());
     }
