@@ -15,7 +15,7 @@ public class BoardHandler {
   }
   
   public void listBoard() {
-    Object[] objects = boardList.toArray(); // 추가  목록을 배열로 만들어라
+    Object[] objects = boardList.toArray(); // 추가  리턴하는 타입이 Board가 아니라 Object이므로 Board[] boards ==> Object[] objects로 변경
     // for - each 문으로 변경로
     // for (Board board : boards) { board.getNo() ....}
     //     값을받아줄변수  : 모두 출력할 배열 변수 이름

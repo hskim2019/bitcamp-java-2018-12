@@ -18,15 +18,15 @@ public class BoardHandler {
   }
   
   public void listBoard() {
-    //Board[] boards = boardList.toArray(); [4] boards는 배열주소 받아 올 공간일 뿐 추가   목록을 배열로 만들어라
+    //Board[] boards = boardList.toArray(); [4] boards는 배열주소/ toArray의 ArrayList는 Board가 아니라 Object 타입이므로 Board[] boards ==> Object[] objects로 변경/ 받아 올 공간일 뿐 추가   목록을 배열로 만들어라
     // for - each 문으로 변경로
-    // for (Board board : boards) { board.getNo() ....}
-    //     값을받아줄변수  : 모두 출력할 배열 변수 이름
+    // for (Board board : boards) { board.getNo() ....}    // 위에서 Object배열로 만들었기 때문에 Board배열이 아님, Boardboard : boards ==>for(Object object : objects)
+    //     값을받아줄변수  : 모두 출력할 배열 변수 이름              // 대신 다시 Board board = (Board) object;추가해서 Object에서 Board형으로 형변환
     for (int j = 0; j < boardIdx; j++) { // 옆에 for는 위의 for-each문으로 대체
       System.out.printf("%3d, %-20s, %s, %d\n", 
           this.boards[j].getNo(), this.boards[j].getContents(), this.boards[j].getCreatedDate(), this.boards[j].getViewCount());
     } //현재는 BoardHandler의 boards[j] 배열에 가서 주소를 찾아가지만, 데이터를 BoardList에 저장했기 때문에
-      // BoardHandler의 board(번지)에 찾아가면 됨
+      // board(번지)에 찾아가면 됨
   }
 
   public void addBoard() {
