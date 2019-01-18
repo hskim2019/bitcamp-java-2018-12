@@ -6,17 +6,17 @@ import com.eomcs.lms.domain.Member;
 public class MemberHandler {
   
   Scanner keyboard;
-  ArrayList<Member> list;
+  ArrayList list;
   
   public MemberHandler(Scanner keyboard) {
     this.keyboard = keyboard;
-    this.list = new ArrayList<>(new Member[] {});
+    this.list = new ArrayList(20);
   }
   
   public void listMember() {
-    Member[] members = list.toArray();
-    
-    for (Member member : members) {
+    Object[] objs = list.toArray();
+    for (Object obj : objs) {
+      Member member = (Member) obj;
       System.out.printf("%3d, %-4s, %-20s, %-15s, %s\n", 
           member.getNo(), member.getName(), 
           member.getEmail(), member.getTel(), member.getRegisteredDate());
@@ -52,12 +52,3 @@ public class MemberHandler {
   }
 
 }
-
-
-
-
-
-
-
-
-

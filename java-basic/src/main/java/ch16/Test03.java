@@ -1,4 +1,4 @@
-// 제네릭(generic) 적용 후 - 메서드가 다루는 객체의 타입을 파라미터로 받는다
+// 제네릭(generic) 적용 후 - 메서드가 다루는 객체의 타입 이름을 파라미터로 받는다. 
 package ch16;
 
 import java.io.File;

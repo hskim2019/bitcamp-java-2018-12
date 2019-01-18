@@ -1,5 +1,4 @@
 package com.eomcs.lms.handler;
-
 import java.sql.Date;
 import java.util.Scanner;
 import com.eomcs.lms.domain.Lesson;
@@ -8,15 +7,16 @@ public class LessonHandler {
 
   Scanner keyboard;
   ArrayList<Lesson> list;
-  
+
   public LessonHandler(Scanner keyboard) {
     this.keyboard = keyboard;
-    list = new ArrayList<>(new Lesson[] {});
+    this.list = new ArrayList<>(20);
   }
-  
+
   public void listLesson() {
-    Lesson[] lessons = list.toArray();
+    Lesson [] lessons = list.toArray(new Lesson[0]);
     for (Lesson lesson : lessons) {
+//      Lesson lesson = (Lesson) obj;
       System.out.printf("%3d, %-15s, %10s ~ %10s, %4d\n", 
           lesson.getNo(), lesson.getTitle(), 
           lesson.getStartDate(), lesson.getEndDate(), lesson.getTotalHours());

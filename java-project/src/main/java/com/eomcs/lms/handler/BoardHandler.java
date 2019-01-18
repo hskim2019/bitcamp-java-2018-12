@@ -10,13 +10,13 @@ public class BoardHandler {
   
   public BoardHandler(Scanner keyboard) {
     this.keyboard = keyboard;
-    this.list = new ArrayList<>(new Board[] {});
+    this.list = new ArrayList<>(20);
   }
   
   public void listBoard() {
-    Board[] boards = list.toArray();
-    
+    Board [] boards = list.toArray(new Board[0]);
     for (Board board : boards) {
+//      Board board = (Board) obj;
       System.out.printf("%3d, %-20s, %s, %d\n", 
           board.getNo(), board.getContents(), 
           board.getCreatedDate(), board.getViewCount());
