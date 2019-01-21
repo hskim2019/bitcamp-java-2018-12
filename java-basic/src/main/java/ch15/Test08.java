@@ -1,4 +1,5 @@
 // Object 클래스 - hashCode() 응용 I
+// Hash Map - key를 이용해 비교할 때는 hashCode()& equals()까지 재정의 해야 비교할 수 있음
 
 package ch15;
 

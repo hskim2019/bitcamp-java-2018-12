@@ -58,23 +58,25 @@ public class LessonHandler {
     //    System.out.print("번호? ");
     //    int no = Integer.parseInt(keyboard.nextLine());//사용자가 조회하고 싶은 번호 받기
     // => 아래와 같이 메서드로 변경
-    
     int no = promptLessonNo();   // 수업번호 입력받고
-    int index = indexOf(no);      // 방번호 알아낸다
-    if(!validate(index))         // 방번호가 유효하지 않으면
-      return;                    // 함수 종료
-
-    Lesson lesson = list.get(indexOf(no));
 
     //    Lesson lesson = null; // 반복문 돌면서 저장 된 번호중에 사용자가 입력한 번호와 같은 것 찾게 하기 => 반복문을 list개수만큼 돌면 됨
-    //    int size = list.size(); //ArrayList의 list의 개수를 알아야 하므로 size()메서드 만들고 호출,  list 개수만큼 for문 반복 함
-    //    for (int i = 0; i < size; i++) {
-    //      Lesson item = list.get(i); //list의 i번째 객체를 리턴 => ArrayList에 get() 메서드가 있어야 함
+    //    int size = list.size(); //ArrayList의 list의 개수를 알아내기 위해서 ArrayList size()메서드 만들고 호출
+    //    for (int i = 0; i < size; i++) {    //list 개수만큼 for문 반복 함
+    //      Lesson item = list.get(i); //i번째 객체를 리턴 => ArrayList에 get() 메서드 만들기 (그림1 참조) => ex)list.get(0) 는 list[0]객체 의미
     //      if (item.getNo() == no) {    // lesson에 저장 된 주소로 찾아가서 no값이 사용자가 입력한 값(detailLesson메서드의 int no)과 같은가?
     //        lesson = item;          // 같으면 저장
     //        break;
     //      }
     //    }
+    // => 아래와 같이 메서드로 변경    
+    
+    int index = indexOf(no);      // 방번호 찾기
+    if(!validate(index))         // 방번호가 유효하지 않으면
+      return;                    // 함수 종료
+    Lesson lesson = list.get(index); // 찾은 방 번호의 주소를 lesson에 넣어주기
+
+
     if (lesson == null) {  // 사용자가 입력한 값이랑 같은 거 없는 경우(for 반복문을 다 돌았는데도 같은 값 못 찾은 경우)
       System.out.println("해당 수업을 찾을 수 없습니다.");
       return; //메서드 호출을 멈추고 되돌아가라
@@ -89,9 +91,6 @@ public class LessonHandler {
   }
 
   public void deleteLesson() { //[2]
-    // System.out.print("번호? ");
-//    return Integer.parseInt(keyboard.nextLine());
-    
     int no = promptLessonNo();   // 수업번호 입력받고
     int index = indexOf(no);      // 방번호 알아낸다
     if(!validate(index))         // 방번호가 유효하지 않으면
@@ -155,21 +154,18 @@ public class LessonHandler {
         Integer.parseInt(input) : lesson.getDayHours());
 
     list.set(index, temp); //새로 만든 lesson을 index번호 찾아서 값 넣기
-    
-    System.out.println("수업을 변경했습니다.");
   }
 
   //내부적으로 쓸 것, 계속 반복되는 index 넘버 찾는 것을 하나로 리펙토링
   private int indexOf(int lessonNo) {
-    //    int index = -1;  // 0번 방도 존재하므로 -1부터 시작, 방 번호 찾기
-    //    int size = list.size(); 
-    for (int i = 0; i < list.size(); i++) {  //ArrayList에 size return하는 메서드 있다
+    for (int i = 0; i < list.size(); i++) {
       Lesson item = list.get(i); 
       if (item.getNo() == lessonNo) {    
         return i;
       }
     }
-    return -1;  // 찾으면 i리턴하고, 못 찾으면 -1
+    return -1;  // 찾으면 i리턴하고, 못 찾으면 -1 리턴(방은 0번부터 존재하고 -1번방은 없으므로)
+                // -1이 리턴되면 validate 메서드에서 "해당수업찾을수없음"출력함
   }
 
   private int promptLessonNo() {
