@@ -10,10 +10,11 @@ public class ArrayListTest {
   
   @Test
   // @test => alt + / => org.junit 
+  // test 수행할 때 이 메서드를 호출하라는 뜻
   public void testAdd() {
     ArrayList list = new ArrayList();
     list.add(100); // list.add(Integer.valueOf(100)) : 오토박싱
-    list.add(200);
+    list.add(200); // add() 메서드 호출해서 값 100 전달
     list.add(300);
     list.add(400);
     list.add(500);
@@ -22,7 +23,7 @@ public class ArrayListTest {
     assertEquals(6, list.size());  //(기대하는 값 6, 실제 값 size)
   }
   
-  @Test //test 수행할 때 이 메서드를 호출하라는 뜻
+  @Test
   public void testList() {
     ArrayList list = new ArrayList();
     list.add(100); // list.add(Integer.valueOf(100)) : 오토박싱
@@ -33,7 +34,7 @@ public class ArrayListTest {
     list.add(600);
     
     assertArrayEquals(new Object[] {100,200,300,400,500,600}, list.toArray());
-  }
+  }   // (기대하는 배열, 메서드 호출 : 실제 배열)
   
   @Test //test 수행할 때 이 메서드를 호출하라는 뜻
   public void testInsert() {
@@ -45,7 +46,7 @@ public class ArrayListTest {
     list.add(500);
     list.add(600);
     
-    list.insert(2, 55); //2번째에 55를 넣어라 
+    list.insert(2, 55); // insert(int index, Ojbect value) 2번째 인덱스에 값 55넣기
     assertArrayEquals(new Object[] {100,200,55,300,400,500,600}, list.toArray());
   }
   

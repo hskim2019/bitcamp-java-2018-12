@@ -21,7 +21,7 @@ public class ArrayList {
       arr = new Object[DEFAULT_SIZE];
   }
 
-  // ???????????
+  // 새로운 사이즈에 맞춰 새로운 배열 생성
   public Object[] toArray() {
     Object[] list = new Object[this.size];
     for(int i = 0; i < this.size; i++) {
