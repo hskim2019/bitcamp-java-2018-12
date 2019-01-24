@@ -154,6 +154,7 @@
 - Object 클래스의 - equals() 메서드 / 오버라이딩              ch15 Test04 - Test05
 - Object 클래스의 - hashCode() 메서드 / 오버라이딩            ch15 Test06 - Test11   
 - Object 클래스의 - getClass()                            ch15 Test12
+- Object 클래스의 - getClass()와 배열                      ch15 Test13
 
 - 제네릭 적용 전                                           ch16 Test01 - Test02
 - 제네릭 적용                                             ch16 Test03 - Test04
@@ -168,7 +169,23 @@
 - 서브 인터페이스 구현                                       ch18. d
 - ??                                                     ch18. e,f,g,h
 
-- 배열 + 메서드 활용 연습(ArrayList)                         algorithm
+# ??     
+- 클래스 종류 & 중첩 클래스 종류                              ch19.a
+패키지 멤버 클래스의 접근 제한자는 public 과 (default)가 있다    
+public => 다른 패키지에서도 접근 가능
+1 )public class A {}  <-- 다른 패키지에서 import 가능
+2 ) class B {}     <- 다른 패키지에서 접근 불가
+
+- 상수를 다른 클래스로 분리                                     ch19. b, c, d
+- 패키지 멤버 클래스 /  패키지 멤버 클래스                        ch19.e
+- LinkedList(안에 Array 클래스)                              ch19.f
+- File filter : 중첩클래스->로컬클래스->익명클래스                ch19.g
+
+# 알고리즘
+-ArryList
+-LinkedList(Node)
+-Queue
+-Stack
 
                     
 

@@ -45,7 +45,7 @@ public class Test09 {
     // 로컬 클래스
     // => 특정 메서드 안에서만 사용되는 클래스인 경우
     class Score4 {
-      String name;
+     String name;
       int kor;
       int eng;
       int math;
@@ -69,7 +69,7 @@ public class Test09 {
   static void m1() {
     // 패키지 멤버 클래스는 그 패키지에 소속된 누구라도 사용할 수 있다
     // 같은 패키지 아니라도 공개된 패키지 멤버는 누구라도 사용할 수 있다
-    Score2 s1 = new Score2();
+    Score1 s1 = new Score1();
     
     // 같은 스테틱 멤버인 스테틱 중첩 클래스를 사용할 수 있다
     Score2 s2 = new Score2();
@@ -84,7 +84,7 @@ public class Test09 {
    void m2() {
     // 패키지 멤버 클래스는 그 패키지에 소속된 누구라도 사용할 수 있다
     // 같은 패키지 아니라도 공개된 패키지 멤버는 누구라도 사용할 수 있다
-    Score2 s1 = new Score2();
+    Score1 s1 = new Score1();
     
     // 논-스테틱 멤버(인스턴스 멤버)는 스테틱 멤버를 사용할 수 있다
     Score2 s2 = new Score2();
