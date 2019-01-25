@@ -171,11 +171,6 @@
 
 # ??     
 - 클래스 종류 & 중첩 클래스 종류                              ch19.a
-패키지 멤버 클래스의 접근 제한자는 public 과 (default)가 있다    
-public => 다른 패키지에서도 접근 가능
-1 )public class A {}  <-- 다른 패키지에서 import 가능
-2 ) class B {}     <- 다른 패키지에서 접근 불가
-
 - 상수를 다른 클래스로 분리                                     ch19. b, c, d
 - 패키지 멤버 클래스 /  패키지 멤버 클래스                        ch19.e
 - LinkedList(안에 Array 클래스)                              ch19.f
@@ -186,6 +181,12 @@ public => 다른 패키지에서도 접근 가능
 -LinkedList(Node)
 -Queue
 -Stack
+
+# 디자인 패턴
+-abstract_factory
+-iterator ***********
+-singleton
+-template_method
 
                     
 

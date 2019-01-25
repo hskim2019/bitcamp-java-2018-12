@@ -38,7 +38,7 @@ public class Test02 {
 
   public static void main(String[] args) {
     // 3) local class
-    //   => 틀정 메서드 안에서만 사용되는 클래스
+    //   => 특정 메서드 안에서만 사용되는 클래스
     class C{}
 
     // 4) Anonymous class

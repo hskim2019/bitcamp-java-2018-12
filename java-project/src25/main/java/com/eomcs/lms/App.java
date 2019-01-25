@@ -104,7 +104,8 @@ public class App {
         break;
 
       } else if (command.equals("history")) {
-        printCommandHistory(new Iterator<String>(){
+        printCommandHistory(new Iterator<String>(){           //익명클래스 문법, new super class/interface
+          // 익명클래스 내용
           int index = commandHistory.size() - 1;
 
           @Override
