@@ -1,15 +1,17 @@
-// java 의 iterator는 역순으로 뽑을 수 없음
 package com.eomcs.lms;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.Stack;
+import com.eomcs.lms.domain.Board;
+import com.eomcs.lms.domain.Lesson;
+import com.eomcs.lms.domain.Member;
 import com.eomcs.lms.handler.BoardHandler;
 import com.eomcs.lms.handler.LessonHandler;
 import com.eomcs.lms.handler.MemberHandler;
+import com.eomcs.util.ArrayList;
+import com.eomcs.util.Iterator;
+import com.eomcs.util.LinkedList;
+import com.eomcs.util.Queue;
+import com.eomcs.util.Stack;
 
 public class App {
 
@@ -17,11 +19,11 @@ public class App {
 
   // 사용자가 입력한 명령을 보관할 스택 준비
   static Stack<String> commandHistory = new Stack<>(); // 입력된 명령어 담을 보관소가 commandHistory, static main()에서도 사용할 수 있게 static변수로 만듦
-  static ArrayDeque<String> commandHistory2 = new ArrayDeque<>();  //[1] 입력된 명령어 담을 보관소가 commandHistory2
+  static Queue<String> commandHistory2 = new Queue<>();  //[1] 입력된 명령어 담을 보관소가 commandHistory2
 
   public static void main(String[] args) {
-    // ArrayList<Lesson> lessonList = new ArrayList<>(); <= 이렇게 객체 생성 할 필요 없이 바로 아래와 같이
-
+   // ArrayList<Lesson> lessonList = new ArrayList<>(); <= 이렇게 객체 생성 할 필요 없이 바로 아래와 같이
+    
     // 핸들러가 필요로 하는 의존 객체를 이 클래스에서 만들어 주입해준다
     // => "의존 객체 주입(Dependency Injection; DI)" 이라 한다
     LessonHandler lessonHandler = new LessonHandler(keyboard, new ArrayList<>());
@@ -37,7 +39,7 @@ public class App {
       commandHistory.push(command);
       //[2] 사용자가 입력한 명령을 큐에 보관한다
       commandHistory2.offer(command);
-
+      
 
       if (command.equals("/lesson/add")) {
         lessonHandler.addLesson();
@@ -104,23 +106,10 @@ public class App {
         break;
 
       } else if (command.equals("history")) {
-        printCommandHistory(new Iterator<String>(){
-          int index = commandHistory.size() - 1;
-
-          @Override
-          public boolean hasNext() {
-            return index >= 0;      // true/false
-          }
-
-          @Override
-          public String next() {
-            return commandHistory.get(index--); // 현재 index 값
-          }
-
-        });   
+        printCommandHistory();   // 메서드 만들어야 함
 
       }else if (command.equals("history2")) {
-        printCommandHistory(commandHistory2.iterator());  
+        printCommandHistory2();   // [3] 메서드 만들어야 함
 
       }else {
         System.out.println("실행할 수 없는 명령입니다.");
@@ -132,8 +121,8 @@ public class App {
     keyboard.close();
   }
 
-  private static void printCommandHistory(Iterator<String> iterator) { 
-    //    Iterator<String> iterator = commandHistory.iterator();
+  private static void printCommandHistory() { 
+    Iterator<String> iterator = commandHistory.iterator();
     int count = 0;
     while(iterator.hasNext()) {
       System.out.println(iterator.next());
@@ -146,22 +135,22 @@ public class App {
     }
     System.out.println();
   }
-
-  //  private static void printCommandHistory2() { 
-  //    Iterator<String> iterator = commandHistory2.iterator();
-  //    int count = 0;
-  //    while(iterator.hasNext()) { // 꺼낼 값이 있으면
-  //      System.out.println(iterator.next());
-  //      if(++count % 5 == 0) {
-  //        System.out.print(":");
-  //        String input = keyboard.nextLine();
-  //        if(input.equalsIgnoreCase("q"))
-  //          break;
-  //      }
-  //    }
-  //    System.out.println();
-  //  }
-
+  
+  private static void printCommandHistory2() { 
+    Iterator<String> iterator = commandHistory2.iterator();
+    int count = 0;
+    while(iterator.hasNext()) { // 꺼낼 값이 있으면
+      System.out.println(iterator.next());
+      if(++count % 5 == 0) {
+        System.out.print(":");
+        String input = keyboard.nextLine();
+        if(input.equalsIgnoreCase("q"))
+          break;
+      }
+    }
+    System.out.println();
+  }
+  
 
 
   private static String prompt() {
