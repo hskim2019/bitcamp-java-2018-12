@@ -7,7 +7,7 @@ import com.bitcamp.lms.domain.Board;
 public class BoardHandler {
 
   Scanner keyboard;
-  static final int LENGTH = 10;  //=> [1]board list로 이동, 없애기 ,데이터 저장할 배열 관련이므
+  static final int LENGTH = 10;  //=> [1]board list로 이동, 없애기 ,데이터 저장할 배열 관련이므로
   Board[] boards = new Board[LENGTH]; // =>[1] board list로 이동, 없애기
   int boardIdx = 0;   // =>[1] board list로 이동, 없애기
   // [2]BoardList boardList = new BoardList(); 이 부분 추가하기  데이터 관리는 BoardList가

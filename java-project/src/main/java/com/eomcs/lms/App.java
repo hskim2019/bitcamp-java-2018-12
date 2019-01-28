@@ -1,33 +1,63 @@
-// java 의 iterator는 역순으로 뽑을 수 없음
 package com.eomcs.lms;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Stack;
-import com.eomcs.lms.handler.BoardHandler;
-import com.eomcs.lms.handler.LessonHandler;
-import com.eomcs.lms.handler.MemberHandler;
+import com.eomcs.lms.domain.Board;
+import com.eomcs.lms.domain.Lesson;
+import com.eomcs.lms.domain.Member;
+import com.eomcs.lms.handler.BoardAddCommand;
+import com.eomcs.lms.handler.BoardDeleteCommand;
+import com.eomcs.lms.handler.BoardDetailCommand;
+import com.eomcs.lms.handler.BoardListCommand;
+import com.eomcs.lms.handler.BoardUpdateCommand;
+import com.eomcs.lms.handler.Command;
+import com.eomcs.lms.handler.LessonAddCommand;
+import com.eomcs.lms.handler.LessonDeleteCommand;
+import com.eomcs.lms.handler.LessonDetailCommand;
+import com.eomcs.lms.handler.LessonListCommand;
+import com.eomcs.lms.handler.LessonUpdateCommand;
+import com.eomcs.lms.handler.MemberAddCommand;
+import com.eomcs.lms.handler.MemberDeleteCommand;
+import com.eomcs.lms.handler.MemberDetailCommand;
+import com.eomcs.lms.handler.MemberListCommand;
+import com.eomcs.lms.handler.MemberUpdateCommand;
 
 public class App {
 
   static Scanner keyboard = new Scanner(System.in);
-
-  // 사용자가 입력한 명령을 보관할 스택 준비
-  static Stack<String> commandHistory = new Stack<>(); // 입력된 명령어 담을 보관소가 commandHistory, static main()에서도 사용할 수 있게 static변수로 만듦
-  static ArrayDeque<String> commandHistory2 = new ArrayDeque<>();  //[1] 입력된 명령어 담을 보관소가 commandHistory2
+  static Stack<String> commandHistory = new Stack<>(); 
+  static ArrayDeque<String> commandHistory2 = new ArrayDeque<>(); 
 
   public static void main(String[] args) {
-    // ArrayList<Lesson> lessonList = new ArrayList<>(); <= 이렇게 객체 생성 할 필요 없이 바로 아래와 같이
 
-    // 핸들러가 필요로 하는 의존 객체를 이 클래스에서 만들어 주입해준다
-    // => "의존 객체 주입(Dependency Injection; DI)" 이라 한다
-    LessonHandler lessonHandler = new LessonHandler(keyboard, new ArrayList<>());
-    MemberHandler memberHandler = new MemberHandler(keyboard, new ArrayList<>());
-    BoardHandler boardHandler1 = new BoardHandler(keyboard, new LinkedList<>());
-    BoardHandler boardHandler2 = new BoardHandler(keyboard, new LinkedList<>());
+    ArrayList<Board> boardList = new ArrayList<>();
+    ArrayList<Member> memberList = new ArrayList<>();
+    ArrayList<Lesson> lessonList = new ArrayList<>();
+
+    HashMap<String, Command> commandMap = new HashMap<>();
+
+    commandMap.put("/board/add",new BoardAddCommand(keyboard, boardList));
+    commandMap.put("/board/list", new BoardListCommand(keyboard, boardList));
+    commandMap.put("/board/detail", new BoardDetailCommand(keyboard, boardList));
+    commandMap.put("/board/update", new BoardUpdateCommand(keyboard, boardList));
+    commandMap.put("/board/delete", new BoardDeleteCommand(keyboard, boardList));
+
+    commandMap.put("/member/add",new MemberAddCommand(keyboard, memberList));
+    commandMap.put("/member/list", new MemberListCommand(keyboard, memberList));
+    commandMap.put("/member/detail", new MemberDetailCommand(keyboard, memberList));
+    commandMap.put("/member/update", new MemberUpdateCommand(keyboard, memberList));
+    commandMap.put("/member/delete", new MemberDeleteCommand(keyboard, memberList));
+
+    commandMap.put("/lesson/add",new LessonAddCommand(keyboard, lessonList));
+    commandMap.put("/lesson/list", new LessonListCommand(keyboard, lessonList));
+    commandMap.put("/lesson/detail", new LessonDetailCommand(keyboard, lessonList));
+    commandMap.put("/lesson/update", new LessonUpdateCommand(keyboard, lessonList));
+    commandMap.put("/lesson/delete", new LessonDeleteCommand(keyboard, lessonList));
+
 
 
     while (true) {
@@ -38,73 +68,13 @@ public class App {
       //[2] 사용자가 입력한 명령을 큐에 보관한다
       commandHistory2.offer(command);
 
-
-      if (command.equals("/lesson/add")) {
-        lessonHandler.addLesson();
-
-      } else if (command.equals("/lesson/list")) {
-        lessonHandler.listLesson();
-
-      } else if (command.equals("/lesson/detail")) {
-        lessonHandler.detailLesson();
-
-      } else if (command.equals("/lesson/update")) {
-        lessonHandler.updateLesson();
-
-      } else if (command.equals("/lesson/delete")) {
-        lessonHandler.deleteLesson();
-
-      } else if (command.equals("/member/add")) {
-        memberHandler.addMember();
-
-      } else if (command.equals("/member/list")) {
-        memberHandler.listMember();
-
-      } else if (command.equals("/member/detail")) {
-        memberHandler.detailMember();
-
-      } else if (command.equals("/member/update")) {
-        memberHandler.updateMember();
-
-      } else if (command.equals("/member/delete")) {
-        memberHandler.deleteMember();
-
-      } else if (command.equals("/board/add")) {
-        boardHandler1.addBoard();
-
-      } else if (command.equals("/board/list")) {
-        boardHandler1.listBoard();
-
-      } else if (command.equals("/board/detail")) {
-        boardHandler1.detailBoard();
-
-      } else if (command.equals("/board/update")) {
-        boardHandler1.updateBoard();
-
-      } else if (command.equals("/board/delete")) {
-        boardHandler1.deleteBoard();
-
-      } else if (command.equals("/board2/add")) {
-        boardHandler2.addBoard();
-
-      } else if (command.equals("/board2/list")) {
-        boardHandler2.listBoard();
-
-      } else if (command.equals("/board2/detail")) {
-        boardHandler2.detailBoard();
-
-      } else if (command.equals("/board2/update")) {
-        boardHandler2.updateBoard();
-
-      } else if (command.equals("/board2/delete")) {
-        boardHandler2.deleteBoard();
-
-      } else if (command.equals("quit")) {
+      if (command.equals("quit")) {
         System.out.println("안녕!");
         break;
-
+        
       } else if (command.equals("history")) {
-        printCommandHistory(new Iterator<String>(){
+        printCommandHistory(new Iterator<String>(){ 
+          // 익명클래스 내용
           int index = commandHistory.size() - 1;
 
           @Override
@@ -122,11 +92,15 @@ public class App {
       }else if (command.equals("history2")) {
         printCommandHistory(commandHistory2.iterator());  
 
-      }else {
-        System.out.println("실행할 수 없는 명령입니다.");
+      } else {
+        Command commandHandler = commandMap.get(command);
+        if(commandHandler == null)
+          System.out.println("실행할 수 없는 명령입니다.");
+        else
+          commandHandler.execute();
       }
 
-      System.out.println(); // 결과 출력 후 빈 줄 출력
+      System.out.println(); 
     }
 
     keyboard.close();
@@ -146,22 +120,6 @@ public class App {
     }
     System.out.println();
   }
-
-  //  private static void printCommandHistory2() { 
-  //    Iterator<String> iterator = commandHistory2.iterator();
-  //    int count = 0;
-  //    while(iterator.hasNext()) { // 꺼낼 값이 있으면
-  //      System.out.println(iterator.next());
-  //      if(++count % 5 == 0) {
-  //        System.out.print(":");
-  //        String input = keyboard.nextLine();
-  //        if(input.equalsIgnoreCase("q"))
-  //          break;
-  //      }
-  //    }
-  //    System.out.println();
-  //  }
-
 
 
   private static String prompt() {
