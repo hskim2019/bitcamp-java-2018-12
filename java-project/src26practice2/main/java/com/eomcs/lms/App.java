@@ -129,7 +129,7 @@ public class App {
       }else if (command.equals("history2")) {
         printCommandHistory(commandHistory2.iterator());  
 
-      }else { //[9]
+      }else { //[9] 명령어 처리할 객체를 찾았으면 Command 계약서에 나와 있는대로 호출한다
         Command commandHandler =  commandMap.get(command);
         if(commandHandler == null) 
         System.out.println("실행할 수 없는 명령입니다.");

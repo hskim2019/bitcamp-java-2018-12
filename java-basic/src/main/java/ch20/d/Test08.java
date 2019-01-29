@@ -1,4 +1,4 @@
-// ???? Hashtable에서 Iterator를 얻은 후 값을 변경할 때 
+// Hashtable에서 Iterator를 얻은 후 값을 변경할 때 - 실행 오류 발생
 package ch20.d;
 
 import java.util.Hashtable;

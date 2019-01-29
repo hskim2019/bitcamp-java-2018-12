@@ -38,10 +38,10 @@ public class App {
     ArrayList<Member> memberList = new ArrayList<>();
     ArrayList<Lesson> lessonList = new ArrayList<>();
 
-    HashMap<String, Command> commandMap = new HashMap<>();
+    HashMap<String, Command> commandMap = new HashMap<>();  //Command 규칙에 따라 만든 객체(주소)를 저장한다
 
     commandMap.put("/board/add",new BoardAddCommand(keyboard, boardList));
-    commandMap.put("/board/list", new BoardListCommand(keyboard, boardList));
+    commandMap.put("/board/list", new BoardListCommand(keyboard, boardList));  //지금은 keyboard 필요 없음
     commandMap.put("/board/detail", new BoardDetailCommand(keyboard, boardList));
     commandMap.put("/board/update", new BoardUpdateCommand(keyboard, boardList));
     commandMap.put("/board/delete", new BoardDeleteCommand(keyboard, boardList));
@@ -96,13 +96,8 @@ public class App {
         Command commandHandler = commandMap.get(command);
         if(commandHandler == null)
           System.out.println("실행할 수 없는 명령입니다.");
-       {
-        try {   //[]
+        else 
           commandHandler.execute();
-        } catch (Exception e) {
-          System.out.printf("작업중오류발생: %s\n", e.toString());
-        }  //[]
-          }
       }
 
       System.out.println(); 

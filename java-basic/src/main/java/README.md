@@ -185,12 +185,14 @@
 # 디자인 패턴
 -abstract_factory
 -iterator ***********
+-factory_method
+-command pattern
 -singleton
 -template_method
 
 # ========== 알고리즘 살펴보기  ========== #
-# ArrayList
 
+# ArrayList
 - ArrayList 사용법- 제네릭 설정                        ch20.a Test01
 - ArrayList 사용법- add,remove,set,get               ch20.a Test02
 - ArrayList 사용법 - contains()                      ch20.a Test03 - Test04
@@ -203,7 +205,27 @@
 - Stack 클래스 사용법 - peek()                         ch20.b Test03
 - Stack 클래스 사용법 - search()                       ch20.b Test04
 - stack 클래스 사용법 - 상속받은 클래스에 있는 메서드 사용 get() ch20.b Test05
-                    
+
+# HashSet (Set 인터페이스를 구현한 HashSet 클래스)               
+- add(), Iterator                                     ch20.c Test01
+- add(), hashCode(), equals()                         ch20.c Test02 - Test03
+
+# Map
+- put(), get()                                         ch20.d Test01
+- HashMap과 Hashtable                                  ch20.d Test02
+- HashMap에서 key 목록 꺼내기                            ch20.d Test03 - Test04
+- HashMap에서 key, value함께 꺼내기                      ch20.d Test05
+- HashMap에서 Iterator 사용하기                          ch20.d Test06
+- HashMap에서 Iterator를 얻은 후 값을 변경할 때            ch20.d Test07
+- Hashtable에서 Iterator를 얻은 후 값을 변경할 때 - 실행 오류 발생 ch20.d Test08
+- Hashtable에서 value 목록 꺼내기 - elements()            ch20.d Test09 
+- 커스텀 key 사용                                         ch20.d Test10 - Test11
+===============================================================================
+
+#예외
+- 예외 종류(시스템 예외, 애플리케이션 예외)와 예외처리 필요한 이유  ch21.a
+- 애플리케이션 예외 - finally/멀티catch/통합/catch블록순서       ch21.b
+
 
 
  
