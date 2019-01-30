@@ -58,10 +58,17 @@ public class Lesson implements Cloneable {
     this.dayHours = dayHours;
   }
   
-  public static Lesson valueOf(String csv) {
+  /**
+   * 
+   * @param csv "번호,제목,내용,시작일(yyyy-MM-dd),종료일(yyyy-MM-dd),총강의시간,일강의시간"
+   * @return
+   */
+  
+  //[10] App.java에서 가져옴
+  public static Lesson valueOf(String csv) { // csv는 파일에서 가져 온 한 줄
+    String[] values = csv.split(","); // 컴마로 자른 것들을 배열로 만듦   . 읽은 것은 컴마로 자름
     
-    String[] values = csv.split(",");
-    Lesson lesson = new Lesson();
+    Lesson lesson = new Lesson();     // 빈 lesson 객체 만듦
     lesson.setNo(Integer.parseInt(values[0]));
     lesson.setTitle(values[1]);
     lesson.setContents(values[2]);
@@ -71,8 +78,5 @@ public class Lesson implements Cloneable {
     lesson.setDayHours(Integer.parseInt(values[6]));
     
     return lesson;
-    
   }
-  
-  
 }

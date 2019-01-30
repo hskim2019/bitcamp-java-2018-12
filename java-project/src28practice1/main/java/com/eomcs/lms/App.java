@@ -1,15 +1,11 @@
 package com.eomcs.lms;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Stack;
 import com.eomcs.lms.domain.Board;
@@ -38,16 +34,13 @@ public class App {
   static Stack<String> commandHistory = new Stack<>(); 
   static ArrayDeque<String> commandHistory2 = new ArrayDeque<>(); 
 
+  //[2] main()에 있던 것을 밖으로 뺀다, static으로 만들어 줌 : 아래 loadlessonData메서드가 lessonList를 이용할 수 있게 
   static ArrayList<Lesson> lessonList = new ArrayList<>();
-  static ArrayList<Member> memberList = new ArrayList<>();
-  static ArrayList<Board> boardList = new ArrayList<>();
 
   public static void main(String[] args) {
 
-    loadLessonData();
-    loadMemberData();
-    loadBoardData();
-
+    ArrayList<Board> boardList = new ArrayList<>();
+    ArrayList<Member> memberList = new ArrayList<>();
 
     HashMap<String, Command> commandMap = new HashMap<>();
 
@@ -72,16 +65,13 @@ public class App {
 
 
     while (true) {
-
       String command = prompt();
 
-      // 사용자가 입력한 명령을 스택에 보관한다
       commandHistory.push(command);
-      //[2] 사용자가 입력한 명령을 큐에 보관한다
       commandHistory2.offer(command);
 
       if (command.equals("quit")) {
-        quit();
+        quit();  //[6] 메서드로 따로 빼주기 (saveLessonData()메서드 실행하고, quit이라고 입력하면 "안녕"출력하는 메서드 )
         break;
 
       } else if (command.equals("history")) {
@@ -123,13 +113,6 @@ public class App {
     keyboard.close();
   }
 
-  private static void quit() {
-    saveLessonData();
-    saveMemberData();
-    saveBoardData();
-    System.out.println("안녕!");    
-  }
-
   private static void printCommandHistory(Iterator<String> iterator) { 
     //    Iterator<String> iterator = commandHistory.iterator();
     int count = 0;
@@ -151,85 +134,31 @@ public class App {
     return keyboard.nextLine().toLowerCase();
   }
 
+  //[7] quit()메서드 만들어주기- " saveLessonData(데이터 저장)메서드 실행 + "안녕"을 출력" 
+  private static void quit() {
+    saveLessonData();
+    System.out.println("안녕!");
+
+  }
+
   private static void loadLessonData() {
-    try(FileReader in = new FileReader("lesson.csv");
-        Scanner in2 = new Scanner(in)) {
-      while(true) {
-        lessonList.add(Lesson.valueOf(in2.nextLine()));
-      }
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    } catch (IOException e1) {
-      e1.printStackTrace();
-    } catch (NoSuchElementException e) {
-      System.out.println("데이터 로딩 완료");
-    }
+
   }
 
+  //[1] 내부적으로 쓸 것이므로 private ;  //이 메서드는 quit으로 종료하고 나면 따로 file을 만들어서 입력한 내용을 출력해준다. openwith text editor로 파일 열면 확인 가능
   private static void saveLessonData() {
-    try(FileWriter out = new FileWriter("lesson.csv");) {
-      for(Lesson lesson : lessonList)
-        out.write(String.format("%d,%s,%s,%s,%s,%d,%d\n",
-            lesson.getNo(), lesson.getTitle(), lesson.getContents(), lesson.getStartDate(), lesson.getEndDate(),lesson.getTotalHours(), lesson.getDayHours()));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  private static void loadMemberData() {
-    ;
-    try(FileReader in = new FileReader("member.csv"); Scanner in2 = new Scanner(in);){
-
-      while(true) {
-        memberList.add(Member.valueOf(in2.nextLine()));
-
+    //[3] 텍스트를 출력할 때 사용하는 FileWriter(FileWriter는 파일로 데이터를 출력하기 위한 출력 스트림을 제공) //
+    //     FileWriter의 write() 메서드 : ***파일***에 데이터를 출력해 줌, println이 아닌 write를 쓰는 이유는 출력을 console이 아닌 파일에 출력 할 것이기 때문에
+    //[4] out을 따로 close 해주지 않기 위해 try() 가로 안에 넣는다 try with resources 문법 활용
+    // [5] String 클래스의 format 메서드 : printf를 쓸 수 없기 때문에 format()사용하지 않으면 out.write(lesson.getNo() + "," + lesson.getTitle() +",") 형식으로 입력해야 함
+    try (FileWriter out = new FileWriter("lesson.csv");){  //별도로 생성 될 파일 이름은 lesson.csv
+      for(Lesson lesson : lessonList) {
+        out.write(String.format("%s,%s,%s,%s,%s,%d,%d\n", 
+            lesson.getNo(), lesson.getTitle(), lesson.getContents(), lesson.getStartDate(), lesson.getEndDate(), lesson.getTotalHours(), lesson.getDayHours()));
       }
-    } catch (FileNotFoundException e1) {
-      e1.printStackTrace();
-    } catch (IOException e2) {
-      e2.printStackTrace();
-    } catch (NoSuchElementException e) {
-      System.out.println("데이터 로딩 완료!");
-    }
-  }
-
-  private static void saveMemberData() {
-    try(FileWriter out = new FileWriter("member.csv");) {
-      for(Member member : memberList)
-        out.write(String.format("%d,%s,%s,%s,%s,%s,%s\n",
-            member.getNo(), member.getName(), member.getEmail(), member.getPassword(), member.getPhoto(), member.getTel(), member.getRegisteredDate()));
-
     } catch (IOException e) {
-      e.printStackTrace();
+      e.printStackTrace();  // 예외가 있으면 상세히 출력
     }
   }
 
-  private static void loadBoardData() {
-    FileReader in = new FileReader("board.csv");
-    Scanner in2 = new Scanner(in);
-    while(true) {
-      String line = in2.nextLine();
-      String[] values = line.split(",");
-      Board board = new Board();
-      board.setNo(Integer.parseInt(values[0]));
-      board.setContents(values[1]);
-      board.setCreatedDate(Date.valueOf(values[2]));
-      board.setViewCount(Integer.parseInt(values[3]));
-      
-      memberList.add(board);
-      
-    }
-  }
-
-  private static void saveBoardData() {
-
-    try(FileWriter out= new FileWriter("board.csv");) {
-      for(Board board : boardList)
-        out.write(String.format("%s,%s,%s,%d\n",
-            board.getNo(), board.getContents(), board.getCreatedDate(), board.getViewCount()));
-
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
 }
