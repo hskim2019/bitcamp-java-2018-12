@@ -23,9 +23,10 @@ public class Test03 {
   }
   
   public static void main(String[] args) {
-    
+    // MyResource1 r1 = new MyResource1(); // try-catch 밖 ok
     try (
-        // java.lang.AutoCloseable 을 구현하지 않은 객체는 선언할 수 없다.
+        
+        // java.lang.AutoCloseable 을 구현하지 않은 객체는 (try-catch안에) 선언할 수 없다.
         //MyResource1 r1 = new MyResource1(); // 컴파일 오류!
         //String str = "Hello"; // 컴파일 오류!
         
