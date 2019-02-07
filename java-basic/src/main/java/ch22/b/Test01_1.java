@@ -1,7 +1,6 @@
 // 바이너리 데이터 입출력 - FileOutputStream 클래스 사용법
 package ch22.b;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class Test01_1 {
