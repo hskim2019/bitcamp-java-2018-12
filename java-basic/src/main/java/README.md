@@ -149,7 +149,7 @@
 - 다형적 변수                                                ch14. e
 - 형 변환, 오버라이딩 메서드, 추상 메서드                       ch14. f
 
-# Object 클래
+# Object 클래스
 - Object 클래스                                              ch15 Test01
 - Object 클래스의 - toString() 메서드 / 오버라이딩            ch15 Test02 - Test 03
 - Object 클래스의 - equals() 메서드 / 오버라이딩              ch15 Test04 - Test05
