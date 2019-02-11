@@ -267,6 +267,20 @@
 - 문자 배열 입출력                                          ch22.d Test02
 - String 배열 입출력 + BufferedReader                ch22.d Test03  
 
+# 문자열 섞여있으면 바이너리로 입출력
+# FileOutputStream/BufferedOutputStream/DataOutputStream
+- 인스턴스 출력
+ =>문자열이 섞여있으면 바이너리로 출력                           ch22.e Test01
+ - 인스턴스 출력 : 배열 활용                                    ch22.e Test02
+ - 인스턴스 출력 : ArrayList 활용                               ch22.e Test03
+ - ObjectOutputStream                                          ch22.e Test04
+ 
+ - serialize란 (.writeObject)                                  ch22.f Test01 - Test02
+ - serialVersionUID                                            ch22.f Test03
+ - 
+ 
+ 
+ 
 -ch22.e
 -ch22.f
 -ch22.g
