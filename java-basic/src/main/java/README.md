@@ -277,13 +277,31 @@
  
  - serialize란 (.writeObject)                                  ch22.f Test01 - Test02
  - serialVersionUID                                            ch22.f Test03
- - 
+ - Serialize - transient 필드                                  ch22.g
  
  
+ #Client/Server
+ - 대기열의 제한 확인하기                                        ch23.a.Client2
+ - 타임아웃 시간 정하기                                          ch23.a.Client3
+ - 대기열에서 클라이언트 연결 정보를 꺼내 처리하기                 ch23.a.Client4
  
--ch22.e
--ch22.f
--ch22.g
+ - 데이터 주고 받기                                             ch23.b.Client1
+ - 에코 클라이언트/서버                                         ch23.b.Client2
+ - 파일 보내는 클라이언트 /파일받는 서버                         ch23.b.Client3
+ 
+ - 계산기 만들기 (내가 만든 것)                                 ch23.c
+ - 계산기 만들기 (+리팩토링)                                    ch23.test
+ 
+ - stateless 서버/클라이언트                                    ch23.d.1
+ - stateful 서버/클라이언트                                     ch23.d.2
+ - statless 응용 - 계산결과 유지                                ch23.e.1
+ - stateful 응용 - 계산결과 유지                                ch23.e.2
+ 
+ - Connection-Oriented = Connectionful                         ch23.f.1
+ - Connectionless                                              ch23.f.2
+ 
+ - HTTP 클라이언트/서버 만들기                                    ch23.g
+ -
  
 
                             
