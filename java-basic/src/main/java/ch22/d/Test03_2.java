@@ -16,8 +16,8 @@ public class Test03_2 {
         // => 버퍼기능 + 한 줄 읽기 기능
         BufferedReader in2 = new BufferedReader(in)) {
 
+System.out.println(in2.read()); 
       System.out.println(in2.readLine());      
-
     } catch (Exception e) {
       e.printStackTrace();
     }

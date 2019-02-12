@@ -16,7 +16,6 @@ public class Test01_1 {
     Score s2 = new Score("임꺽정", 90, 90, 90);
     Score s3 = new Score("유관순", 80, 80, 80);
 
-
     try (DataOutputStream out = new DataOutputStream(
         new BufferedOutputStream(
             new FileOutputStream("score.data")))) {

@@ -162,25 +162,25 @@
 - 제네릭 적용                                              ch16 Test03 - Test04
 - 제네릭과 배열                                            ch16 Test05
 
-- 추상 메서드, 추상 클래스, 추상 메서드 상속                    ch17.a
-- BubbleSort, QuickSort                             ch17.b , c, d
-- 추상 메서드의 효용성                                        ch17. e
+- 추상 메서드, 추상 클래스, 추상 메서드 상속                   ch17.a
+- BubbleSort, QuickSort                                     ch17.b , c, d
+- 추상 메서드의 효용성                                       ch17. e
 
 # 인터페이스
-- 인터페이스 구현 기초                                       ch18. a , b
-- 다중 인터페이스 구현                                       ch18. c
-- 서브 인터페이스 구현                                       ch18. d
-- 인터페이스 특성                                           ch18. e
-- 인터페이스와 추상메서드, 필드                               ch18. f
-- 인터페이스와 필드 특성과 디폴트메서드                        ch18. g
-- 인터페이스 구현하는 추상클래스 상속                         ch18. h
+- 인터페이스 구현 기초                                          ch18. a , b
+- 다중 인터페이스 구현                                          ch18. c
+- 서브 인터페이스 구현                                          ch18. d
+- 인터페이스 특성                                               ch18. e
+- 인터페이스와 추상메서드, 필드                                  ch18. f
+- 인터페이스와 필드 특성과 디폴트메서드                           ch18. g
+- 인터페이스 구현하는 추상클래스 상속                             ch18. h
 
 # 클래스 3     
 - 클래스 종류 & 중첩 클래스 종류                                   ch19.a
 - 상수를 다른 클래스로 분리                                        ch19. b, c, d
 - 패키지 멤버 클래스 /  패키지 멤버 클래스                          ch19.e
-- LinkedList(안에 Array 클래스)                           ch19.f
-- File filter : 중첩클래스->로컬클래스->익명클래스               ch19.g
+- LinkedList(안에 Array 클래스)                                   ch19.f
+- File filter : 중첩클래스->로컬클래스->익명클래스                  ch19.g
 - 람다문법                                                        ch19.h
 
 # 알고리즘
@@ -200,42 +200,42 @@
 # ========== 알고리즘 살펴보기  ========== #
 
 # ArrayList
-- ArrayList 사용법- 제네릭 설정                        ch20.a Test01
-- ArrayList 사용법- add,remove,set,get               ch20.a Test02
-- ArrayList 사용법 - contains()                      ch20.a Test03 - Test04
-- ArrayList 사용법 - indexOf()                       ch20.a Test05
-- LinkedList 사용법 - ArrayList와 같음                 ch20.a Test06
+- ArrayList 사용법- 제네릭 설정                                     ch20.a Test01
+- ArrayList 사용법- add,remove,set,get                             ch20.a Test02
+- ArrayList 사용법 - contains()                                    ch20.a Test03 - Test04
+- ArrayList 사용법 - indexOf()                                     ch20.a Test05
+- LinkedList 사용법 - ArrayList와 같음                              ch20.a Test06
 
 # Stack
-- Stack 클래스 사용법 - push() pop()                   ch20.b Test01
-- Stack 클래스 사용법 - empty()                        ch20.b Test02
-- Stack 클래스 사용법 - peek()                         ch20.b Test03
-- Stack 클래스 사용법 - search()                       ch20.b Test04
-- stack 클래스 사용법 - 상속받은 클래스에 있는 메서드 사용 get() ch20.b Test05
+- Stack 클래스 사용법 - push() pop()                                ch20.b Test01
+- Stack 클래스 사용법 - empty()                                     ch20.b Test02
+- Stack 클래스 사용법 - peek()                                      ch20.b Test03
+- Stack 클래스 사용법 - search()                                    ch20.b Test04
+- stack 클래스 사용법 - 상속받은 클래스에 있는 메서드 사용 get()       ch20.b Test05
 
 # HashSet (Set 인터페이스를 구현한 HashSet 클래스)               
-- add(), Iterator                                     ch20.c Test01
-- add(), hashCode(), equals()                         ch20.c Test02 - Test03
+- add(), Iterator                                                   ch20.c Test01
+- add(), hashCode(), equals()                                       ch20.c Test02 - Test03
 
 # Map
-- put(), get()                                               ch20.d Test01
-- HashMap과 Hashtable                                        ch20.d Test02
-- HashMap에서 key 목록 꺼내기                                         ch20.d Test03 - Test04
+- put(), get()                                                      ch20.d Test01
+- HashMap과 Hashtable                                               ch20.d Test02
+- HashMap에서 key 목록 꺼내기                                        ch20.d Test03 - Test04
 - HashMap에서 key, value함께 꺼내기                                  ch20.d Test05
 - HashMap에서 Iterator 사용하기                                      ch20.d Test06
 - HashMap에서 Iterator를 얻은 후 값을 변경할 때                       ch20.d Test07
 - Hashtable에서 Iterator를 얻은 후 값을 변경할 때 - 실행 오류 발생     ch20.d Test08
-- Hashtable에서 value 목록 꺼내기 - elements()                   ch20.d Test09 
-- 커스텀 key 사용                                                      ch20.d Test10 - Test11
+- Hashtable에서 value 목록 꺼내기 - elements()                       ch20.d Test09 
+- 커스텀 key 사용                                                    ch20.d Test10 - Test11
 ===============================================================================
 
 #예외
 - 예외 종류(시스템 예외, 애플리케이션 예외)와 예외처리 필요한 이유    ch21.a
-- 애플리케이션 예외 - finally/멀티catch/통합/catch블록순서       ch21.b
+- 애플리케이션 예외 - finally/멀티catch/통합/catch블록순서          ch21.b
 - 예외의 종류, 예외처리 방법, 메서드                                ch21.c
-- 예외 던지기 throws                                       ch21.d
+- 예외 던지기 throws                                              ch21.d
 - 사용자 정의 예외 & 예외정보 출력                                  ch21.e
-- try with resources                                     ch21.f
+- try with resources                                              ch21.f
 
 # File 클래
 - File 클래스 -디렉토리 정보 조회                                  ch22.a Test01 - Test02
@@ -246,26 +246,26 @@
 - File 클래스 -폴더와 파일 동시 생성                                ch22.a Test07                      
 - File 클래스 -하위폴더 알아내기                                    ch22.a Test08 - Test09
 - File 클래스 -필터사용: 
-               TextFileFilter implements FilenameFilter  ch22.a Test10 - Test11
+               TextFileFilter implements FilenameFilter           ch22.a Test10 - Test11
 - File 클래스 -디렉토리 이름만 추출                                 ch22.a Test12
 - File 클래스 -하위폴더가 있는 디렉토리 삭제                         ch22.a Test13
 - File 클래스 -특정폴더에서 특정파일 찾아서 출력하기:
-                  ClassFileFilter implements FileFilter   ch22.a Test14
+                  ClassFileFilter implements FileFilter            ch22.a Test14
  
 #바이너리 데이터 입출력 FileOut/InputStream +
- -FileOutputStream/FileInputStream                        ch22.b Test01
+ -FileOutputStream/FileInputStream                                  ch22.b Test01
  -배열단위로 출력                                                    ch22.b Test02
  -배열의 특정위치값 출력                                              ch22.b Test03
  
- -+BufferedOutputStrea: 버퍼를 사용하는 이유                        ch22.c Test01 - Test02
- -+DataOutputStream : primitive data type의 값의 출력을 도와주는  ch22.c Test03 - Test04
+ -+BufferedOutputStream: 버퍼를 사용하는 이유                         ch22.c Test01 - Test02
+ -+DataOutputStream : primitive data type의 값의 출력을 도와주는      ch22.c Test03 - Test04
  - IO Stream 정리                                                    ch22.c Test05
  
  
 #텍스트 데이터 입출력 FileWriter / FileReader
 - 문자 데이터 입출력                                        ch22.d Test01
 - 문자 배열 입출력                                          ch22.d Test02
-- String 배열 입출력 + BufferedReader                ch22.d Test03  
+- String 배열 입출력 + BufferedReader                       ch22.d Test03  
 
 # 문자열 섞여있으면 바이너리로 입출력
 # FileOutputStream/BufferedOutputStream/DataOutputStream
@@ -274,13 +274,12 @@
  - 인스턴스 출력 : 배열 활용                                    ch22.e Test02
  - 인스턴스 출력 : ArrayList 활용                               ch22.e Test03
  - ObjectOutputStream                                          ch22.e Test04
- 
  - serialize란 (.writeObject)                                  ch22.f Test01 - Test02
  - serialVersionUID                                            ch22.f Test03
  - Serialize - transient 필드                                  ch22.g
  
  
- #Client/Server
+# Client/Server
  - 대기열의 제한 확인하기                                        ch23.a.Client2
  - 타임아웃 시간 정하기                                          ch23.a.Client3
  - 대기열에서 클라이언트 연결 정보를 꺼내 처리하기                 ch23.a.Client4
@@ -299,9 +298,18 @@
  
  - Connection-Oriented = Connectionful                         ch23.f.1
  - Connectionless                                              ch23.f.2
+ -
  
  - HTTP 클라이언트/서버 만들기                                    ch23.g
- -
+ 
+# URL 다루기
+ - URL 다루기                                                    ch23.h Test01
+ - 문서 내부의 특정 위치를 가리키기                                ch23.h Test02
+ - OS 파일 시스템 가리키기                                        ch23.h Test03
+ - URL 요청하기                                                  ch23.h Test04
+ - URL 요청하기 - URLConnection 사용                              ch23.h Test05
+ - Apache HttpComponent 사용 - HttpGet 클래스 사용                ch23.h Test06
+ 
  
 
                             

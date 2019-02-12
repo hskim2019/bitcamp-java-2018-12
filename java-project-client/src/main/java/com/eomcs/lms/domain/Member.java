@@ -18,6 +18,18 @@ public class Member implements Cloneable, Serializable {
     return (Member) super.clone();
   }
   
+  
+  
+  
+  @Override
+  public String toString() {
+    return "Member [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
+        + ", photo=" + photo + ", tel=" + tel + ", registeredDate=" + registeredDate + "]";
+  }
+
+
+
+
   public int getNo() {
     return no;
   }

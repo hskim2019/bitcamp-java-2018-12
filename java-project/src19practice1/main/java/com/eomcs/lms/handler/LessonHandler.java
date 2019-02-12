@@ -60,6 +60,7 @@ public class LessonHandler {
     // => 아래와 같이 메서드로 변경
     int no = promptLessonNo();   // 수업번호 입력받고
 
+    // no는 index가 아니라 저장할 때 입력한 번호이기 때문에 같은 번호를 반복문을 돌면서 찾아야 함
     //    Lesson lesson = null; // 반복문 돌면서 저장 된 번호중에 사용자가 입력한 번호와 같은 것 찾게 하기 => 반복문을 list개수만큼 돌면 됨
     //    int size = list.size(); //ArrayList의 list의 개수를 알아내기 위해서 ArrayList size()메서드 만들고 호출
     //    for (int i = 0; i < size; i++) {    //list 개수만큼 for문 반복 함
