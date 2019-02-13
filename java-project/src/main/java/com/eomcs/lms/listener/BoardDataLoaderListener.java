@@ -7,12 +7,9 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import com.eomcs.lms.context.ApplicationListener;
 import com.eomcs.lms.domain.Board;
-import com.eomcs.lms.domain.Lesson;
-import com.eomcs.lms.domain.Member;
 
 // 애플리케이션의 상태를 보고 받고 싶다면
 // ApplicationListener 규칙에 따라 클래스를 작성해야 한다
