@@ -9,13 +9,15 @@ import com.eomcs.lms.domain.Member;
 public class MemberAddCommand implements Command {
   
   Scanner keyboard;
+  MemberAgent memberAgent;
   
-  public MemberAddCommand(Scanner keyboard) {
+  public MemberAddCommand(Scanner keyboard, MemberAgent memberAgent) {
     this.keyboard = keyboard;
+    this.memberAgent = memberAgent;
   }
   
   @Override
-  public void execute(ObjectInputStream in, ObjectOutputStream out) {
+  public void execute() {
     Member member = new Member();
     
     System.out.print("번호? ");
@@ -39,7 +41,7 @@ public class MemberAddCommand implements Command {
     member.setRegisteredDate(new Date(System.currentTimeMillis())); 
     
     try {
-      MemberAgent.add(member, in, out);
+      memberAgent.add(member);
       System.out.println("저장하였습니다.");
       
     } catch (Exception e) {

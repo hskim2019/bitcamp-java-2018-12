@@ -29,7 +29,9 @@ public class BoardAddCommand implements Command {
     board.setViewCount(0);
 
     try {
-     BoardAgent.add(board, in, out);
+     
+     BoardAgent.add(board);
+
      System.out.println("저장하였습니다");
 
     } catch (Exception e) {

@@ -122,10 +122,3 @@ public class ServerApp {
     out.writeUTF("종료함!");
   }
 }
-
-
-
-
-
-
-
