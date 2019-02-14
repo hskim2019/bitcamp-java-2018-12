@@ -17,7 +17,7 @@ public class ServerApp {
   static ObjectInputStream in;
   static ObjectOutputStream out;
 
-  static  BoardDao boardDao = null; 
+  static BoardDao boardDao = null; 
   static LessonDao lessonDao = null;
   static MemberDao memberDao = null;
 
@@ -31,6 +31,24 @@ public class ServerApp {
       //e.printStackTrace();
     }
 
+    try {
+      lessonDao = new LessonDao("lesson.bin"); 
+      lessonDao.loadData();
+    } catch (Exception e) {
+      System.out.println("게시물 데이터 로딩 중 오류 발생!");
+      //e.printStackTrace();
+    }
+    
+    
+    try {
+      memberDao = new MemberDao("member.bin"); 
+      memberDao.loadData();
+    } catch (Exception e) {
+      System.out.println("게시물 데이터 로딩 중 오류 발생!");
+      //e.printStackTrace();
+    }
+    
+    
     BoardService boardService = new BoardService(boardDao); 
     LessonService lessonService = new LessonService(lessonDao);
     MemberService memberService = new MemberService(memberDao);

@@ -51,9 +51,9 @@ public class App {
 
 
     commandMap.put("/board/add", new BoardAddCommand(keyboard));
-    commandMap.put("/board/list", new BoardListCommand(keyboard));   //수정필요
+    commandMap.put("/board/list", new BoardListCommand(keyboard));   
     commandMap.put("/board/detail", new BoardDetailCommand(keyboard));
-    commandMap.put("/board/update", new BoardUpdateCommand(keyboard)); //수정필요
+    commandMap.put("/board/update", new BoardUpdateCommand(keyboard));
     commandMap.put("/board/delete", new BoardDeleteCommand(keyboard));
 
     try (Socket socket = new Socket("localhost", 8888);

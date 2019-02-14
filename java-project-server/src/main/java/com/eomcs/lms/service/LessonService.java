@@ -58,9 +58,11 @@ public class LessonService extends AbstractService<Lesson> {
 
     Lesson l = lessonDao.findByNo(no);
     if(l == null) {
-      out.writeUTF("OK");
-      out.writeObject(l);
+out.writeUTF("FAIL");
+return;
     }
+    out.writeUTF("OK");
+    out.writeObject(l);
   }
 
   private void update() throws Exception {
