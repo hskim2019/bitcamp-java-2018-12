@@ -9,9 +9,8 @@ public class LessonDao extends AbstractDao<Lesson> {
   public LessonDao(String filepath) {
     this.filepath = filepath;
   }
-
-
-  public void insert (Lesson lesson) {
+  
+  public void insert(Lesson lesson) {
     list.add(lesson);
   }
 
@@ -20,19 +19,18 @@ public class LessonDao extends AbstractDao<Lesson> {
   }
 
   public Lesson findByNo(int no) {
-    for (Lesson b : list) {
-      if (b.getNo() == no) {
-        return b;
+    for (Lesson obj : list) {
+      if (obj.getNo() == no) {
+        return obj;
       }
     }
     return null;
   }
 
   public int update(Lesson lesson) {
-
     int index = 0;
-    for (Lesson b : list) {
-      if (b.getNo() == lesson.getNo()) {
+    for (Lesson obj : list) {
+      if (obj.getNo() == lesson.getNo()) {
         list.set(index, lesson);
         return 1;
       }
@@ -42,10 +40,9 @@ public class LessonDao extends AbstractDao<Lesson> {
   }
 
   public int delete(int no) {
-
     int index = 0;
-    for (Lesson b : list) {
-      if (b.getNo() == no) {
+    for (Lesson obj : list) {
+      if (obj.getNo() == no) {
         list.remove(index);
         return 1;
       }
@@ -53,4 +50,12 @@ public class LessonDao extends AbstractDao<Lesson> {
     }
     return 0;
   }
+
 }
+
+
+
+
+
+
+

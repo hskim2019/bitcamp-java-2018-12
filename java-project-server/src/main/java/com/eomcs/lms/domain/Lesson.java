@@ -14,7 +14,6 @@ public class Lesson implements Cloneable, Serializable {
   private int dayHours;
   
   public Lesson() {
-    
   }
   
   public Lesson(int no, String title) {
@@ -27,14 +26,12 @@ public class Lesson implements Cloneable, Serializable {
     return (Lesson) super.clone();
   }
   
-  
   @Override
   public String toString() {
     return "Lesson [no=" + no + ", title=" + title + ", contents=" + contents + ", startDate="
         + startDate + ", endDate=" + endDate + ", totalHours=" + totalHours + ", dayHours="
         + dayHours + "]";
   }
-
 
   public int getNo() {
     return no;

@@ -13,9 +13,7 @@ public class Member implements Cloneable, Serializable {
   private String tel;
   private Date registeredDate;
   
-  
   public Member() {
-    
   }
   
   public Member(int no, String name) {
@@ -28,17 +26,11 @@ public class Member implements Cloneable, Serializable {
     return (Member) super.clone();
   }
   
-  
-  
-  
   @Override
   public String toString() {
     return "Member [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
         + ", photo=" + photo + ", tel=" + tel + ", registeredDate=" + registeredDate + "]";
   }
-
-
-
 
   public int getNo() {
     return no;

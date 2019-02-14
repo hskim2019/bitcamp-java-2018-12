@@ -2,7 +2,6 @@ package com.eomcs.lms.handler;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Date;
-import java.util.List;
 import java.util.Scanner;
 import com.eomcs.lms.agent.LessonAgent;
 import com.eomcs.lms.domain.Lesson;
@@ -41,12 +40,12 @@ public class LessonAddCommand implements Command {
     lesson.setDayHours(Integer.parseInt(keyboard.nextLine()));
 
     try {
-      LessonAgent.add(lesson, in, out);    
-      System.out.println("저장하였습니다");
-
+      LessonAgent.add(lesson, in, out);
+      System.out.println("저장하였습니다.");
+      
     } catch (Exception e) {
-      System.out.printf("수업 저장 오류: %s\n", e.getMessage());
+      System.out.printf("실행 오류! : %s\n", e.getMessage());
     }
   }
-
+  
 }
