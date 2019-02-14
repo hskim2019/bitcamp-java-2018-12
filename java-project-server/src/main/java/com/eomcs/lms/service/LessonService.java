@@ -1,14 +1,15 @@
-// 10단계: 데이터를 파일로 관리한다
 package com.eomcs.lms.service;
 
+import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.domain.Lesson;
 
-//클라이언트의 요청을 처리하는 클래스라는 의미로
-//클래스명을 *Service로 변경한다
-
 public class LessonService extends AbstractService<Lesson> {
+  LessonDao lessonDao;
 
-  
+  public LessonService(LessonDao lessonDao) {
+    this.lessonDao = lessonDao;
+  }
+
   public void execute(String request) throws Exception {
 
     switch (request) {
@@ -36,7 +37,7 @@ public class LessonService extends AbstractService<Lesson> {
   private void add() throws Exception {
     out.writeUTF("OK");
     out.flush();
-    list.add((Lesson)in.readObject());
+    lessonDao.insert((Lesson)in.readObject());
     out.writeUTF("OK");
   }
 
@@ -45,8 +46,7 @@ public class LessonService extends AbstractService<Lesson> {
     out.flush();
 
     out.writeUTF("OK");
-   // out.writeObject(list);
-    out.writeUnshared(list);
+    out.writeUnshared(lessonDao.findAll());
   }
 
   private void detail() throws Exception {
@@ -56,15 +56,11 @@ public class LessonService extends AbstractService<Lesson> {
 
     int no = in.readInt();
 
-    for (Lesson l : list) {
-      if (l.getNo() == no) {
-        out.writeUTF("OK");
-        out.writeObject(l);
-        return;
-      }
+    Lesson l = lessonDao.findByNo(no);
+    if(l == null) {
+      out.writeUTF("OK");
+      out.writeObject(l);
     }
-
-    out.writeUTF("FAIL");
   }
 
   private void update() throws Exception {
@@ -73,17 +69,11 @@ public class LessonService extends AbstractService<Lesson> {
 
     Lesson lesson = (Lesson) in.readObject();
 
-    int index = 0;
-    for (Lesson l : list) {
-      if (l.getNo() == lesson.getNo()) {
-        list.set(index, lesson);
-        out.writeUTF("OK");
-        return;
-      }
-      index++;
+    if(lessonDao.update(lesson) == 0) {
+      out.writeUTF("FAIL");
+      return;
     }
-
-    out.writeUTF("FAIL");
+    out.writeUTF("OK");
   }
 
   private void delete() throws Exception {
@@ -91,18 +81,12 @@ public class LessonService extends AbstractService<Lesson> {
     out.flush();
 
     int no = in.readInt();
-
-    int index = 0;
-    for (Lesson l : list) {
-      if (l.getNo() == no) {
-        list.remove(index);
-        out.writeUTF("OK");
-        return;
-      }
-      index++;
+    if(lessonDao.delete(no) == 0) {
+      out.writeUTF("FAIL");    
+      return;
     }
+    out.writeUTF("OK");
 
-    out.writeUTF("FAIL");    
   }
 
 }

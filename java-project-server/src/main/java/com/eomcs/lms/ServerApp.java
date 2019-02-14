@@ -5,6 +5,8 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import com.eomcs.lms.dao.BoardDao;
+import com.eomcs.lms.dao.LessonDao;
+import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.service.BoardService;
 import com.eomcs.lms.service.LessonService;
 import com.eomcs.lms.service.MemberService;
@@ -15,9 +17,9 @@ public class ServerApp {
   static ObjectInputStream in;
   static ObjectOutputStream out;
 
-  static MemberService memberService = null;
-  static LessonService lessonService = null;
   static  BoardDao boardDao = null; 
+  static LessonDao lessonDao = null;
+  static MemberDao memberDao = null;
 
   public static void main(String[] args) {
 
@@ -30,14 +32,12 @@ public class ServerApp {
     }
 
     BoardService boardService = new BoardService(boardDao); 
-    //memberService = new MemberService();
-    //lessonService = new LessonService();
+    LessonService lessonService = new LessonService(lessonDao);
+    MemberService memberService = new MemberService(memberDao);
 
 
     try (ServerSocket serverSocket = new ServerSocket(8888)) {
       System.out.println("서버 시작!");
-
-
 
 
       while (true) {
@@ -46,8 +46,8 @@ public class ServerApp {
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream())) {
 
           boardService.init(in, out);
-          //memberService.init(in, out);
-          //lessonService.init(in, out);
+          memberService.init(in, out);
+          lessonService.init(in, out);
 
           System.out.println("클라이언트와 연결되었음.");
           ServerApp.in = in;
@@ -58,10 +58,10 @@ public class ServerApp {
             System.out.println(request);
 
             if (request.startsWith("/member/")) {
-              // memberService.execute(request);
+              memberService.execute(request);
 
             } else if (request.startsWith("/lesson/")) {
-              //  lessonService.execute(request);
+              lessonService.execute(request);
 
             } else if (request.startsWith("/board/")) {
               boardService.execute(request);
@@ -94,14 +94,14 @@ public class ServerApp {
     }
 
     try {
-      //memberService.saveData();
+      memberDao.saveData();
     } catch (Exception e) {
       System.out.println(e.getMessage());
       //e.printStackTrace();
     }
 
     try {
-      //lessonService.saveData();
+      lessonDao.saveData();
     } catch (Exception e) {
       System.out.println(e.getMessage());
       //e.printStackTrace();
