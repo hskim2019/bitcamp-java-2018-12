@@ -1,6 +1,24 @@
 # src/main/java
 애플리케이션 관련 자바 패키지 폴더와 소스 파일을 두는 폴더이다.
 
+# 알고리즘
+-ArryList
+-LinkedList(Node)
+-Queue
+-Stack
+
+# 디자인 패턴
+-abstract_factory
+-command pattern
+-composite
+-decorater
+-factory_method
+-iterator ***********
+-observer
+-proxy
+-singleton
+-template_method
+
 #변수와 선언
 - 리터럴의 타입과 표기법                                 ch02 Test01
 - 정수 리터럴의 메모리 크기와 표기법                      ch02 Test02
@@ -183,19 +201,6 @@
 - File filter : 중첩클래스->로컬클래스->익명클래스                  ch19.g
 - 람다문법                                                        ch19.h
 
-# 알고리즘
--ArryList
--LinkedList(Node)
--Queue
--Stack
-
-# 디자인 패턴
--abstract_factory
--iterator ***********
--factory_method
--command pattern
--singleton
--template_method
 
 # ========== 알고리즘 살펴보기  ========== #
 
