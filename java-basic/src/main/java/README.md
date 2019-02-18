@@ -315,10 +315,8 @@
  - URL 요청하기 - URLConnection 사용                              ch23.h Test05
  - Apache HttpComponent 사용 - HttpGet 클래스 사용                ch23.h Test06
  
- 
-
-                            
-
-
-
- 
+# 스레드
+- Thread란                                                       ch24.a
+- main Thread, 스레드 그룹, 하위 스레드 목록 알아내기, 우선순위    ch24.b
+- 스레드 정의 방법: 1)Thread 상속, 2)Runnable 인터페이스 구현     ch24.c Test01
+- 스레드와 프로그램 종료                                            ch24.c Test02
