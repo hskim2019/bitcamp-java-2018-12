@@ -38,13 +38,14 @@ public class Test01 {
     // 1) Thread의 서브 클래스는 그냥 인스턴스를 만들어 start()를 호출한다.
     MyThread t1 = new MyThread();
     t1.start(); // run() 메서드를 호출한 후 즉시 리턴한다. 비동기로 동작한다.
-    
+     
+     
     // 2) Runnable 구현체는 인스턴스를 만들어 Thread 객체의 생성자에 넘겨주고, 
     //    스레드의 start()를 호출한다.
     MyWork w = new MyWork();
     Thread t2 = new Thread(w);
     t2.start(); // 생성자에 넘겨준 MyWork의 run() 메서드를 호출한 후 즉시 리턴한다. 비동기로 동작한다.
-    
+
     for (int i = 0; i < 2000; i++) {
       System.out.printf("main ~~~~> %d\n", i);
     }
