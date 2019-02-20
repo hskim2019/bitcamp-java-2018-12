@@ -323,3 +323,6 @@
 - 스레드의 생명 주기                                                ch24.c Test03
 - join()                                                 ch24.c Test04
 - synchronized(mutex,semaphore)                          ch24.d
+
+# 데이터베이스
+- JDBC Driver 준비 , 연결                                        ch25.a
