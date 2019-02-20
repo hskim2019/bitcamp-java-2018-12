@@ -17,7 +17,7 @@ public class Test01 {
 
     // => 절차
     //      1) mvnrepository.com 에서 mariadb jdbc driver를 검색한다
-    //        2) 라이브러리 정보를 build.gradle 파일에 설정한다 
+    //        2) 라이브러리 정보를 build.gradle 파일에 설정한다  (build.gradle에    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.0'
     //      3) gradle을 이용하여 eclipse 설정 파일을 갱신한다
     //          > gradle eclipse
     //            - 다운로드 받지 않은 라이브러리가 있다면 자동으로 서버에서 받을 것이다

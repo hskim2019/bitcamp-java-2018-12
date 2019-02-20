@@ -1,22 +1,14 @@
-package com.eomcs.lms.proxy;
+package com.eomcs.lms.dao;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
-import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
-public class BoardDaoProxy implements BoardDao{
+public class BoardDaoImpl implements BoardDao{
   
-  String serverAddr;
-  int port;
-  String rootPath;
-  
-  public BoardDaoProxy(String serverAddr, int port, String rootPath) {
-    this.serverAddr = serverAddr;
-    this.port = port;
-    this.rootPath = rootPath;
+  public BoardDaoImpl() {
   }
   
   @SuppressWarnings("unchecked")
