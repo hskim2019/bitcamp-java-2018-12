@@ -18,11 +18,11 @@ public class Test01 {
     
     System.out.println("--------------------------------------------");
     
-    car.addObserver(new SafeBeltCarObserver());
-    car.addObserver(new EngineOilCarObserver());
+//    car.addObserver(new SafeBeltCarObserver());
+//    car.addObserver(new EngineOilCarObserver());
     car.addObserver(new BreakCarObserver());
-    car.addObserver(new LightOffCarObserver());
-    car.addObserver(new SunRoofCloseCarObserver());
+//    car.addObserver(new LightOffCarObserver());
+//    car.addObserver(new SunRoofCloseCarObserver());
     
     car.start();
     car.run();
