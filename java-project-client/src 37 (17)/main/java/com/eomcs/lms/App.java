@@ -1,7 +1,7 @@
-// 16단계: Connection 객체 공유하기
-// => DAO에서 SQL을 실행할 때마다 Connection 객체를 생성하는데,
-// 실행 속도도 높이고 커넥션 객체가 가비지가 되는 것도 줄이기 위해
-// 커넥션 객체를 생성하여 공유한다
+// 17단계: Connection 객체 공유하기
+// => DAO에서 SQL 을 실행할 때마다 Connection 객체를 생성하는데,
+//    실행 속도도 높이고 커넥션 객체가 가비지가 되는 것도 줄이기 위해 
+//    커넥션 객체를 생성하여 공유한다.
 package com.eomcs.lms;
 import java.sql.Connection;
 import java.sql.DriverManager;
