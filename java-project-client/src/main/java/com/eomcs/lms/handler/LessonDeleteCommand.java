@@ -11,7 +11,6 @@ public class LessonDeleteCommand implements Command {
     this.keyboard = keyboard;
     this.lessonDao = lessonDao;
   }
-  
 
   @Override
   public void execute() {
@@ -19,10 +18,7 @@ public class LessonDeleteCommand implements Command {
     int no = Integer.parseInt(keyboard.nextLine());
 
     try {
-    if(lessonDao.delete(no) == 0) {
-      System.out.println("해당 번호의 수업이 없습니다.");
-      return;
-    }
+     lessonDao.delete(no);
       System.out.println("삭제했습니다.");
       
     } catch (Exception e) {

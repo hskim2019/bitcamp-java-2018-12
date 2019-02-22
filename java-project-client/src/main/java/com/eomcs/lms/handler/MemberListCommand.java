@@ -18,7 +18,6 @@ public class MemberListCommand implements Command {
   public void execute() {
     try {
       List<Member> members = memberDao.findAll();
-      
       for (Member member : members) {
         System.out.printf("%3d, %-4s, %-20s, %-15s, %s\n", 
             member.getNo(), member.getName(), 

@@ -15,31 +15,37 @@ public class MemberUpdateCommand implements Command {
   
   @Override
   public void execute() {
+    
+    System.out.print("번호? ");
+    int no = Integer.parseInt(keyboard.nextLine());
 
     try {
-      System.out.print("번호? ");
-      Member member = new Member();
-      member.setNo(Integer.parseInt(keyboard.nextLine()));
+      Member member = memberDao.findByNo(no);
+    
+      Member temp = member.clone();
       
-      System.out.print("이름? ");
-    member.setName(keyboard.nextLine());
+      System.out.printf("이름(%s)? ", member.getName());
+      String input = keyboard.nextLine();
+      if (input.length() > 0) 
+        temp.setName(input);
       
-      System.out.print("이메일? ");
-        member.setEmail(keyboard.nextLine());
+      System.out.printf("이메일(%s)? ", member.getEmail());
+      if ((input = keyboard.nextLine()).length() > 0)
+        temp.setEmail(input);
       
-      System.out.print("암호? ");
-        member.setPassword(keyboard.nextLine());
+      System.out.printf("암호(********)? ");
+      if ((input = keyboard.nextLine()).length() > 0)
+        temp.setPassword(input);
       
-      System.out.print("사진? ");
-        member.setPhoto(keyboard.nextLine());
+      System.out.printf("사진(%s)? ", member.getPhoto());
+      if ((input = keyboard.nextLine()).length() > 0)
+        temp.setPhoto(input);
       
-      System.out.print("전화? ");
-        member.setTel(keyboard.nextLine());
+      System.out.printf("전화(%s)? ", member.getTel());
+      if ((input = keyboard.nextLine()).length() > 0)
+        temp.setTel(input);
       
-     if (memberDao.update(member) == 0) {
-       System.out.println("해당 회원이 없습니다.");
-       return;
-     }
+      memberDao.update(temp);
       System.out.println("변경했습니다.");
       
     } catch (Exception e) {
