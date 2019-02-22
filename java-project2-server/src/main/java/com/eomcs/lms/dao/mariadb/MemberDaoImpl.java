@@ -47,10 +47,56 @@ public class MemberDaoImpl implements MemberDao {
     }
   }
 
+  public List<Member> findByKeyword(String keyword) {      // 검색기능
+
+    try (PreparedStatement stmt = con.prepareStatement(
+        "select member_id, name, email, pwd, cdt, tel, photo from lms_member"
+            + " where name like concat('%', ?, '%')"
+            + " or email like concat('%', ?, '%')"
+            + " or tel like concat('%', ?, '%')"
+            + " order by name asc")) {
+      
+      stmt.setString(1, keyword);
+      stmt.setString(2, keyword);   
+      stmt.setString(3, keyword);
+      
+      String numb = "ccc";
+      String a = "aaa" + numb + "bbb";
+
+      try (ResultSet rs = stmt.executeQuery()) {
+
+        ArrayList<Member> list = new ArrayList<>();
+        while (rs.next()) {
+          Member member = new Member();
+          member.setNo(rs.getInt("member_id"));
+          member.setName(rs.getString("name"));
+          member.setEmail(rs.getString("email"));
+          member.setPassword(rs.getString("pwd"));
+          member.setRegisteredDate(rs.getDate("cdt"));
+          member.setTel(rs.getString("tel"));
+          member.setPhoto(rs.getString("photo"));
+
+          list.add(member);
+        }
+        return list;
+      }
+
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+
+
+
+
+
+
   public void insert(Member member) {    //add
 
     try(PreparedStatement stmt = con.prepareStatement(
-        "insert into lms_member(name, email, pwd, cdt, tel, photo) values(?, ?, ?, ?, ?, ?)")) {   //SQL문에 ; 있어도 되고 없어도 됨
+        "insert into lms_member(name, email, pwd, cdt, tel, photo) values(?, ?,password(?), ?, ?, ?)")) {   //SQL문에 ; 있어도 되고 없어도 됨
       stmt.setString(1, member.getName());
       stmt.setString(2, member.getEmail());
       stmt.setString(3, member.getPassword());
@@ -99,15 +145,14 @@ public class MemberDaoImpl implements MemberDao {
   public int update(Member member) {   //update
 
     try(PreparedStatement stmt = con.prepareStatement(
-        "update lms_member set name =?, email =?, pwd =?, cdt=?, tel=?, photo=? where member_id =?")) {
+        "update lms_member set name =?, email =?, pwd =?, tel=?, photo=? where member_id =?")) {
 
       stmt.setString(1, member.getName());
       stmt.setString(2, member.getEmail());
       stmt.setString(3, member.getPassword());
-      stmt.setDate(4, member.getRegisteredDate());
-      stmt.setString(5, member.getTel());
-      stmt.setString(6, member.getPhoto());
-      stmt.setInt(7, member.getNo());
+      stmt.setString(4, member.getTel());
+      stmt.setString(5, member.getPhoto());
+      stmt.setInt(6, member.getNo());
 
       return stmt.executeUpdate();
 
