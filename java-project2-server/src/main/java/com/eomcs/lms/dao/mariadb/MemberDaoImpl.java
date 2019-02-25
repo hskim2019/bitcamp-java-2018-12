@@ -60,8 +60,6 @@ public class MemberDaoImpl implements MemberDao {
       stmt.setString(2, keyword);   
       stmt.setString(3, keyword);
       
-      String numb = "ccc";
-      String a = "aaa" + numb + "bbb";
 
       try (ResultSet rs = stmt.executeQuery()) {
 
