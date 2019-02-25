@@ -13,11 +13,13 @@ import com.eomcs.lms.handler.BoardAddCommand;
 import com.eomcs.lms.handler.BoardDeleteCommand;
 import com.eomcs.lms.handler.BoardDetailCommand;
 import com.eomcs.lms.handler.BoardListCommand;
+import com.eomcs.lms.handler.BoardSearchCommand;
 import com.eomcs.lms.handler.BoardUpdateCommand;
 import com.eomcs.lms.handler.LessonAddCommand;
 import com.eomcs.lms.handler.LessonDeleteCommand;
 import com.eomcs.lms.handler.LessonDetailCommand;
 import com.eomcs.lms.handler.LessonListCommand;
+import com.eomcs.lms.handler.LessonSearchCommand;
 import com.eomcs.lms.handler.LessonUpdateCommand;
 import com.eomcs.lms.handler.MemberAddCommand;
 import com.eomcs.lms.handler.MemberDeleteCommand;
@@ -52,6 +54,7 @@ public class ApplicationInitializer implements ApplicationContextListener {
       context.put("/lesson/detail", new LessonDetailCommand(lessonDao));
       context.put("/lesson/update", new LessonUpdateCommand(lessonDao));
       context.put("/lesson/delete", new LessonDeleteCommand(lessonDao));
+      context.put("/lesson/search", new LessonSearchCommand(lessonDao));
 
       
       context.put("/member/add", new MemberAddCommand(memberDao));
@@ -67,6 +70,7 @@ public class ApplicationInitializer implements ApplicationContextListener {
       context.put("/board/detail", new BoardDetailCommand(boardDao));
       context.put("/board/update", new BoardUpdateCommand(boardDao));
       context.put("/board/delete", new BoardDeleteCommand(boardDao));
+      context.put("/board/search", new BoardSearchCommand(boardDao));
 
      
     } catch (Exception e) {

@@ -46,6 +46,44 @@ public class LessonDaoImpl implements LessonDao {
     }
   }
 
+  
+  public List<Lesson> findByKeyword(String keyword) { // 검색
+
+    try (PreparedStatement stmt = con.prepareStatement(
+        "select lesson_id, sdt, edt, tot_hr, day_hr, titl, conts from lms_lesson"
+            + " where titl like concat('%', ?, '%')"
+            + " or conts like concat('%', ?, '%')"
+            + " order by lesson_id desc")) {
+
+      stmt.setString(1, keyword);
+      stmt.setString(2, keyword);
+      
+      try (ResultSet rs = stmt.executeQuery()) {
+
+        ArrayList<Lesson> list = new ArrayList<>();
+        while (rs.next()) {
+          Lesson lesson = new Lesson();
+          lesson.setNo(rs.getInt("lesson_id"));
+          lesson.setStartDate(rs.getDate("sdt"));
+          lesson.setEndDate(rs.getDate("edt"));
+          lesson.setTotalHours(rs.getInt("tot_hr"));
+          lesson.setDayHours(rs.getInt("day_hr"));
+          lesson.setTitle(rs.getString("titl"));
+          lesson.setContents(rs.getString("conts"));
+
+          list.add(lesson);
+        }
+        return list;
+      }
+
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+  
+  
+  
+  
   public void insert(Lesson lesson) {   //add
 
     try(PreparedStatement stmt = con.prepareStatement(

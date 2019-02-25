@@ -7,6 +7,7 @@ import com.eomcs.lms.domain.Lesson;
 public interface LessonDao {
   void insert(Lesson lesson);
   List<Lesson> findAll();
+  List<Lesson> findByKeyword(String keyword);
   Lesson findByNo(int no);
   int update(Lesson lesson);
   int delete(int no);
