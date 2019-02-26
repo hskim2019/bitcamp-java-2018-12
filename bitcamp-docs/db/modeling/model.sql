@@ -75,9 +75,9 @@ ALTER TABLE stud_cours_appl
 -- 강사
 CREATE TABLE tchr (
   tchr_id   INTEGER      NOT NULL COMMENT '강사번호', -- 강사번호
-  lst_grade VARCHAR(50)  NOT NULL COMMENT '최종학력', -- 최종학력
-  schl      VARCHAR(50)  NOT NULL COMMENT '학교', -- 학교
-  major     VARCHAR(50)  NOT NULL COMMENT '전공', -- 전공
+  lst_grade VARCHAR(80)  NOT NULL COMMENT '최종학력', -- 최종학력
+  schl      VARCHAR(80)  NOT NULL COMMENT '학교', -- 학교
+  major     VARCHAR(80)  NOT NULL COMMENT '전공', -- 전공
   hp        VARCHAR(255) NULL     COMMENT '홈페이지' -- 홈페이지
 )
 COMMENT '강사';
@@ -94,9 +94,9 @@ CREATE TABLE stud (
   stud_id  INTEGER     NOT NULL COMMENT '학생번호', -- 학생번호
   work     BOOLEAN     NOT NULL COMMENT '재직중', -- 재직중
   grade_id INTEGER     NOT NULL COMMENT '최종학력번호', -- 최종학력번호
-  bank     VARCHAR(50) NULL     COMMENT '은행명', -- 은행명
+  bank     VARCHAR(80) NULL     COMMENT '은행명', -- 은행명
   acc      VARCHAR(30) NULL     COMMENT '계좌번호', -- 계좌번호
-  major    VARCHAR(50) NULL     COMMENT '전공' -- 전공
+  major    VARCHAR(80) NULL     COMMENT '전공' -- 전공
 )
 COMMENT '학생';
 
@@ -110,8 +110,8 @@ ALTER TABLE stud
 -- 주소
 CREATE TABLE addr (
   addr_id  INTEGER      NOT NULL COMMENT '주소번호', -- 주소번호
-  pst_no   CHAR(5)      NULL     COMMENT '우편번호', -- 우편번호
-  bas_addr VARCHAR(255) NULL     COMMENT '기본주소' -- 기본주소
+  pst_no   CHAR(5)      NOT NULL COMMENT '우편번호', -- 우편번호
+  bas_addr VARCHAR(255) NOT NULL COMMENT '기본주소' -- 기본주소
 )
 COMMENT '주소';
 
@@ -162,7 +162,7 @@ CREATE TABLE clas (
   clas_id INTEGER     NOT NULL COMMENT '강의실번호', -- 강의실번호
   qty     INTEGER     NOT NULL COMMENT '최대수용인원', -- 최대수용인원
   loc_id  INTEGER     NOT NULL COMMENT '지점번호', -- 지점번호
-  name    VARCHAR(50) NOT NULL COMMENT '교실명' -- 교실명
+  name    VARCHAR(80) NOT NULL COMMENT '교실명' -- 교실명
 )
 COMMENT '강의실';
 
@@ -176,7 +176,8 @@ ALTER TABLE clas
 -- 강의실 유니크 인덱스
 CREATE UNIQUE INDEX UIX_clas
   ON clas ( -- 강의실
-    name ASC -- 교실명
+    loc_id ASC, -- 지점번호
+    name ASC    -- 교실명
   );
 
 ALTER TABLE clas
@@ -185,8 +186,8 @@ ALTER TABLE clas
 -- 강의실사진
 CREATE TABLE clas_phot (
   clas_phot_id INTEGER      NOT NULL COMMENT '강의실사진번호', -- 강의실사진번호
-  clas_id      INTEGER      NULL     COMMENT '강의실번호', -- 강의실번호
-  file_path    VARCHAR(255) NULL     COMMENT '교실사진' -- 교실사진
+  clas_id      INTEGER      NOT NULL COMMENT '강의실번호', -- 강의실번호
+  file_path    VARCHAR(255) NOT NULL COMMENT '교실사진' -- 교실사진
 )
 COMMENT '강의실사진';
 
@@ -203,7 +204,7 @@ ALTER TABLE clas_phot
 -- 매니저
 CREATE TABLE mgr (
   mgr_id INTEGER     NOT NULL COMMENT '매니저번호', -- 매니저번호
-  pos    VARCHAR(50) NOT NULL COMMENT '직위', -- 직위
+  pos    VARCHAR(80) NOT NULL COMMENT '직위', -- 직위
   fax    VARCHAR(30) NULL     COMMENT '팩스' -- 팩스
 )
 COMMENT '매니저';
@@ -218,7 +219,7 @@ ALTER TABLE mgr
 -- 지점
 CREATE TABLE loc (
   loc_id INTEGER     NOT NULL COMMENT '지점번호', -- 지점번호
-  name   VARCHAR(50) NOT NULL COMMENT '지점명' -- 지점명
+  name   VARCHAR(80) NOT NULL COMMENT '지점명' -- 지점명
 )
 COMMENT '지점';
 
@@ -228,6 +229,12 @@ ALTER TABLE loc
     PRIMARY KEY (
       loc_id -- 지점번호
     );
+
+-- 지점 유니크 인덱스
+CREATE UNIQUE INDEX UIX_loc
+  ON loc ( -- 지점
+    name ASC -- 지점명
+  );
 
 ALTER TABLE loc
   MODIFY COLUMN loc_id INTEGER NOT NULL AUTO_INCREMENT COMMENT '지점번호';
@@ -303,7 +310,7 @@ ALTER TABLE cours_subj
 -- 사용자
 CREATE TABLE user (
   user_id  INTEGER      NOT NULL COMMENT '사용자번호', -- 사용자번호
-  name     VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
+  name     VARCHAR(80)  NOT NULL COMMENT '이름', -- 이름
   email    VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
   pwd      VARCHAR(100) NOT NULL COMMENT '암호', -- 암호
   tel      VARCHAR(30)  NULL     COMMENT '전화', -- 전화
@@ -338,7 +345,7 @@ ALTER TABLE user
 -- 학력
 CREATE TABLE grade (
   grade_id INTEGER     NOT NULL COMMENT '학력번호', -- 학력번호
-  titl     VARCHAR(50) NOT NULL COMMENT '학력명' -- 학력명
+  titl     VARCHAR(80) NOT NULL COMMENT '학력명' -- 학력명
 )
 COMMENT '학력';
 
@@ -361,7 +368,7 @@ ALTER TABLE grade
 -- 결제유형
 CREATE TABLE pay_type (
   pay_type_id INTEGER     NOT NULL COMMENT '결제유형번호', -- 결제유형번호
-  type_nm     VARCHAR(50) NULL     COMMENT '결제유형명' -- 결제유형명
+  type_nm     VARCHAR(80) NULL     COMMENT '결제유형명' -- 결제유형명
 )
 COMMENT '결제유형';
 
@@ -384,7 +391,7 @@ ALTER TABLE pay_type
 -- 신청결과
 CREATE TABLE app_stat (
   app_stat_id INTEGER     NOT NULL COMMENT '신청결과번호', -- 신청결과번호
-  stat_nm     VARCHAR(50) NULL     COMMENT '상태' -- 상태
+  stat_nm     VARCHAR(80) NULL     COMMENT '상태' -- 상태
 )
 COMMENT '신청결과';
 
