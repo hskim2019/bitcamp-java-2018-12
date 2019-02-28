@@ -7,6 +7,9 @@
 4) OUTER JOIN
 */
 
+/* =========================cross join======================= */
+/* memb row가 15개, stnt row가 5개, cross join 은 1:1로 의미없이 연결해서 총 75개 row만들어짐*/
+
 /* cross join : 두 테이블의 데이터를 1:1로 모두 연결한다.*/
 select mno, name from memb;
 select mno, work, bank from stnt;   
@@ -33,7 +36,7 @@ from memb m cross join stnt s;
 select m.mno, name, s.mno, work, bank
 from memb m, stnt s;
 
-
+/*=================== natural join ======================*/
 /* natural join: 같은 이름을 가진 컬럼 값을 기준으로 연결한다. */
 select m.mno, name, s.mno, work, bank
 from memb m natural join stnt s;   
@@ -43,9 +46,8 @@ from memb m, stnt s
 where m.mno=s.mno;
 
 /* natural join 의 문제점
- * primary 와 -foreign key 끼리 join을 해야 하는 natural join은 컬럼 이름만 같으면 join 하는 것이라 실무에서 잘 사용 X
- * primary 와 foreign key 의 컬럼 이름이 다르면 연결 안되고, 같은 이름의 컬럼의 값이 일치하면 연결 됨
- * => 대신 join using 을 사용
+ * natural join은 컬럼 이름만 같으면 join 하는 것이라 실무에서 잘 사용 X
+ * primary 와 foreign key 의 컬럼 이름이 다르면 연결 안되고, 같은 이름의 컬럼의 값이 일치하면 관련 없는 데이터들인데도 연결 됨
  * 
  * 1) 두 테이블의 조인 기준이 되는 컬럼 이름이 다를 때 연결되지 못한다. 
    2) 상관 없는 컬럼과 이름이 같을 때 잘못 연결된다.
@@ -61,6 +63,10 @@ from memb m join stnt s using (mno);
 /* natural join 의 문제점 2      
    => 두 테이블에 같은 이름의 컬럼이 없을 경우
         연결하지 못한다.*/
+
+/*==============join on ===============*/
+/* 컬럼 이름이 달라도 join 할 수 있음
+ * on 에서 지정한 컬럼의 값이 같으면 연결하는 것이라서 데이터가 없으면(null) 연결 안되고, 출력 안됨*/
 
 /* 만약 두 테이블에 """""같은 이름을 가진 컬럼이 없으면""""", 
    natural join을 수행하지 못한다.
@@ -104,7 +110,7 @@ from lect l inner join room r on l.rno=r.rno;
    결과로 출력되지 않는 문제가 있다. */
 
 
-
+/*=========================outer join===========================*/
 /* => 만약 기준 컬럼의 값과 일치하는 데이터가 없어서 
       다른 테이블의 데이터와 연결되지 않았다 하더라도 
       결과로 뽑아내고 싶다면 outer join을 사용하라!*/
