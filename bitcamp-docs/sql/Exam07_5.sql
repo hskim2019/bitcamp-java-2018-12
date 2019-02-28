@@ -43,12 +43,16 @@ from memb m, stnt s
 where m.mno=s.mno;
 
 /* natural join 의 문제점
+ * primary 와 -foreign key 끼리 join을 해야 하는 natural join은 컬럼 이름만 같으면 join 하는 것이라 실무에서 잘 사용 X
+ * primary 와 foreign key 의 컬럼 이름이 다르면 연결 안되고, 같은 이름의 컬럼의 값이 일치하면 연결 됨
+ * => 대신 join using 을 사용
+ * 
  * 1) 두 테이블의 조인 기준이 되는 컬럼 이름이 다를 때 연결되지 못한다. 
    2) 상관 없는 컬럼과 이름이 같을 때 잘못 연결된다.
    3) 같은 이름의 컬럼이 여러 개 있을 경우 잘못 연결된다. 
         모든 컬럼의 값이 일치할 경우에만 연결되기 때문이다. */
 
-/* 만약에 두 테이블에 같은 이름을 가진 컬럼이 여러 개 있다면, 
+/* 만약에 두 테이블에 """""같은 이름을 가진 컬럼"""""" 이 여러 개 있다면, 
    join ~ using (기준컬럼) 을 사용하여 
    두 테이블의 데이터를 연결할 때 기준이 될 컬럼을 지정한다.*/
 select m.mno, name, s.mno, work, bank
@@ -58,7 +62,7 @@ from memb m join stnt s using (mno);
    => 두 테이블에 같은 이름의 컬럼이 없을 경우
         연결하지 못한다.*/
 
-/* 만약 두 테이블에 같은 이름을 가진 컬럼이 없으면, 
+/* 만약 두 테이블에 """""같은 이름을 가진 컬럼이 없으면""""", 
    natural join을 수행하지 못한다.
    또한 join using 으로도 해결할 수 없다.
    이럴 경우 join ~ on 컬럼a=컬럼b 문법을 사용하여
@@ -117,6 +121,8 @@ from lect l left outer join room r on l.rno=r.rno;
 /* 왼쪽 테이블인 lect를 기준으로 room 데이터를 연결한다. 
  * 만약 lect와 일치하는 데이터가 room에 없더라도 
  * lect 데이터를 출력한다!
+ * 
+ * l.rno (left) r.rno(right) 
  */
 
 

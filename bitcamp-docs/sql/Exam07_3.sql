@@ -27,6 +27,8 @@ from room;
 select count(*) cnt
 from room;
 
+select (select count(*) from room where loc = '강남'), loc, name from room where loc = '강남';
+select (select count(*) from room where loc = '강남') cnt, loc, name from room where loc = '강남';
 
 
 
