@@ -7,12 +7,10 @@ import java.util.Scanner;
 
 import com.eomcs.lms.context.ApplicationContextException;
 import com.eomcs.lms.context.ApplicationContextListener;
-import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.dao.mariadb.BoardDaoImpl;
 import com.eomcs.lms.dao.mariadb.LessonDaoImpl;
 import com.eomcs.lms.dao.mariadb.MemberDaoImpl;
 import com.eomcs.lms.dao.mariadb.PhotoBoardDaoImpl;
-import com.eomcs.lms.dao.mariadb.PhotoFileDaoImpl;
 import com.eomcs.lms.handler.BoardAddCommand;
 import com.eomcs.lms.handler.BoardDeleteCommand;
 import com.eomcs.lms.handler.BoardDetailCommand;
@@ -56,8 +54,6 @@ public class ApplicationInitializer implements ApplicationContextListener {
 			MemberDaoImpl memberDao = new MemberDaoImpl(con);
 			BoardDaoImpl boardDao = new BoardDaoImpl(con);
 			PhotoBoardDaoImpl photoBoardDao = new PhotoBoardDaoImpl(con);
-			PhotoFileDao photoFileDao = new PhotoFileDaoImpl(con);
-			
 			// Command 객체 준비
 			Scanner keyboard = (Scanner) context.get("keyboard");
 			context.put("/lesson/add", new LessonAddCommand(lessonDao));
@@ -83,9 +79,9 @@ public class ApplicationInitializer implements ApplicationContextListener {
 			context.put("/board/delete", new BoardDeleteCommand(boardDao));
 			context.put("/board/search", new BoardSearchCommand(boardDao));
 
-			context.put("/photoboard/add", new PhotoBoardAddCommand(photoBoardDao, photoFileDao));
+			context.put("/photoboard/add", new PhotoBoardAddCommand(photoBoardDao));
 			context.put("/photoboard/list", new PhotoBoardListCommand(photoBoardDao));
-			context.put("/photoboard/detail", new PhotoBoardDetailCommand(photoBoardDao, photoFileDao));
+			context.put("/photoboard/detail", new PhotoBoardDetailCommand(photoBoardDao));
 			context.put("/photoboard/update", new PhotoBoardUpdateCommand(photoBoardDao));
 			context.put("/photoboard/delete", new PhotoBoardDeleteCommand(photoBoardDao));
 

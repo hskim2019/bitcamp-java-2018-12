@@ -117,6 +117,7 @@ from lect l inner join room r on l.rno=r.rno;
 /* 즉 아직 강의실이 배정되지 않은 강의 데이터도 출력하고 싶을 때
    출력하고 싶은 테이블을 바깥쪽 테이블로 지정하라!
  */
+
 select 
     l.lno, 
     l.titl, 
