@@ -32,7 +32,6 @@ public class Test01 {
 			try (PreparedStatement stmt = con.prepareStatement(
 					"insert into x_board(title, contents) values(?,?)", 
 					Statement.RETURN_GENERATED_KEYS)) {
-				//RETURN_GENERATED_KEYS
 
 				stmt.setString(1, title);
 				stmt.setString(2, contents);
