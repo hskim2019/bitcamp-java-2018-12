@@ -2,6 +2,7 @@ package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
+import java.sql.Connection;
 
 import com.eomcs.util.ConnectionFactory;
 
@@ -12,7 +13,10 @@ public abstract class AbstractCommand implements Command {
 	// => 추상클래스를 직접 사용하지 못한다
 	@Override
 	public void execute(BufferedReader in, PrintWriter out) {
-		try {
+		// 클라이언트 요청을 처리한 후 커넥션을 자동으로 닫도록
+		// try-with-resources 블록에 Connection 레퍼런스를 선언한다
+		
+		try(Connection con = ConnectionFactory.create()) {
 			execute(new Response(in, out));
 			// 현재 스레드에 보관된 Connection 객체를 꺼낸다
 			// 그리고 그 커넥션 객체를 통행 수행했던 모든 데이터 변경 작업을 commit 한다
