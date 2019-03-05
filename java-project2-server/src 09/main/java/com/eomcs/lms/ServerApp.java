@@ -22,6 +22,10 @@
 //      따라서 커넥션에서 작업했던 모든 임시 DB에 보관된 데이터가 계속 select 할 때 포함되는 문제가 발생한다
 //    - 그래서 트랜잭션에 묶인 작업 중 하나가 실패했을 때 commit()을 호출하지 않는 것은 물론
 //      명시적으로 rollback()을 호출하여 임시 DB에 보관된 쓰레기를 정리해 주는 것이 필요
+// 4) 모든 Command의 작업에 대해 commit을 적용
+//    - 각각의 Command 클래스의 execute()에서 commit을 수행하지 말고
+//      수퍼 클래스인 AbstractCommand의 execute()에서 commit을 수행하라
+//      그러면 각각의 Command 클래스에서 commit 할 필요가 없다.
 
 package com.eomcs.lms;
 import java.io.BufferedReader;
