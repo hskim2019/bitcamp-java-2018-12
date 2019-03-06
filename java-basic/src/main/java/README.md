@@ -17,6 +17,7 @@ settings.gradle
 
 # 디자인 패턴
 -abstract_factory
+-builder (mybatis - SqlSessionFactory)
 -command pattern
 -composite
 -decorater
@@ -345,4 +346,16 @@ settings.gradle
 - Statement 와 SQL 삽입 공격                                       ch25.c Test01
 - PreparedStatement를 이용하여 SQL 삽입 공격 차단하기              ch25.c Test02
 
+- insert한 후 auto increment PK 값 리턴받기                        ch25.d Test01
+- 트랜잭션 다루기 - commit                                         ch25.d Test02
+
+# Mybatis
+- Mybatis 설정하기(기초)                                           ch26.a. 
+- Mybatis 설정하기(실무) :DB설정정보는 분리                        ch26.b
+- 도메인 클래스에 별명 부여하기                                    ch26.c
+- 필드명과 컬럼명 일치하지 않을 때    (select)                     ch26.d
+- SQL을 실행할 때 파라미터 값 넘기기  (select,insert)               ch26.e
+
+select : sqlSession.selectList
+insert : sqlSession.insert, sqlSession.update, sqlSession.delete
 

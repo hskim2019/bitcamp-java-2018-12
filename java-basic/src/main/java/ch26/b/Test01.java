@@ -1,0 +1,62 @@
+// Mybatis 설정하기II
+// => DB 접속 정보를 mybatis 설정 파일로부터 분리하여 저장한다
+// => DB 접속정보를 분리하면 DB 접속 정보가 변경되었을 때
+//    설정파일에 영향을 주지 않고 바꿀 수 있어서 실무에서는 이 방식을 사용한다
+
+package ch26.b;
+
+import java.io.InputStream;
+import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import ch26.b.Board;
+
+public class Test01 {
+
+	public static void main(String[] args) throws Exception {
+		
+		// 1) mybatis 설정 파일을 읽을 때 사용할 도구를 준비한다
+		String resource = "ch26/b/mybatis-config.xml";
+
+		// 3) BoardManger.xml 파일 변경
+		
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		
+		// 2) mybatis 설정 파일에 따라 동작할 SQL 실행 도구를 준비한다
+		// => SqlSessionFactoryBuilder : 
+		//       - SqlSessionFactory를 만들어 주는 일
+		// => SqlSessionFactory : 
+		//        -SqlSession 객체를 만들어 주는 일
+		//        - Factory Method 디자인 패턴이 적용되어 있다
+		//          (객체 생성 과정이 복잡할 경우 메서드를 통해 객체를 생성하는 것이 유지보수에 좋다)
+		
+		// => SqlSession : SQL 매퍼 파일에 보관된 SQL을 찾아 실행해주는 일
+		SqlSessionFactory sqlSessionFactory =
+		  new SqlSessionFactoryBuilder().build(inputStream);
+		
+		// 3) 팩토리 메서드를 통해 객체를 생성한다
+		// SqlSession안에 JDBC들어 있음
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		// 4) SQL 매퍼 파일에 보관된 SQL문을 찾아 실행한다
+		// => 파라미터 값은 SQL문의 id이다
+		// => SQL 매퍼 파일의 namespace 값과 SQL ID 값을 결합해서 지정한다
+		// => selectList()의 리턴 값은 SQL 매퍼 파일의 resultType에 지정된 객체를 담고 있는 List객체이다
+		List<Board> list = sqlSession.selectList("board.select1");
+		
+		// 5) 출력
+		for (Board b : list) {
+			System.out.printf("%d, %s, %s, %s, %d\n", 
+					b.getBoard_id(),
+					b.getTitle(),
+					b.getContents(),
+					b.getCreated_date(),
+					b.getView_count());
+		}
+
+	}
+}
