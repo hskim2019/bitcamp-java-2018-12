@@ -349,12 +349,21 @@ settings.gradle
 - insert한 후 auto increment PK 값 리턴받기                        ch25.d Test01
 - 트랜잭션 다루기 - commit                                         ch25.d Test02
 
-# Mybatis
+# Mybatis 설정 및 기초
 - Mybatis 설정하기(기초)                                           ch26.a. 
 - Mybatis 설정하기(실무) :DB설정정보는 분리                        ch26.b
-- 도메인 클래스에 별명 부여하기                                    ch26.c
+- Mybatis 설정하기 : + 도메인 클래스에 별명 부여하기               ch26.c
 - 필드명과 컬럼명 일치하지 않을 때    (select)                     ch26.d
-- SQL을 실행할 때 파라미터 값 넘기기  (select,insert)               ch26.e
+- SQL을 실행할 때 파라미터 값 넘기기  (select,insert,update,delete)ch26.e Test01 - Test04
+- insert 실행 후 자동으로 부여 된 PK 값 알아내기                   ch26.e Test05
+
+# dynamic SQL
+- <where> 태그 : 여러개의 조건                                    ch26.f Test04
+- <choose> 태그 : 여러개 중 한 개 조건처리                        ch26.f Test05
+- <trim> 태그 : AND | OR 제거                                     ch26.f Test06
+- #{} 과 ${}                                                      ch26.f Test07
+- update + <set>태그                                              ch26.f Test08
+- <foreach> 태그: 여러개 입력값 중 해당하는 것 있으면 select      ch26.f Test09
 
 select : sqlSession.selectList
 insert : sqlSession.insert, sqlSession.update, sqlSession.delete
