@@ -365,6 +365,7 @@ settings.gradle
 - update + <set>태그                                              ch26.f Test08
 - <foreach> 태그: 여러개 입력값 중 해당하는 것 있으면 select      ch26.f Test09
 
-select : sqlSession.selectList
-insert : sqlSession.insert, sqlSession.update, sqlSession.delete
+- <sql> 태그 사용 : 반복되는 SQL문                                ch26.g
+- join 데이터 다루기 :                                            ch26.h
+
 

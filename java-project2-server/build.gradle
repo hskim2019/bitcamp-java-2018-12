@@ -22,13 +22,19 @@ repositories {
 }
 
 dependencies {
+
+   // mabatis persistence framework
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.5.0'
+
+
     // This dependency is found on compile classpath of this component and consumers.
     implementation 'com.google.guava:guava:26.0-jre'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
 
-        // MariaDB JDBC Driver
+
+    // MariaDB JDBC Driver
     // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.0'
 }

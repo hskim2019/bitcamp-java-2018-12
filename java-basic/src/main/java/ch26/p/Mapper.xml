@@ -28,8 +28,8 @@
 
 
 	<select id="select1" resultMap="boardmap">
-		select * from lms_board where
-		board_id = 1
+		select * from lms_board 
+	
 	</select>
 
 	<select id="select2" resultMap="boardmap" parameterType="string">
@@ -42,9 +42,9 @@
 		from lms_board where conts like concat('%', #{value}, '%')
 	</select>
 
-	<insert id="insert1" parameterType="string">
+	<insert id="insert1" parameterType="board">
 		insert into lms_board(conts)
-		value(#{a})
+		value(#{contents})
 	</insert>
 
 	<select id="select4" resultMap="boardmap" parameterType="board">
