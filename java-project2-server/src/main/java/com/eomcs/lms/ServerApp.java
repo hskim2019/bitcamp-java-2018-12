@@ -1,5 +1,5 @@
-// 41
-// 12단계: 커넥션풀(Flyweight 디자인 패턴)을 이용하여 커넥션 객체를 재활용하기
+// 43 -1
+// 13단계: Mybatis 퍼시스턴스 프레임워크 적용하기
 // README.md
 
 package com.eomcs.lms;
@@ -8,14 +8,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.eomcs.lms.context.ApplicationContextListener;
 import com.eomcs.lms.handler.Command;
-import com.eomcs.util.DataSource;
 
 public class ServerApp {
 
@@ -89,11 +86,7 @@ public class ServerApp {
 		@Override
 		public void run() {
 
-			// DB 커넥션을 빌려줄 커넥션풀을 꺼낸다
-			DataSource dataSource = (DataSource) context.get("dataSource");
 
-			// 커넥션풀에서 현재 스레드가 사용할 커넥션 객체를 빌린다
-			Connection con = dataSource.getConnection();
 
 			try (Socket socket = this.socket;
 					BufferedReader in = new BufferedReader(
@@ -116,18 +109,10 @@ public class ServerApp {
 				try {
 					commandHandler.execute(in, out);
 					// 클라이언트 요청을 처리한 후 커넥션을 통해 작업한 것을 최종 완료한다
-					con.commit();
-					System.out.println("DB 커넥션에 대해 commit 수행");
 
 				} catch (Exception e) {
 					// 만약 클라이언트 요청을 처리하는 동안에 예외가 발생했다면
 					// 커넥션을 통해 수행했던 모든 데이터 변경 작업을 취소한다
-					try {
-						con.rollback();
-						System.out.println("DB 커넥션 roll back 수행");
-					} catch (SQLException e1) {
-						// rollback() 하다가 발생한 예외는 무시한다. 따로 처리 할 방법이 없다.	
-					}
 					out.printf("실행 오류! : %s\n", e.getMessage());
 				}
 
@@ -144,8 +129,6 @@ public class ServerApp {
 				// 클라이언트 요청을 모두 처리했으면 DB 커넥션 객체를 커넥션풀에 반납한다\
 				// 커넥션 객체를 close() 해서는 안된다
 				// 왜? 다음에 다시 사용해야 하기 때문이다.
-				dataSource.returnConnection(con);
-				System.out.println("DB 커넥션을 커넥션 풀에 반납");
 			}
 		}
 

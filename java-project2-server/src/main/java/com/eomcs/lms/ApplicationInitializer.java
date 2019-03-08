@@ -3,6 +3,10 @@ package com.eomcs.lms;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import com.eomcs.lms.context.ApplicationContextException;
 import com.eomcs.lms.context.ApplicationContextListener;
 import com.eomcs.lms.dao.PhotoFileDao;
@@ -15,13 +19,11 @@ import com.eomcs.lms.handler.BoardAddCommand;
 import com.eomcs.lms.handler.BoardDeleteCommand;
 import com.eomcs.lms.handler.BoardDetailCommand;
 import com.eomcs.lms.handler.BoardListCommand;
-import com.eomcs.lms.handler.BoardSearchCommand;
 import com.eomcs.lms.handler.BoardUpdateCommand;
 import com.eomcs.lms.handler.LessonAddCommand;
 import com.eomcs.lms.handler.LessonDeleteCommand;
 import com.eomcs.lms.handler.LessonDetailCommand;
 import com.eomcs.lms.handler.LessonListCommand;
-import com.eomcs.lms.handler.LessonSearchCommand;
 import com.eomcs.lms.handler.LessonUpdateCommand;
 import com.eomcs.lms.handler.MemberAddCommand;
 import com.eomcs.lms.handler.MemberDeleteCommand;
@@ -34,7 +36,6 @@ import com.eomcs.lms.handler.PhotoBoardDeleteCommand;
 import com.eomcs.lms.handler.PhotoBoardDetailCommand;
 import com.eomcs.lms.handler.PhotoBoardListCommand;
 import com.eomcs.lms.handler.PhotoBoardUpdateCommand;
-import com.eomcs.util.DataSource;
 
 // App 객체의 상태가 변경될 때 마다 보고 받는 옵저버가 되려면
 // ApplicationContextListener 규격에 따라 작성해야 한다
@@ -44,24 +45,19 @@ public class ApplicationInitializer implements ApplicationContextListener {
 	@Override
 	public void contextInitialized(Map<String, Object> context) {
 		try {
-
-			//DataSource 객체 준비
-			DataSource dataSource = new DataSource(
-					"org.mariadb.jdbc.Driver",
-					"jdbc:mariadb://localhost/bitcampdb",
-					"bitcamp",
-					"1111"
-					);
-			//다른 객체에서도 DataSource를 사용할 수 있도록 보관소에 저장한다
-			context.put("dataSource", dataSource);
+            //Mybatis의 SqlSessionFactory 준비
+			SqlSessionFactory sqlSessionFactory =
+			  new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream(
+					  "com/eomcs/lms/conf/mybatis-config.xml"));
+			
 
 
 			// DAO 객체 준비
-			LessonDaoImpl lessonDao = new LessonDaoImpl(dataSource);
-			MemberDaoImpl memberDao = new MemberDaoImpl(dataSource);
-			BoardDaoImpl boardDao = new BoardDaoImpl(dataSource);
-			PhotoBoardDaoImpl photoBoardDao = new PhotoBoardDaoImpl(dataSource);
-			PhotoFileDao photoFileDao = new PhotoFileDaoImpl(dataSource);
+			LessonDaoImpl lessonDao = new LessonDaoImpl(sqlSessionFactory);
+			MemberDaoImpl memberDao = new MemberDaoImpl(sqlSessionFactory);
+			BoardDaoImpl boardDao = new BoardDaoImpl(sqlSessionFactory);
+			PhotoBoardDaoImpl photoBoardDao = new PhotoBoardDaoImpl(sqlSessionFactory);
+			PhotoFileDao photoFileDao = new PhotoFileDaoImpl(sqlSessionFactory);
 
 			// Command 객체 준비
 			Scanner keyboard = (Scanner) context.get("keyboard");
@@ -69,8 +65,7 @@ public class ApplicationInitializer implements ApplicationContextListener {
 			context.put("/lesson/list", new LessonListCommand(lessonDao));
 			context.put("/lesson/detail", new LessonDetailCommand(lessonDao));
 			context.put("/lesson/update", new LessonUpdateCommand(lessonDao));
-			context.put("/lesson/delete", new LessonDeleteCommand(lessonDao));
-			context.put("/lesson/search", new LessonSearchCommand(lessonDao));
+			context.put("/lesson/delete", new LessonDeleteCommand(lessonDao, photoBoardDao, photoFileDao));
 
 
 			context.put("/member/add", new MemberAddCommand(memberDao));
@@ -86,7 +81,6 @@ public class ApplicationInitializer implements ApplicationContextListener {
 			context.put("/board/detail", new BoardDetailCommand(boardDao));
 			context.put("/board/update", new BoardUpdateCommand(boardDao));
 			context.put("/board/delete", new BoardDeleteCommand(boardDao));
-			context.put("/board/search", new BoardSearchCommand(boardDao));
 
 			context.put("/photoboard/add", new PhotoBoardAddCommand(photoBoardDao, photoFileDao));
 			context.put("/photoboard/list", new PhotoBoardListCommand(photoBoardDao));
