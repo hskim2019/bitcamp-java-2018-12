@@ -1,8 +1,4 @@
 # 44
-- <sql>
-- <bind>
-- <foreach>
-
 15단계: Mybatis의 동적 SQL(dynamic sql) 적용하기
  => 하나의 SQL문으로 여러 요청을 처리할 수 있도록 mybatis는 동적 SQL 문법을 제공한다
 
