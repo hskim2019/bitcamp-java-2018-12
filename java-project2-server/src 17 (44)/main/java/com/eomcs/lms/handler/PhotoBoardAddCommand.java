@@ -24,7 +24,8 @@ public class PhotoBoardAddCommand extends AbstractCommand {
 
 		txManager.beginTransaction();
 		// original SqlSession 대신 SqlSessionProxy로 포장 된 SqlSession을 사용하고
-		// Thread에도 이 객체를 넣어준다 
+		// Thread에도 이 객체를 넣어준다
+		// 여기서 얻은 session은 자동으로 commit 되지 않는다
 		try {
 			PhotoBoard photoBoard = new PhotoBoard();
 
@@ -56,7 +57,7 @@ public class PhotoBoardAddCommand extends AbstractCommand {
 			photoFileDao.insert(files);
 
 			response.println("사진을 저장하였습니다.");
-			txManager.commit();
+			txManager.commit();    // 이 commit 메서드는 commit() + Thread에서 session을 제거하고 + close()까지 함
 
 		} catch (Exception e) {
 			response.println("저장 중 오류 발생.");

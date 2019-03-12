@@ -28,7 +28,7 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao{
 	@Override
 	public void insert(PhotoBoard photoBoard) {   //add
 
-		try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+		try (SqlSession sqlSession = sqlSessionFactory.openSession()) {  //Thread에서 생성한 session을 열어서 insert함, commit과 close는 아직 안 됨
 			sqlSession.insert("PhotoBoardMapper.insert", photoBoard);
 		}
 	}

@@ -49,7 +49,7 @@ public class SqlSessionFactoryProxy implements SqlSessionFactory {
 		SqlSession sqlSession = this.openSession(false);
 
 		// 트랜잭션을 완료할 때까지 close()하지 않도록 SqlSessionProxy()로 포장한다
-		SqlSessionProxy sqlSessionProxy = new SqlSessionProxy(sqlSession, true);
+		SqlSessionProxy sqlSessionProxy = new SqlSessionProxy(sqlSession, true); // 여기서의 true는 useTransaction을 true 상태로 => 자동으로 close되지 않는 세션 
 
 		// 스레드에 오리지널 SqlSession 객체를 보관하는 것이 아니라
 		// 트랜잭션 상태에 따라 close() 여부를 결정하는 SqlSessionProxy 객체를 미리 보관한다

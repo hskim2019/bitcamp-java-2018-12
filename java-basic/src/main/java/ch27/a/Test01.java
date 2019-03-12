@@ -61,12 +61,17 @@ public class Test01 {
 		// Calculator 인터페이스를 구현한 클래스를 만들고 그 인스턴스를 생성하여 리턴한다
 		Calculator c1 = (Calculator) Proxy.newProxyInstance(
 				Calculator.class.getClassLoader(), 
-				new Class[] {Calculator.class}, 
+				new Class[] {Calculator.class},
 				new MyHandler());
 		
 		System.out.println(c1.plus(10, 20));
 		System.out.println(c1.minus(10, 20));
-
+		
+		System.out.println("----------------");
+		Class<?> clazz = Calculator.class;
+		System.out.println(clazz.getClassLoader());
+		System.out.println(clazz.getClass());
+		
 	}
 
 }
