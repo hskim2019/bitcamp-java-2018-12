@@ -1,5 +1,4 @@
 package com.eomcs.lms.handler;
-import java.sql.Date;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 

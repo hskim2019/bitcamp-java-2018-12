@@ -63,6 +63,7 @@ settings.gradle
 - 비트 이동 연산자                                       ch04 Test13 - Test16
 - 조건 연산자                                            ch04 Test17
 - 할당 연산자                                            ch04 Test18
+- 비트연산자 응용                                        ch04 Test19
 
 #흐름제어문
 - if 조건문                                              ch05 Test01
@@ -182,7 +183,7 @@ settings.gradle
 - Object 클래스의 - equals() 메서드 / 오버라이딩                   ch15 Test04 - Test05
 - Object 클래스의 - hashCode() 메서드 / 오버라이딩                 ch15 Test06 - Test11   
 - Object 클래스의 - getClass()                                     ch15 Test12
-- Object 클래스의 - getClass()와 배열                              ch15 Test13스
+- Object 클래스의 - getClass()와 배열                              ch15 Test13
 
 # 제네릭
 - 제네릭 적용 전                                                   ch16 Test01 - Test02
@@ -367,5 +368,7 @@ settings.gradle
 
 - <sql> 태그 사용 : 반복되는 SQL문                                ch26.g
 - join 데이터 다루기 :                                            ch26.h
+
+- 인터페이스 구현체 자동으로 생성                                 ch27.a
 
 

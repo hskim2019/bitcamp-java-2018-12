@@ -1,5 +1,4 @@
-// 15단계: Mybatis의 동적 SQL(dynamic sql) 적용하기
-// => 하나의 SQL문으로 여러 요청을 처리할 수 있도록 mybatis는 동적 SQL 문법을 제공한다
+// 16단계: DAO 구현체 자동 생성하기
 // README.md
 package com.eomcs.lms;
 import java.io.BufferedReader;
