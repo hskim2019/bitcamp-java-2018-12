@@ -370,5 +370,7 @@ settings.gradle
 - join 데이터 다루기 :                                            ch26.h
 
 - 인터페이스 구현체 자동으로 생성                                 ch27.a
-
+   Proxy.newProxyInstance/ InvocationHandler
+- 클래스 정보 알아내기                                            ch27.b
+- reflection API : 인스턴스생성,메서드호출                        ch27.c
 
