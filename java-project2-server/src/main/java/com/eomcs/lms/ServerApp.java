@@ -1,4 +1,4 @@
-// 17단계: Mybatis의 SqlSession을 이용하여 DAO 구현체 자동 생성하기
+// 18 단계: Command 구현체를 자동 생성하는 Ioc 컨테이너 도입하기
 // README.md
 package com.eomcs.lms;
 import java.io.BufferedReader;

@@ -6,6 +6,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.eomcs.lms.context.ApplicationContext;
 import com.eomcs.lms.context.ApplicationContextException;
 import com.eomcs.lms.context.ApplicationContextListener;
 import com.eomcs.lms.handler.BoardAddCommand;
@@ -44,6 +45,7 @@ public class ApplicationInitializer implements ApplicationContextListener {
 			  new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream(
 					  "com/eomcs/lms/conf/mybatis-config.xml"));
 			
+			ApplicationContext appCtx = new ApplicationContext("com.eomcs.lms");			
 		    context.put("/lesson/add", new LessonAddCommand(sqlSessionFactory));
 			context.put("/lesson/list", new LessonListCommand(sqlSessionFactory));
 			context.put("/lesson/detail", new LessonDetailCommand(sqlSessionFactory));
