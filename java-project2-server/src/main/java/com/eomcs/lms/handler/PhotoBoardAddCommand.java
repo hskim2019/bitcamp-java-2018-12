@@ -1,32 +1,32 @@
 package com.eomcs.lms.handler;
 import java.util.ArrayList;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
 import com.eomcs.lms.domain.PhotoFile;
+import com.eomcs.mybatis.TransactionManager;
 
 public class PhotoBoardAddCommand extends AbstractCommand {
 
-	SqlSessionFactory sqlSessionFactory;
+	TransactionManager txManager;
+	PhotoBoardDao photoBoardDao; // 서버의 BoardDaoImpl 객체를 대행하는 프록시 객체이다.
+	PhotoFileDao photoFileDao;
 
-	public PhotoBoardAddCommand(SqlSessionFactory sqlSessionFactory) {
-		this.sqlSessionFactory = sqlSessionFactory;
+	public PhotoBoardAddCommand(PhotoBoardDao photoBoardDao, PhotoFileDao photoFileDao, TransactionManager txManager) {
+		this.photoBoardDao = photoBoardDao;
+		this.photoFileDao = photoFileDao;
+		this.txManager =  txManager;
+		this.name = "/photoboard/add";
 	}
 
 	@Override
 	public void execute(Response response) throws Exception {
-		
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		
-		try {
-			//SqlSession으로부터 BoardDao 구현체를 얻는다
-			PhotoBoardDao photoBoardDao = sqlSession.getMapper(PhotoBoardDao.class);
-			PhotoFileDao photoFileDao = sqlSession.getMapper(PhotoFileDao.class);
 
+		txManager.beginTransaction();
+		// original SqlSession 대신 SqlSessionProxy로 포장 된 SqlSession을 사용하고
+		// Thread에도 이 객체를 넣어준다 
+		try {
 			PhotoBoard photoBoard = new PhotoBoard();
 
 			photoBoard.setTitle(response.requestString("사진 제목?")); // PhotoBoard에 입력받은 내용 set
@@ -35,7 +35,7 @@ public class PhotoBoardAddCommand extends AbstractCommand {
 
 			response.println("최소 한 개의 사진 파일을 등록해야 합니다.");
 			response.println("파일명 입력 없이 그냥 엔터를 치면 파일 추가를 마칩니다.");
-
+			
 			ArrayList<PhotoFile> files = new ArrayList<>();
 			while(true) {
 				String filePath = response.requestString("사진 파일?");
@@ -50,21 +50,19 @@ public class PhotoBoardAddCommand extends AbstractCommand {
 				PhotoFile file = new PhotoFile();
 				file.setFilePath(filePath);
 				file.setPhotoBoardNo(photoBoard.getNo()); // 사진 게시물을 입력한 후 자동 생성된 PK값을 꺼낸다
-
+                
 				files.add(file);
 			}
 
 			photoFileDao.insert(files);
 
 			response.println("사진을 저장하였습니다.");
-			sqlSession.commit();
+			txManager.commit();
 
 		} catch (Exception e) {
 			response.println("저장 중 오류 발생.");
-			sqlSession.rollback();
+			txManager.rollback();
 			e.printStackTrace();
-		} finally {
-			sqlSession.close();
 		}
 
 		// 트랜잭션 종료 

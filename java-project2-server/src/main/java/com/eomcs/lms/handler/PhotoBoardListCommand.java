@@ -1,37 +1,28 @@
 package com.eomcs.lms.handler;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.domain.PhotoBoard;
 
 public class PhotoBoardListCommand extends AbstractCommand  {
 
-	SqlSessionFactory sqlSessionFactory;
+  PhotoBoardDao photoBoardDao;
 
-	public PhotoBoardListCommand(SqlSessionFactory sqlSessionFactory) {
-		this.sqlSessionFactory = sqlSessionFactory;
-	}
+  public PhotoBoardListCommand(PhotoBoardDao photoBoardDao) {
+    this.photoBoardDao = photoBoardDao;
+    this.name = "/photoboard/list";
+  }
 
-	@Override
-	public void execute(Response response) throws Exception{
+  @Override
+  public void execute(Response response) throws Exception{
+      List<PhotoBoard> boards = photoBoardDao.findAll(null);
 
-		try (SqlSession sqlSession = sqlSessionFactory.openSession()){
+      for (PhotoBoard board : boards) {
+        response.println(String.format("%3d, %-20s, %s, %d, %d", 
+            board.getNo(), board.getTitle(), 
+            board.getCreatedDate(), board.getViewCount(), board.getLessonNo()));
 
-			//SqlSession으로부터 BoardDao 구현체를 얻는다
-			PhotoBoardDao photoBoardDao = sqlSession.getMapper(PhotoBoardDao.class);
-
-			List<PhotoBoard> boards = photoBoardDao.findAll(null);
-
-			for (PhotoBoard board : boards) {
-				response.println(String.format("%3d, %-20s, %s, %d, %d", 
-						board.getNo(), board.getTitle(), 
-						board.getCreatedDate(), board.getViewCount(), board.getLessonNo()));
-
-			} 
-		}
-	}
+    } 
+  }
 
 }

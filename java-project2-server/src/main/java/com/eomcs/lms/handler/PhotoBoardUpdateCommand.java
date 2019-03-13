@@ -2,32 +2,29 @@ package com.eomcs.lms.handler;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
 import com.eomcs.lms.domain.PhotoFile;
+import com.eomcs.mybatis.TransactionManager;
 
 public class PhotoBoardUpdateCommand extends AbstractCommand {
 
-	SqlSessionFactory sqlSessionFactory;
-
-	public PhotoBoardUpdateCommand(SqlSessionFactory sqlSessionFactory) {
-		this.sqlSessionFactory = sqlSessionFactory;
+	PhotoBoardDao photoBoardDao;
+	PhotoFileDao photoFileDao;
+	TransactionManager txManager;
+	public PhotoBoardUpdateCommand(PhotoBoardDao photoBoardDao, PhotoFileDao photoFileDao, TransactionManager txManager) {
+		this.photoBoardDao = photoBoardDao;
+		this.photoFileDao = photoFileDao;
+		this.txManager = txManager;
+		this.name = "/photoboard/update";
 	}
 
 	@Override
 	public void execute(Response response) throws Exception {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+		txManager.beginTransaction();
 
 		try {
-
-			//SqlSession으로부터 BoardDao 구현체를 얻는다
-			PhotoBoardDao photoBoardDao = sqlSession.getMapper(PhotoBoardDao.class);
-			PhotoFileDao photoFileDao = sqlSession.getMapper(PhotoFileDao.class);
-
 			PhotoBoard board = new PhotoBoard();
 			board.setNo(response.requestInt("번호?"));
 
@@ -84,12 +81,11 @@ public class PhotoBoardUpdateCommand extends AbstractCommand {
 				photoFileDao.insert(photoFiles);
 			}
 
-
+			
 			response.println("변경했습니다.");
-			sqlSession.commit();
-
+			txManager.commit();
 		} catch (Exception e) {
-			sqlSession.rollback();
+			txManager.rollback();
 			response.println("변경 중 오류 발생.");
 		}
 	}

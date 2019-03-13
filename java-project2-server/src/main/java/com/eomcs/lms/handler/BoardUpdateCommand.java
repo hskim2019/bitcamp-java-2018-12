@@ -1,47 +1,38 @@
 package com.eomcs.lms.handler;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
 public class BoardUpdateCommand extends AbstractCommand {
 
-	SqlSessionFactory sqlSessionFactory;
+	BoardDao boardDao;
 
-	public BoardUpdateCommand(SqlSessionFactory sqlSessionFactory) {
-		this.sqlSessionFactory = sqlSessionFactory;
+	public BoardUpdateCommand(BoardDao boardDao) {
+		this.boardDao = boardDao;
+		this.name = "/board/update";
 	}
 
 	@Override
 	public void execute (Response response) throws Exception {
 
-		try (SqlSession sqlSession = sqlSessionFactory.openSession()){
+		int no = response.requestInt("번호? ");
+		Board board = boardDao.findByNo(no);
+		if(board == null) {
+			response.println("해당번호의 게시물이 없습니다.");
+			return;
+		}
 
-			//SqlSession으로부터 BoardDao 구현체를 얻는다
-			BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		Board temp = new Board();
+		temp.setNo(no);
 
-			int no = response.requestInt("번호? ");
-			Board board = boardDao.findByNo(no);
-			if(board == null) {
-				response.println("해당번호의 게시물이 없습니다.");
-				return;
-			}
+		String input = response.requestString(String.format("내용(%s)?", board.getContents()));
+		if(input.length() > 0)
+			temp.setContents(input);
 
-			Board temp = new Board();
-			temp.setNo(no);
-
-			String input = response.requestString(String.format("내용(%s)?", board.getContents()));
-			if(input.length() > 0)
-				temp.setContents(input);
-
-			if(temp.getContents() != null) {
-				boardDao.update(temp);
-				sqlSession.commit();
-				response.println("변경했습니다.");
-			} else {
-				response.println("변경 취소했습니다.");
-			}
+		if(temp.getContents() != null) {
+			boardDao.update(temp);
+			response.println("변경했습니다.");
+		} else {
+			response.println("변경 취소했습니다.");
 		}
 	}
 }

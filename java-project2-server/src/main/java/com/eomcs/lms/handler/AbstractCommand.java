@@ -5,6 +5,16 @@ import java.io.PrintWriter;
 
 public abstract class AbstractCommand implements Command {
 
+	protected String name;
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	// 추상클래스의 목적?
 	// => 서브 클래스에게 필드나 메서드를 상속해 주는 용도,
 	// => 추상클래스를 직접 사용하지 못한다

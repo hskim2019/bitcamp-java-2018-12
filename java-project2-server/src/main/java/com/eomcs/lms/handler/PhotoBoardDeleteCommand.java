@@ -1,43 +1,38 @@
 package com.eomcs.lms.handler;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
+import com.eomcs.mybatis.TransactionManager;
 
 public class PhotoBoardDeleteCommand extends AbstractCommand {
 
-	SqlSessionFactory sqlSessionFactory;
+	PhotoBoardDao photoBoardDao;
+	PhotoFileDao photoFileDao;
+	TransactionManager txManager;
 
-	public PhotoBoardDeleteCommand(SqlSessionFactory sqlSessionFactory) {
-		this.sqlSessionFactory = sqlSessionFactory;
+	public PhotoBoardDeleteCommand(PhotoBoardDao photoBoardDao, PhotoFileDao photoFileDao, TransactionManager txManager) {
+		this.photoBoardDao = photoBoardDao;
+		this.photoFileDao = photoFileDao;
+		this.txManager = txManager;
+		this.name = "/photoboard/delete";
 	}
 
 	@Override
 	public void execute(Response response) throws Exception{
-		
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		
-		try {
-
-			//SqlSession으로부터 BoardDao 구현체를 얻는다
-			PhotoBoardDao photoBoardDao = sqlSession.getMapper(PhotoBoardDao.class);
-		    PhotoFileDao photoFileDao = sqlSession.getMapper(PhotoFileDao.class);
-			
-		    int no = response.requestInt("번호? ");
+		txManager.beginTransaction();    	
+		try { 
+			int no = response.requestInt("번호? ");
 			// 데이터를 지울 때는 자식 테이블의 데이터부터 지워야 한다
 			photoFileDao.deleteByPhotoBoardNo(no);
-			sqlSession.commit();
 
 			if(photoBoardDao.delete(no) == 0) {
 				response.println("해당 번호의 게시물이 없습니다.");
 				return;
 			}
 			response.println("삭제했습니다.");
-			sqlSession.commit();
+			txManager.commit();
 			
 		} catch (Exception e) {
-			sqlSession.rollback();
+			txManager.rollback();
 			response.println("삭제 중 오류 발생.");
 		}
 

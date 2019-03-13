@@ -1,4 +1,5 @@
 // 18 단계: Command 구현체를 자동 생성하는 Ioc 컨테이너 도입하기
+// => ApplicationInitializer의 Command 객체 생성 작업을 ApplicationContext에 위임한다
 // README.md
 package com.eomcs.lms;
 import java.io.BufferedReader;
@@ -9,6 +10,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.eomcs.lms.context.ApplicationContext;
 import com.eomcs.lms.context.ApplicationContextListener;
 import com.eomcs.lms.handler.Command;
 
@@ -20,6 +22,9 @@ public class ServerApp {
 	// App에서 사용할 객체를 보관하는 저장소
 	// service()메서드 안에 있으면 로컬 변수로, thread클래스에서 접근 못 하므로, 인스턴스 필드로 옮겨 줌
 	HashMap<String,Object> context = new HashMap<>();
+	
+	// Command 객체와 그와 관련된 객체를 보관하고 있는 빈 컨테이너
+	ApplicationContext beanContainer;
 
 	public void addApplicationContextListener(ApplicationContextListener listener) {
 		listeners.add(listener);
@@ -35,6 +40,9 @@ public class ServerApp {
 				listener.contextInitialized(context);
 			}
 
+			// ApplicationInitializer가 준비한 ApplicationContext를 꺼낸다
+			beanContainer = (ApplicationContext) context.get("applicationContext");
+			
 			System.out.println("서버 실행 중...");
 
 			while (true) {
@@ -95,7 +103,8 @@ public class ServerApp {
 				String request = in.readLine();
 
 				// 클라이언트에게 응답하기
-				Command commandHandler = (Command) context.get(request);
+				// => 클라이언트 요청을 처리할 객체는 beanContainer에서 꺼낸다
+				Command commandHandler = (Command) beanContainer.getBean(request);
 
 				if (commandHandler == null) {
 					out.println("실행할 수 없는 명령입니다.");

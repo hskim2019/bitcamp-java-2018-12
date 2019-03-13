@@ -16,6 +16,7 @@ public class Test06 {
 		for (Method m : methods) {
 			System.out.printf("클래스명: %s\n", m.getDeclaringClass().getSimpleName());
 			System.out.printf("==> %s\n", m.getName()); 
+			
 		}
 	}
 }

@@ -2,31 +2,37 @@ package com.eomcs.lms.handler;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
+import com.eomcs.mybatis.TransactionManager;
 
 public class LessonDeleteCommand extends AbstractCommand {
 
-	SqlSessionFactory sqlSessionFactory;
+	LessonDao lessonDao;
+	PhotoBoardDao photoBoardDao;
+	PhotoFileDao photoFileDao;
+	TransactionManager txManager;
 
-	public LessonDeleteCommand(SqlSessionFactory sqlSessionFactory) {
-		this.sqlSessionFactory = sqlSessionFactory;
+	public LessonDeleteCommand(LessonDao lessonDao, 
+			PhotoBoardDao photoBoardDao,
+			PhotoFileDao photoFileDao,
+			TransactionManager txManager) {
+		this.lessonDao = lessonDao;
+		this.photoBoardDao = photoBoardDao;
+		this.photoFileDao = photoFileDao;
+		this.txManager = txManager;
+		this.name = "/lesson/delete";
 	}
 
 
 	@Override
 	public void execute(Response response) throws Exception {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+
+		txManager.beginTransaction();
 
 		try {
-			LessonDao lessonDao = sqlSession.getMapper(LessonDao.class);
-			PhotoBoardDao photoBoardDao = sqlSession.getMapper(PhotoBoardDao.class);
-			PhotoFileDao photoFileDao = sqlSession.getMapper(PhotoFileDao.class);
 
 			int no = response.requestInt("번호? ");
 
@@ -44,9 +50,9 @@ public class LessonDeleteCommand extends AbstractCommand {
 				return;
 			}
 			response.println("삭제했습니다.");
-			sqlSession.commit();
+			txManager.commit();
 		} catch (Exception e) {
-			sqlSession.rollback();
+			txManager.rollback();
 			response.println("삭제 중 오류 발생.");
 		}
 	}
