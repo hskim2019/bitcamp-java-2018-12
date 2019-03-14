@@ -9,11 +9,18 @@ public class Test02 {
 	public static void main(String[] args) throws Exception {
 		
 		Class<?> clazz = Calculator.class;
+
 		Method[] methods = clazz.getMethods();
 		for (Method m : methods) {
 			System.out.println(m.getName());
 		}
 		
+		////////////////////
+		Class<?> clazz2 = Class.forName("ch27.b.Calculator");
+		Method[] m2 = clazz2.getMethods();
+		for (Method m : m2) {
+			m.invoke("plus", args);
+		}
 		
 	}
 

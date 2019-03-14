@@ -1,5 +1,7 @@
 # 46
 ver 5.5.0 - 지정된 패키지에서 `Command` 구현체를 찾아 객체를 자동 생성하라.
+(src 18 -> 20)
+
 
 18 단계: Command 구현체를 자동 생성하는 Ioc 컨테이너 도입하기
 => ApplicationInitializer의 Command 객체 생성 작업을 ApplicationContext에 위임한다

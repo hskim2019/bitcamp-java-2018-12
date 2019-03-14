@@ -9,12 +9,13 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.ibatis.io.Resources;
 
-import com.eomcs.lms.context.RequestMappingHandlerMapping.RequestMappingHandler;
+import com.eomcs.lms.handler.Command;
 
 public class ApplicationContext {
 
@@ -25,8 +26,7 @@ public class ApplicationContext {
 	HashMap<String, Object> beanContainer = new HashMap<>();
 	// beanContainer
 	// ApplicationInitializer에서 생성자 호출 시 boardDao, memberDao, lessonDao...txManager 프록시 객체 저장
-	// prepareComponent() 호출 시 인스턴스 생성 후 key: 클래스 이름, 값은 해당 클래스 인스턴스로 저장
-	//                                                ?? 클래스 이름: com.eomcs.lms.handler.BoardCommand
+	// prepareCommand() 호출 시 인스턴스 생성 후 Command 구현 클래스의 name필드를 키로(/board/add), 그 클래스 객체 저장
 
 
 	public ApplicationContext(String packageName, Map<String, Object> beans) throws Exception {
@@ -51,12 +51,10 @@ public class ApplicationContext {
 		//						}
 
 		// 3) Component 애노테이션이 붙은 클래스만 찾아서 인스턴스 생성한다
-		// beanContainer에 클래스 이름과 인스턴스 보관
+		//beanContainer에 클래스 이름과 인스턴스 보관
 		prepareComponent();
 
-		// 4) 인스턴스 생성을 완료한 후 작업을 수행
-		postProcess();
-
+		// 4) 저장소에 보관된 객체의 이름과 클래스명을 출력한다
 		System.out.println("------------------------------------------");
 		Set<String> names = beanContainer.keySet();
 		for (String name : names) {
@@ -135,24 +133,23 @@ public class ApplicationContext {
 
 	private void prepareComponent() throws Exception {
 
-		for (Class<?> clazz : classes) {    // classes : public 클래스가 담긴 ArrayList
+		for (Class<?> clazz : classes) {    
 
 			// 클래스에서 Component 애노테이션 정보를 추출한다
-			//애노테이션이름      = 해당클래스.getAnnotation(애노테이션.class) => Component 애노테이션이 붙은 클래스 정보 가져올 수 있음
 			Component compAnno = clazz.getAnnotation(Component.class);
 
 			if (compAnno == null) 
 				continue;
 
-			// Component 애노테이션이 붙은 클래스에 대해 인스턴스를 생성한다 => 애노테이션이 붙은 클래스:BoardCommand/LessonCommand/MemberCommand
-			Object obj = createInstance(clazz);
-
-			if(obj != null) { //제대로 생성했으면 beanContainer에 저장한다
-				// bean 컨테이너에 객체를 저장할 때 key 값은 Component 애노테이션의 value() 값으로 한다
-				// 만약 value 가 빈 문자열이라면 클래스 이름을 사용한다
-				// => 클래스에서 getName() 메서드를 알아낸다
-				addBean(compAnno.value().length() > 0 ? compAnno.value() : clazz.getName(), obj); 
-			}
+				// Component 애노테이션이 붙은 클래스에 대해 인스턴스를 생성한다
+				Object obj = createInstance(clazz);
+				
+				if(obj != null) { //제대로 생성했으면 beanContainer에 저장한다
+					// bean 컨테이너에 객체를 저장할 때 key 값은 Component 애노테이션의 value() 값으로 한다
+					// 만약 value 가 빈 문자열이라면 클래스 이름을 사용한다
+					// => 클래스에서 getName() 메서드를 알아낸다
+					addBean(compAnno.value().length() > 0 ? compAnno.value() : clazz.getName(), obj); 
+				}
 		} // for end
 	}
 
@@ -216,34 +213,6 @@ public class ApplicationContext {
 				return bean;
 		}
 		return null;
-	}
-
-	// bean 생성을 완료한 후 작업 수행
-	public void postProcess () {
-		// RequestMappingHandler 정보를 관리할 객체 생성
-		RequestMappingHandlerMapping handlerMapping = new RequestMappingHandlerMapping();
-
-		// beanContainer에서 객체를 모두 꺼낸다
-		Collection<Object> beans = beanContainer.values();
-
-		for (Object bean : beans) {
-			// 각 객체에 대해 @RequestMapping 메서드를 찾는다
-			Method[] methods = bean.getClass().getMethods();
-			for(Method m : methods) {
-				RequestMapping requestMapping = m.getAnnotation(RequestMapping.class);  //RequestMapping의 애노테이션은 ex)/board/add
-				if(requestMapping == null)
-					continue;
-
-				// RequestMapping 이 붙은 메서드를 찾았으면 그 정보를 RequestMappingHandler에 담는다
-				RequestMappingHandler handler = new RequestMappingHandler(bean, m);  
-				//bean: bean컨테이너에서 꺼낸 객체(호출할 때 사용할 객체 주소), m: 메서드=애노테이션 (/board/add)
-
-				// 그리고 이 요청 핸들러(RequestMapping 애노테이션이 붙은 메서드)를 저장한다
-				handlerMapping.add(requestMapping.value(), handler);    ///requestMapping.value() = 애노테이션 ex) /board/list , handler : command객체와 애노테이션이 담긴 것
-			}
-		}
-		// ServerApp 에서 꺼낼 수 있도록 RequestMappingHandlerMapping객체를 빈 컨테이너에 저장해둔다
-		beanContainer.put("handlerMapping", handlerMapping); 
 	}
 
 }

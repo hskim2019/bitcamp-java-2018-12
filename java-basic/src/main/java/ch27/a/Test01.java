@@ -44,15 +44,27 @@ public class Test01 {
 				// newProxyInstance()가 생성한 객체에 대해 메서드를 호출할 때마다 이 메서드가 호출된다
 				//System.out.println("===>" + method.getName());
 				
-				int a = (int) args[0];   //auto-unboxing => ((Integer) args[0]).intValue();
-				int b = (int) args[1];
+//				Class<?>[] test =  proxy.getClass().getInterfaces();
+//				for(Class<?> t : test) {
+//					System.out.println(t);
+//				}
+				System.out.println("--------------------");
+				String a = proxy.getClass().getInterfaces()[0].getName();
+			//	String b = proxy.getClass().getInterfaces()[1].getName();
+				//String c = proxy.getClass().getInterfaces()[2].getName();
+				System.out.println(a);
+			//	System.out.println(b);
+			//	System.out.println(c);
 				
-				switch (method.getName()) {
-				case "plus":
-					return a + b;
-				case "minus":
-					return a - b;
-				}
+//				int a = (int) args[0];   //auto-unboxing => ((Integer) args[0]).intValue();
+//				int b = (int) args[1];
+//				
+//				switch (method.getName()) {
+//				case "plus":
+//					return a + b;
+//				case "minus":
+//					return a - b;
+//				}
 				return 0; // = Integer.valueOf(0) primative type<=>wrapper객체에 담아줌 자바 컴파일러가 자동으로 오토박싱
 			}
 		}
@@ -65,12 +77,12 @@ public class Test01 {
 				new MyHandler());
 		
 		System.out.println(c1.plus(10, 20));
-		System.out.println(c1.minus(10, 20));
-		
-		System.out.println("----------------");
-		Class<?> clazz = Calculator.class;
-		System.out.println(clazz.getClassLoader());
-		System.out.println(clazz.getClass());
+//		System.out.println(c1.minus(10, 20));
+//		
+//		System.out.println("----------------");
+//		Class<?> clazz = Calculator.class;
+//		System.out.println(clazz.getClassLoader());
+//		System.out.println(clazz.getClass());
 		
 	}
 

@@ -1,24 +1,36 @@
-# 46
-ver 5.5.0 - 지정된 패키지에서 `Command` 구현체를 찾아 객체를 자동 생성하라.
+# 48
 
-18 단계: Command 구현체를 자동 생성하는 Ioc 컨테이너 도입하기
-=> ApplicationInitializer의 Command 객체 생성 작업을 ApplicationContext에 위임한다
+20 단계 : Command 인터페이스 대신 애노테이션을 이용하여 명령어를 처리할 메서드를 식별하기
+=> 기존에는 클라이언트로부터 명령을 받았을 때 Command 규칙에 따라 메서드를 호출하였다
+=> 이번 단계에서는 Command 인터페이스의 구현 여부와 상관없이
+   @RequestMapping 이 붙은 메서드를 찾아 호출해보자
+=> 이렇게 하면 특정 인터페이스의 제약에서 벗어날 수 있다
+   좀 더 유연하게 커멘드를 처리하는 코드를 작성할 수 있다
+
 
 작업:
-1) ApplicationContext 정의
-   => 생성자에 패키지를 지정하면 해당 패키지와 그 하위 패키지를 모두 뒤져서
-      Command 인터페이스를 구현한 클래스를 찾는다
-   => 그리고 Command 구현체의 인스턴스를 생성한다
- 
-2) Command 구현체 변경
-  => 각 커멘드 객체에 이름을 부여한다
-  => Applicationcontext는 그 이름을 사용하여 객체를 보관 할 것이다
+1) RequestMapping 애노테이션 정의
+   => value 프로퍼티는 명령을 저장한다
+   
+2) RequestMappingHandler 정의 
+   => RequestMapping 애노테이션이 붙은 메서드의 정보를 저장하는 클래스
+   => RequestMappingHandlerMapping의 스테틱 중첩 클래스로 정의한다
+
+3) RequestMappingHandlerMapping 정의
+  =>  클라이언트가 보낸 명령을 처리할 메서드에 대한 정보(RequestMappingHandler)를 관리한다
+  
+4) Command 변경 
+  => CRUD 관련 커맨드를 한 클래스로 합쳐서 XxxCommand로 만든다
+     예) BoardAddCommand + BoardListCommand,... => BoardCommand
+
+5) ApplicationContext 변경 
+  => 인스턴스를 모두 생성한 후 RequestMappingHandler를 찾아
+     RequestMappingHandlerMapping에 보관한다
+     
+6) ServerApp 변경
+  => 클라이언트 요청이 들어왔을 때 RequestMappingHandlerMapping에서 메서드를 찾아 실행한다
   
   
-3) ServerApp 변경
-  => Command 객체를 꺼낼 때 ApplicationContext에서 꺼낸다
   
-  객체를 자동을 생성했을 때의 이점
-  => /hello 라는 요청을 했을 때 "안녕하세요!" 라고 인사하는 기능을 추가하라
-  => 1) AbstractCommand 를 상속 받아서 HelloCommand를 만든다
+  
   
