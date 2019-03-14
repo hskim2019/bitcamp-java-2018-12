@@ -369,8 +369,18 @@ settings.gradle
 - <sql> 태그 사용 : 반복되는 SQL문                                ch26.g
 - join 데이터 다루기 :                                            ch26.h
 
+# reflection API
 - 인터페이스 구현체 자동으로 생성                                 ch27.a
    Proxy.newProxyInstance/ InvocationHandler
 - 클래스 정보 알아내기                                            ch27.b
 - reflection API : 인스턴스생성,메서드호출                        ch27.c
+
+# Annotation
+- 정의: 클래스, 필드, 메서드, 로컬 변수에 붙임                    ch28.a
+- 유지 범위 : @Retention(RetentionPolicy.CLASS) SOURCE, RUNTIME   ch28.b
+- 사용 범위 : @Target(ElementType.TYPE) FIELD, METHOD, LOCAL_VARIABLE     ch28.c
+- 반복 사용 : @Repeatable(MyAnnotation2s.class)                   ch28.d
+- 프로퍼티  : String value() default ""                           ch28.e Test01 - Test03
+- Annotation 프로퍼티 추출                                        ch28.e Test04
+
 
