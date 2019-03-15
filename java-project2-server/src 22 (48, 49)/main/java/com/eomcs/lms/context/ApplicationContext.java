@@ -37,6 +37,11 @@ public class ApplicationContext {
 	//requestMapping.value() = 애노테이션 ex) /board/list ,        handler : Command객체와 메서드
 
 
+	public void ApplicationContext(Class<?> configClass) {
+		// IoC 컨테이너와 관련된 설정 정보를 가지고 있는 클래스 정보를 받아서 초기화를 수행한다
+	}
+	
+	
 	public ApplicationContext(String packageName, Map<String, Object> beans) throws Exception {
 
 		// 외부에서 생성한 인스턴스가 파라미터로 넘어온다면 저장소에 보관한다

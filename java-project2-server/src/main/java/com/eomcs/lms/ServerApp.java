@@ -1,5 +1,5 @@
-// 18 단계: Command 구현체를 자동 생성하는 Ioc 컨테이너 도입하기
-// => ApplicationInitializer의 Command 객체 생성 작업을 ApplicationContext에 위임한다
+//23단계 : Spring IoC 컨테이너와 Mybatis 연동하기
+//=> Mybatis 관련 객체를 Spring IoC 컨테이너가 자동으로 관리하도록 연동한다
 // README.md
 package com.eomcs.lms;
 import java.io.BufferedReader;
@@ -10,7 +10,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.eomcs.lms.context.ApplicationContext;
+import org.springframework.context.ApplicationContext;
+
 import com.eomcs.lms.context.ApplicationContextListener;
 import com.eomcs.lms.context.RequestMappingHandlerMapping;
 import com.eomcs.lms.context.RequestMappingHandlerMapping.RequestMappingHandler;
@@ -28,7 +29,7 @@ public class ServerApp {
 	// key("applicationContext", Dao+Command인스턴스+메서드)
 	
 	// Command 객체와 그와 관련된 객체를 보관하고 있는 빈 컨테이너
-	ApplicationContext beanContainer;
+	ApplicationContext iocContainer;
 	
 	// 클라이언트 요청을 처리할 메서드 정보가 들어 있는 객체
 	RequestMappingHandlerMapping handlerMapping;
@@ -48,11 +49,12 @@ public class ServerApp {
 			}
 
 			// ApplicationInitializer가 준비한 ApplicationContext를 꺼낸다
-			beanContainer = (ApplicationContext) context.get("applicationContext");
+			iocContainer = (ApplicationContext) context.get("applicationContext");
 			
-			// 빈 컨테이너에서 RequestMappingHandlerMapping 객체를 꺼낸다
+			// ApplicationInitializer 옵저버(관찰자, 보고받는자)에서 준비한
+			// RequestMappingHandlerMapping 객체를 꺼낸다
 			// 이 객체에 클라이언트 요청을 처리할 메서드 정보가 들어 있다
-			handlerMapping = (RequestMappingHandlerMapping) beanContainer.getBean("handlerMapping");
+			handlerMapping = (RequestMappingHandlerMapping) context.get("handlerMapping");
 			
 			System.out.println("서버 실행 중...");
 

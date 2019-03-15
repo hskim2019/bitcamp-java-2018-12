@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
 
-   // mabatis persistence framework
+   // mybatis persistence framework
     compile group: 'org.mybatis', name: 'mybatis', version: '3.5.0'
 
 
@@ -37,6 +37,21 @@ dependencies {
     // MariaDB JDBC Driver
     // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.0'
+    
+    // Spring IoC 컨테이너 라이브러리
+    compile group: 'org.springframework', name: 'spring-context', version: '5.1.5.RELEASE'
+    
+    // Mybatis를 Spring과 연동시키는 라이브러리
+    compile group: 'org.mybatis', name: 'mybatis-spring', version: '2.0.0'
+    
+    // DataSource 라이브러리 추가
+    compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.6.0'
+    
+    // Spring JDBC 관련 라이브러리(트랜잭션 라이브러리를 자동으로 추가한다)
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.5.RELEASE'
+    
+    
+    
 }
 
 // Define the main class for the application
