@@ -285,7 +285,7 @@ public class ApplicationContext {
 
 
 	private Object callFactoryMethod(Object obj, Method factoryMethod, ArrayList<Method> factoryMethods, String indent) throws Exception {
-
+                                   // 객체,             메서드 ,                      메서드 리스트      , 출력을위한쓸모없는파라미터   
 //		System.out.println(indent + "===>" + factoryMethod.getName());
 
 		//1) factoryMethod 메서드에서 호출할 때 사용할 파라미터 정보를 알아낸다
@@ -293,6 +293,7 @@ public class ApplicationContext {
 		//        => 파라미터 타입 배열:
 		//           {BoardDao.class, MemberDao.class, TransactionManager.class}
 		Class<?>[]  paramTypes = factoryMethod.getParameterTypes();
+		// 파라미터 타입배열: DaoFactory의 파라미터 : SqlSessionFactoryProxy
 		
 		// 파라미터 값을 담을 목록을 준비한다
 		// ex) {new BoardDao(), new MemberDao(), new TransactionManager()}
