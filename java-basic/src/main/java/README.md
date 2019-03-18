@@ -378,9 +378,14 @@ settings.gradle
 # Annotation
 - 정의: 클래스, 필드, 메서드, 로컬 변수에 붙임                    ch28.a
 - 유지 범위 : @Retention(RetentionPolicy.CLASS) SOURCE, RUNTIME   ch28.b
-- 사용 범위 : @Target(ElementType.TYPE) FIELD, METHOD, LOCAL_VARIABLE     ch28.c
+- 사용 범위 : @Target(ElementType.TYPE) FIELD, METHOD, LOCAL_VARIABLE  ch28.c
 - 반복 사용 : @Repeatable(MyAnnotation2s.class)                   ch28.d
 - 프로퍼티  : String value() default ""                           ch28.e Test01 - Test03
 - Annotation 프로퍼티 추출                                        ch28.e Test04
 
+# 스프링 IoC 컨테이너
+- 객체 생성 방법: java classpath, os, annotation                  ch29.a
+- 객체 이름 설정: <bean name="c9,c10,c11" class="ch29.b.Car"/>    ch29.b Test01 -Test02
+- 빈 생성 정책: scope="singleton | prototype"                     ch29.b Test03                                                      
+- 익명으로 빈 생성                                                ch29.b Test04
 

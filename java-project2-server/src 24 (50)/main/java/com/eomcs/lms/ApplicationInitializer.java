@@ -47,7 +47,7 @@ public class ApplicationInitializer implements ApplicationContextListener {
 		RequestMappingHandlerMapping handlerMapping = new RequestMappingHandlerMapping();
 
 		// beanContainer에서 객체를 모두 꺼낸다
-		Collection<Object> beans = iocContainer.getBeansWithAnnotation(Component.class).values();    //현재 있는 객체 : BoardDao인스턴스 , BoardCommand 인스턴스
+		Collection<Object> beans = iocContainer.getBeansWithAnnotation(Component.class).values();    //현재 있는 객체 : BoardDao인스턴스
 
 		for (Object bean : beans) {
 			// 각 객체에 대해 @RequestMapping 메서드를 찾는다

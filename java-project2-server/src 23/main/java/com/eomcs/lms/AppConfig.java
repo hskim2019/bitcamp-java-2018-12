@@ -18,10 +18,7 @@ import com.eomcs.mybatis.TransactionManager;
 public class AppConfig {
 	
 	// DaoFactory 객체를 만들어주는 메서드
-	@Bean
-	public DaoFactory daoFactory(SqlSessionFactoryProxy sqlSessionFactoryProxy) {
-		return new DaoFactory(sqlSessionFactoryProxy);
-	}
+
 	@Bean
 	public BoardDao boardDao(DaoFactory daoFactory) {
 		return daoFactory.create(BoardDao.class);
@@ -56,4 +53,8 @@ public class AppConfig {
 		return new TransactionManager(sqlSessionFactoryProxy);
 	}
 	
+	@Bean
+	public DaoFactory daoFactory(SqlSessionFactoryProxy sqlSessionFactoryProxy) {
+		return new DaoFactory(sqlSessionFactoryProxy);
+	}
 }
