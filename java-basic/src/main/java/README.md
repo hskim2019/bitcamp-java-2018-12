@@ -385,7 +385,14 @@ settings.gradle
 
 # 스프링 IoC 컨테이너
 - 객체 생성 방법: java classpath, os, annotation                  ch29.a
-- 객체 이름 설정: <bean name="c9,c10,c11" class="ch29.b.Car"/>    ch29.b Test01 -Test02
+- 객체 이름 설정: <bean name="c9,c10,c11" class="ch29.b.Car"/>    ch29.b Test01 - Test02
 - 빈 생성 정책: scope="singleton | prototype"                     ch29.b Test03                                                      
 - 익명으로 빈 생성                                                ch29.b Test04
+
+- 생성자 호출: default                                            ch29.c Test01
+- 생성자 호출: <constructor-arg type="int" index="0"> 지정        ch29.c Test02 - Test03
+- 생성자 호출: c 네임스페이스 이용  xmlns:c , URX 필요x           ch29.c Test04
+
+- 프로퍼티값 설정 - setter 호출, p 네임스페이스                   ch29.d Test01
+- 프로퍼티값 설정 - 의존객체 주입 , p 네임스페이스                ch29.d Test02 - Test03
 

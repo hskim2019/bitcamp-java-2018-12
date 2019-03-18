@@ -1,4 +1,4 @@
-// 객체의 이름 설정
+// 빈의 생성 정책
 package ch29.b;
 
 import org.springframework.context.ApplicationContext;

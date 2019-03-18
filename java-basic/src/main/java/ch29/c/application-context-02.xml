@@ -45,5 +45,10 @@
       <constructor-arg type="int" index="0"><value>1980</value></constructor-arg>
       <constructor-arg type="String" index="1"><value>비트모델1</value></constructor-arg>
    </bean>
+   
+   <bean id="c6" class="ch29.c.Car">
+   <constructor-arg type="int" index="0" value="1111"/>
+     <constructor-arg type="String" index="1" value="비트모델!!"/>
+   </bean>
   
 </beans>

@@ -9,7 +9,6 @@ public class BlackBox {
 		System.out.println("BlackBox()");
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "BlackBox [maker=" + maker + ", model=" + model + "]";
