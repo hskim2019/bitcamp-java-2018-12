@@ -13,7 +13,7 @@ import java.sql.Date;
 
 public class MyCustomBlackBoxEditor extends PropertyEditorSupport {
 	
-	// 스프링 IoC 컨테이너는 String을 java.sql.Date 클래스로 바꾸기 위해 이 메서드를 먼저 호출한다
+	// 스프링 IoC 컨테이너는 String을 ch29.g.BlackBox 클래스로 바꾸기 위해 이 메서드를 먼저 호출한다
 	// 그리고 getValue() 를 호출하여 변환된 값을 꺼내 쓴다
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {

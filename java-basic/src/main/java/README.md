@@ -384,6 +384,7 @@ settings.gradle
 - Annotation 프로퍼티 추출                                        ch28.e Test04
 
 # 스프링 IoC 컨테이너
+
 - 객체 생성 방법: java classpath, os, annotation                  ch29.a
 - 객체 이름 설정: <bean name="c9,c10,c11" class="ch29.b.Car"/>    ch29.b Test01 - Test02
 - 빈 생성 정책: scope="singleton | prototype"                     ch29.b Test03                                                      
@@ -399,8 +400,22 @@ settings.gradle
 - 배열 프로퍼티 값 설정                                           ch29.e Test01 - Test02
 - Map 프로퍼티 값 설정 <map><entry key="" value=""/>              ch29.e Test03
 - Properties 프로퍼티 값 설정 <props> <prop key"">value<          ch29.e Test04
- 
-- '팩토리클래스를 통해 <객체>생성'
+
+ <팩토리클래스를 통해 "객체" 생성>
 - 팩토리 메서드가 static 메서드일 때                              ch29.f Test01
 - 팩토리 메서드가 non-static 메서드일 때                          ch29.f Test02
 - 스프링 IoC 컨테이너의 FactoryBean 규칙에 따라 공장클래스 만들기 ch29.f Test03
+
+ <프로퍼티 값 변환> ex) String -> Date
+- 기본 프로퍼티                                                   ch29.g Test01 - Test02
+- 프로퍼티 에디터 사용                                            ch29.g Test03 - Test04
+   java: PropertyEditorSupport상속 spring IoC :CustomEditorConfigurer
+   
+ <BeanPostProcessor>
+- BeanPostProcessor 이해하기                                      ch29.h Test01 - Test03
+- <context:annotation-config/> 태그의 의미와 사용법 + @Autowired  ch29.h Test04 - Test05
+- @Autowired(required=false)사용법: 필수/선택 의존 객체 지정      ch29.h Test06
+- @Autowired(required=false) + @Qualifier("bb2")                  ch29.h Test07
+
+- @Autowired + @Qualifier = @Resource(name="bb2")                 ch29.h Test08
+- 생성자와 의존객체                                               ch29.h Test09

@@ -32,7 +32,8 @@ dependencies {
     // Spring JDBC 관련 라이브러리(트랜잭션 라이브러리를 자동으로 추가한다)
     compile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.5.RELEASE'
     
-    
+    // Javax Annotation API(for OpenJDK, Oracle JDK includes this library)
+    compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
 }
 
 //만약 Gradle을 사용하여 프로젝트를 실행한다면 다음 클래스가 실행될 것이다
