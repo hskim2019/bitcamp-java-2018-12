@@ -393,6 +393,14 @@ settings.gradle
 - 생성자 호출: <constructor-arg type="int" index="0"> 지정        ch29.c Test02 - Test03
 - 생성자 호출: c 네임스페이스 이용  xmlns:c , URX 필요x           ch29.c Test04
 
-- 프로퍼티값 설정 - setter 호출, p 네임스페이스                   ch29.d Test01
-- 프로퍼티값 설정 - 의존객체 주입 , p 네임스페이스                ch29.d Test02 - Test03
-
+ <프로퍼티값 설정>
+- setter 호출, p 네임스페이스                                     ch29.d Test01
+- 의존객체 주입 , p 네임스페이스                                  ch29.d Test02 - Test03
+- 배열 프로퍼티 값 설정                                           ch29.e Test01 - Test02
+- Map 프로퍼티 값 설정 <map><entry key="" value=""/>              ch29.e Test03
+- Properties 프로퍼티 값 설정 <props> <prop key"">value<          ch29.e Test04
+ 
+- '팩토리클래스를 통해 <객체>생성'
+- 팩토리 메서드가 static 메서드일 때                              ch29.f Test01
+- 팩토리 메서드가 non-static 메서드일 때                          ch29.f Test02
+- 스프링 IoC 컨테이너의 FactoryBean 규칙에 따라 공장클래스 만들기 ch29.f Test03
