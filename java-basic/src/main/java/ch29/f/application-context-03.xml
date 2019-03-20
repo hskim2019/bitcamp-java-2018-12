@@ -31,17 +31,17 @@
      <constructor-arg value="sonata"/>
    </bean>
    
-   <!-- CarFactory2는 일반 클래스이기 때문에
-        스프링 IoC 컨테이너는 CarFactory2객체를 만들어 "carFactory2"라는 이름으로 저장  -->
-   <bean id="carFactory2" class="ch29.f.CarFactory2">
-    <constructor-arg ref="blackBox"/>
-   </bean>
-   
    <!-- 블랙박스는 일반 클래스이기 때문에
         스프링 IoC 컨테이너는 BlackBox객체를 만들어 "blackBox"이름으로 저장 -->
    <bean id="blackBox" class="ch29.f.BlackBox">
     <property name="maker" value="비트오토"/>
     <property name="model" value="daynight"/>
    </bean>
+   
+   <!-- CarFactory2는 일반 클래스이기 때문에
+        스프링 IoC 컨테이너는 CarFactory2객체를 만들어 "carFactory2"라는 이름으로 저장  -->
+<!--    <bean id="carFactory2" class="ch29.f.CarFactory2">
+    <constructor-arg ref="blackBox"/>
+   </bean> -->
   
 </beans>

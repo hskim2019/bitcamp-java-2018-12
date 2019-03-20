@@ -404,12 +404,12 @@ settings.gradle
  <팩토리클래스를 통해 "객체" 생성>
 - 팩토리 메서드가 static 메서드일 때                              ch29.f Test01
 - 팩토리 메서드가 non-static 메서드일 때                          ch29.f Test02
-- 스프링 IoC 컨테이너의 FactoryBean 규칙에 따라 공장클래스 만들기 ch29.f Test03
+- 스프링 IoC 컨테이너의 FactoryBean을 통해 객체 생성(getObject()) ch29.f Test03
 
  <프로퍼티 값 변환> ex) String -> Date
 - 기본 프로퍼티                                                   ch29.g Test01 - Test02
 - 프로퍼티 에디터 사용                                            ch29.g Test03 - Test04
-   java: PropertyEditorSupport상속 spring IoC :CustomEditorConfigurer
+   java: PropertyEditorSupport상속 / spring IoC :CustomEditorConfigurer
    
  <BeanPostProcessor>
 - BeanPostProcessor 이해하기                                      ch29.h Test01 - Test03
@@ -417,5 +417,23 @@ settings.gradle
 - @Autowired(required=false)사용법: 필수/선택 의존 객체 지정      ch29.h Test06
 - @Autowired(required=false) + @Qualifier("bb2")                  ch29.h Test07
 
-- @Autowired + @Qualifier = @Resource(name="bb2")                 ch29.h Test08
-- 생성자와 의존객체                                               ch29.h Test09
+- @Autowired + @Qualifier = @Resource(name="bb2")                 ch29.h Test08   (context:annotation-config/>태그 + @Resource(name="객체이름"))
+- 생성자와 의존객체                                               ch29.h Test09   (context:annotation-config/>태그 + 생성자에 파라미터값 지정)
+
+ <xml>
+- @Component 붙은 클래스만 객체 생성하기                          ch29.i Test01
+- @Component 특정 패키지/클래스는 제외하고 객체 생성하기          ch29.i Test02
+- @Component, @Service, @Repository, @Controlle                   ch29.i Test03
+
+ <Java config>
+- @Configuration                                                  ch29.j Test02
+- 애노테이션으로 특정 패키지/클래스 제외하고 객체 생성하기        ch29.j Test03
+- @Bean 수동으로 객체 생성 + 의존객체주입                         ch29.j Test04
+- @PropertySource : 프로퍼티 파일 로딩                            ch29.j Test05
+  로딩 된 프로퍼티 값 사용방법
+  1) Environment클래스 : .getProperty("")
+  2) @Value: 프로퍼티 값 -> 필드에 주입 
+  
+- Mybatis와 스프링 연동하기 - Java config 사용                    ch29.k1
+- Mybatis와 스프링 연동하기 - XML 사용                            ch29.k2 
+

@@ -34,6 +34,10 @@ dependencies {
     
     // Javax Annotation API(for OpenJDK, Oracle JDK includes this library)
     compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
+    
+    // mybatis 의 Spring 연동 라이브러리
+    compile group: 'org.mybatis', name: 'mybatis-spring', version: '2.0.0'
+    
 }
 
 //만약 Gradle을 사용하여 프로젝트를 실행한다면 다음 클래스가 실행될 것이다

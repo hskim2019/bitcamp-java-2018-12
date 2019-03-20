@@ -21,8 +21,8 @@ public class Test02_j {
 	  System.out.println(b1);
 	  
 	  // 존재하지 않는 객체를 꺼내려면 예외가 발생한다
-	  Student b2 = (Student) iocContainer.getBean("b2");
-	  System.out.println(b2);
+//	  Student b2 = (Student) iocContainer.getBean("b2");
+//	  System.out.println(b2);
 	  
     System.out.println("실행 완료!");
   }

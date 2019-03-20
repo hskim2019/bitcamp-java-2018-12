@@ -33,7 +33,7 @@ public class MyAutowiredAnnotationBeanPostProcessor implements BeanPostProcessor
     // 생성된 객체를 기록한다.
     // => 나중에 의존 객체를 주입할 때 사용할 것이다.
     beans.put(bean.getClass(), bean);
-    
+   
     // 항상 어떤 객체가 생성되면 자신을 원하는 세터가 있는지 검사하여 
     // 그 메서드를 호출해야 한다.
     callAutowiredMethod(bean);
@@ -72,6 +72,10 @@ public class MyAutowiredAnnotationBeanPostProcessor implements BeanPostProcessor
     return bean;
   }
   
+  
+  
+  
+  
   private boolean isRegistered(Class<?> type) {
     return beans.get(type) != null ? true : false;
   }
@@ -93,9 +97,9 @@ public class MyAutowiredAnnotationBeanPostProcessor implements BeanPostProcessor
     methods.add(autowiredMethod);
   }
   
-  private void callAutowiredMethod(Object paramValue) {
+  private void callAutowiredMethod(Object paramValue) {               //paramValue : bean
     // 이 타입의 빈을 원하는 세터 목록을 꺼낸다.
-    List<AutowiredMethod> setters = autowiredMethodMap.get(paramValue.getClass());
+    List<AutowiredMethod> setters = autowiredMethodMap.get(paramValue.getClass());  //호출이 연기 된 @Autowried메서드에서 객체 꺼내기
     
     if (setters == null) // 없다면 호출하지 않는다.
       return;

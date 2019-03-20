@@ -13,7 +13,7 @@ public class Test03 {
     System.out.println("===================================");
     
     System.out.println(iocContainer.getBean("blackBox"));      //BlackBox 객체리턴
-    System.out.println(iocContainer.getBean("carFactory2"));   //CarFactroy2 객체 리턴
+//    System.out.println(iocContainer.getBean("carFactory2"));   //CarFactroy2 객체 리턴
     System.out.println(iocContainer.getBean("c1"));            //Car 객체 리턴
 //    System.out.println(iocContainer.getBean("c1"));
   }

@@ -1,10 +1,20 @@
-package ch29.h;
+package ch29.i;
 
 import java.util.Date;
 
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class Car6 {
+//빈의 이름을 지정하지 않으면 클래스 이름을 빈의 이름으로 사용한다
+//단 첫 알파벳은 소문자로 한다
+//패키지 이름은 포함하지 않는다
+//XML 선언으로 빈을 생성할 때 이름을 지정하지 않으면
+//"패키지명.클래스명#번호" 형태로 이름이 지어진다
+//그러나 @Component 애노테이션을 사용할 때는
+//클래스명만 빈의 이름으로 사용된다
+//@Component("okok")
+@Component
+public class Car {
 	
 	private String maker;
 	private String model;
@@ -12,27 +22,16 @@ public class Car6 {
 	private int valve;
 	private boolean auto;
 	private Date createdDate;
-	
-	// @Autowired +@Qualifier = @Resource
-	//@Autowired(required=false)
-	//@Qualifier("bb2")
-	
-	//OpenJDK에는 @Resource 라이브러리가 포함되어 있지 않다
-	// 별도로 라이브러리를 추가해야 한다
-	// => mvnrepository.com 에서 javax.annotation 검색하라
-	// => $ eclipse gradle 실행
-	// => 이클립스에서 프로젝트 갱신
-	@Resource(name="bb2")  
-	private BlackBox blackBox;
+	@Autowired private BlackBox blackBox;
 	
 	
-	public Car6() {
+	public Car() {
 		System.out.println("Car()");
 	}
 
 	@Override
 	public String toString() {
-		return "Car3 [maker=" + maker + ", model=" + model + ", cc=" + cc + ", valve=" + valve + ", auto=" + auto
+		return "Car [maker=" + maker + ", model=" + model + ", cc=" + cc + ", valve=" + valve + ", auto=" + auto
 				+ ", createdDate=" + createdDate + ", blackBox=" + blackBox + "]";
 	}
 
@@ -76,8 +75,5 @@ public class Car6 {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-
-	
-	
 
 }
