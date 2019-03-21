@@ -23,5 +23,5 @@
 // 작업:
 // 1) 클라이언트 요청 처리를 전달할 스레드 클래스를 정의한다
 //   => RequestHandlerThread
-// 2) ServiceApp의 service()가 수행하던 클라이어늩 요청 처리를 RequestHandlerThread로 옮긴다
+// 2) ServiceApp의 service()가 수행하던 클라이언트의 요청 처리를 RequestHandlerThread로 옮긴다
 // 

@@ -1,53 +1,31 @@
 package com.eomcs.lms.handler;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.eomcs.lms.context.RequestMapping;
-import com.eomcs.lms.dao.PhotoBoardDao;
-import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
 import com.eomcs.lms.domain.PhotoFile;
+import com.eomcs.lms.service.PhotoBoardService;
 
 @Component
 public class PhotoBoardCommand {
 
-	PlatformTransactionManager txManager;
-	PhotoBoardDao photoBoardDao; // 서버의 BoardDaoImpl 객체를 대행하는 프록시 객체이다.
-	PhotoFileDao photoFileDao;
+	PhotoBoardService photoBoardService;
 
-	public PhotoBoardCommand(PhotoBoardDao photoBoardDao, PhotoFileDao photoFileDao, PlatformTransactionManager txManager) {
-		this.photoBoardDao = photoBoardDao;
-		this.photoFileDao = photoFileDao;
-		this.txManager =  txManager;
+	public PhotoBoardCommand(PhotoBoardService photoBoardService) {
+		this.photoBoardService = photoBoardService;
 	}
 
 	@RequestMapping("/photoboard/add")
-	public void add(Response response) throws Exception {
+	public void add(Response response)  {
 
-
-		// 트랜잭션 동작 방식을 설정한다
-		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		def.setName("tx1");
-		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-
-		// 트랜잭션을 준비한다
-		TransactionStatus status = txManager.getTransaction(def);	
-
-		// original SqlSession 대신 SqlSessionProxy로 포장 된 SqlSession을 사용하고
-		// Thread에도 이 객체를 넣어준다 
 		try {
-			PhotoBoard photoBoard = new PhotoBoard();
+			PhotoBoard board = new PhotoBoard();
 
-			photoBoard.setTitle(response.requestString("사진 제목?")); // PhotoBoard에 입력받은 내용 set
-			photoBoard.setLessonNo(response.requestInt("수업번호?"));
-			photoBoardDao.insert(photoBoard);  //PhotoBoard set한 내용을 DB에 insert하기
+			board.setTitle(response.requestString("사진 제목?")); // PhotoBoard에 입력받은 내용 set
+			board.setLessonNo(response.requestInt("수업번호?"));
 
 			response.println("최소 한 개의 사진 파일을 등록해야 합니다.");
 			response.println("파일명 입력 없이 그냥 엔터를 치면 파일 추가를 마칩니다.");
@@ -65,27 +43,25 @@ public class PhotoBoardCommand {
 				}
 				PhotoFile file = new PhotoFile();
 				file.setFilePath(filePath);
-				file.setPhotoBoardNo(photoBoard.getNo()); // 사진 게시물을 입력한 후 자동 생성된 PK값을 꺼낸다
 
 				files.add(file);
 			}
 
-			photoFileDao.insert(files);
+			board.setFiles(files);
 
+			photoBoardService.add(board);
 			response.println("사진을 저장하였습니다.");
-			txManager.commit(status);
 
 		} catch (Exception e) {
-			response.println("저장 중 오류 발생.");
-			txManager.rollback(status);
 			e.printStackTrace();
+			response.println("저장 중 오류 발생.");
 		}
 
 	}
 
 	@RequestMapping("/photoboard/list")
 	public void list(Response response) throws Exception{
-		List<PhotoBoard> boards = photoBoardDao.findAll(null);
+		List<PhotoBoard> boards = photoBoardService.list(0, null);
 
 		for (PhotoBoard board : boards) {
 			response.println(String.format("%3d, %-20s, %s, %d, %d", 
@@ -102,17 +78,11 @@ public class PhotoBoardCommand {
 
 		int no = response.requestInt("번호? ");
 
-		// lms_photo 테이블의 데이터와 lms_photo_file 테이블의 데이터를 조인하여
-		// 결과를 PhotoBoard 객체에 저장한다
-		// 특히 lms_photo_file 데이터는 PhotoFile 객체에 저장되고,
-		// 그 목록은 ??
-		PhotoBoard photoBoard = photoBoardDao.findWithFile(no);
+		PhotoBoard photoBoard = photoBoardService.get(no);
 		if(photoBoard == null) {
 			response.println("해당 번호의 사진이 없습니다.");
 			return;
 		} 
-
-		photoBoardDao.increaseCount(no);
 
 		response.println(String.format("제목: %s", photoBoard.getTitle()));
 		response.println(String.format("작성일: %s", photoBoard.getCreatedDate()));
@@ -131,25 +101,21 @@ public class PhotoBoardCommand {
 
 	@RequestMapping("/photoboard/search")
 	public void search(Response response) throws Exception{
-		HashMap<String, Object> params = new HashMap<>();
+ int lessonNo = 0;
 		try {
-			int lessonNo = response.requestInt("사진 파일 번호? ");
-			params.put("lessonNo", lessonNo);
-		} catch (Exception e) {
+			lessonNo = response.requestInt("사진 파일 번호? ");
+		} catch (Exception e) { // 수업 번호를 입력하지 않거나 정상 입력이 아닌 경우는 무시
 		}
 
+		String searchWord = null;
 		try {
 			String keyword = response.requestString("검색어?");
 			if (keyword.length() > 0)
-				//SQL에서 검색할 때 사용할 문자열 패턴을 다음과 같이 자바에서 만들어 전달할 수 있다. 
-				//params.put("keyword", "%" + keyword + "%");
+				searchWord =  keyword;
+		} catch (Exception e) { // 사용자가 검색어를 입력하지 않았으면 무시한다
+		} 
 
-				// 또는 다음과 같이 키워드를 전달한 후 mybatis 쪽에서 패턴을 정의할 수 있다.
-				params.put("keyword", keyword);
-		} catch (Exception e) {
-		}
-
-		List<PhotoBoard> boards = photoBoardDao.findAll(params);
+		List<PhotoBoard> boards = photoBoardService.list(lessonNo, searchWord);
 
 		response.println("[검색 결과]");
 
@@ -165,19 +131,13 @@ public class PhotoBoardCommand {
 	@RequestMapping("/photoboard/update")
 	public void update(Response response) throws Exception {
 
-		// 트랜잭션 동작 방식을 설정한다
-		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		def.setName("tx1");
-		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 
-		// 트랜잭션을 준비한다
-		TransactionStatus status = txManager.getTransaction(def);	
 
 		try {
 			PhotoBoard board = new PhotoBoard();
 			board.setNo(response.requestInt("번호?"));
 
-			PhotoBoard origin = photoBoardDao.findByNo(board.getNo());
+			PhotoBoard origin = photoBoardService.get(board.getNo());
 			if (origin == null) {
 				response.println("해당 번호의 사진이 없습니다.");
 				return;
@@ -187,12 +147,11 @@ public class PhotoBoardCommand {
 					String.format("제목(%s)?", origin.getTitle()));
 			if(input.length() > 0) {
 				board.setTitle(input);
-				photoBoardDao.update(board); // 사진 게시물 제목 변경
 			}
 
 			// 변경하려면 사진 게시물의 첨부 파일을 출력한다.
 			response.println("사진 파일:");
-			List<PhotoFile> files = photoFileDao.findByPhotoBoardNo(board.getNo());
+			List<PhotoFile> files = origin.getFiles();
 			for (PhotoFile file : files) {
 				response.println("> " + file.getFilePath());
 			}
@@ -202,8 +161,6 @@ public class PhotoBoardCommand {
 			response.println("전체를 새로 등록해야 합니다.");
 			input = response.requestString("사진을 변경하시겠습니까?(y/N)");
 			if (input.equalsIgnoreCase("y")) {
-				// 먼저 기존 첨부 파일을 삭제한다.
-				photoFileDao.deleteByPhotoBoardNo(board.getNo());
 
 				// 그리고 새 첨부 파일을 추가한다.
 				response.println("최소 한 개의 사진 파일을 등록해야 합니다.");
@@ -226,15 +183,14 @@ public class PhotoBoardCommand {
 
 					photoFiles.add(file);
 				}
-				// 한 번에 파일 정보를 insert한다
-				photoFileDao.insert(photoFiles);
+
+				board.setFiles(photoFiles);
+
 			}
 
-
+			photoBoardService.update(board);
 			response.println("변경했습니다.");
-			txManager.commit(status);
 		} catch (Exception e) {
-			txManager.rollback(status);
 			response.println("변경 중 오류 발생.");
 		}
 	}
@@ -243,29 +199,18 @@ public class PhotoBoardCommand {
 	@RequestMapping("/photoboard/delete")
 	public void delete(Response response) throws Exception{
 
-		// 트랜잭션 동작 방식을 설정한다
-		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		def.setName("tx1");
-		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-
-		// 트랜잭션을 준비한다
-		TransactionStatus status = txManager.getTransaction(def);	
-
 
 		try { 
 			int no = response.requestInt("번호? ");
-			// 데이터를 지울 때는 자식 테이블의 데이터부터 지워야 한다
-			photoFileDao.deleteByPhotoBoardNo(no);
+		
 
-			if(photoBoardDao.delete(no) == 0) {
+			if( photoBoardService.delete(no)== 0) {
 				response.println("해당 번호의 게시물이 없습니다.");
 				return;
 			}
 			response.println("삭제했습니다.");
-			txManager.commit(status);
 
 		} catch (Exception e) {
-			txManager.rollback(status);
 			response.println("삭제 중 오류 발생.");
 		}
 

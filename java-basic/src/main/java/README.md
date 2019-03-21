@@ -419,9 +419,9 @@ settings.gradle
 
 - @Autowired + @Qualifier = @Resource(name="bb2")                 ch29.h Test08   (context:annotation-config/>태그 + @Resource(name="객체이름"))
 - 생성자와 의존객체                                               ch29.h Test09   (context:annotation-config/>태그 + 생성자에 파라미터값 지정)
-
+                                                                                => component-scan 태그를 쓰면 annotation-config 까지 활성화         
  <xml>
-- @Component 붙은 클래스만 객체 생성하기                          ch29.i Test01
+- @Component 붙은 클래스만 객체 생성하기                          ch29.i Test01   <context:component-scan base-package="ch30.b"/>
 - @Component 특정 패키지/클래스는 제외하고 객체 생성하기          ch29.i Test02
 - @Component, @Service, @Repository, @Controlle                   ch29.i Test03
 
@@ -436,4 +436,7 @@ settings.gradle
   
 - Mybatis와 스프링 연동하기 - Java config 사용                    ch29.k1
 - Mybatis와 스프링 연동하기 - XML 사용                            ch29.k2 
+
+- AOP 적용 전                                                     ch30.a, b
+- AOP 적용 후                                                     ch30.c
 
