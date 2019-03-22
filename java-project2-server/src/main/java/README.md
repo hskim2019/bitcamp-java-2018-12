@@ -1,20 +1,24 @@
-# 52
+# 53
 
-25단계 : business layer 추가
-=> 커멘드 객체에서 비즈니스 로직을 분리하여 별도의 클래스로 정의한다
-=> 비지니스 로직의 재사용성을 높일 수 있다
-
+30 단계 : HTTP 프로토콜을 적용하여 클라이언트를 웹브라우저로 변경하기
 
 작업
-1) BoardCommand에서 비지니스 로직 분리
-   => BoardService 인터페이스 생성
-   => BoardServiceImpl 구현체 생성
+1) Request?
+  =>
+         
+2) 
+   => 
       
-2) PhotoBoardCommand 에서 비즈니스 로직 분리
-   => PhotoBoardService 인터페이스 생성
-   => PhotoBoardServiceImpl 구현체 생성
+3) 
+  =>
+     
 
-3) LessonCommand, MemberCommand에도 적용
+   
+
+ 
+ 
+  
+
   
   
   

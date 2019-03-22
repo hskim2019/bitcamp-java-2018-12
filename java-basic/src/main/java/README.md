@@ -437,6 +437,11 @@ settings.gradle
 - Mybatis와 스프링 연동하기 - Java config 사용                    ch29.k1
 - Mybatis와 스프링 연동하기 - XML 사용                            ch29.k2 
 
+# AOP
 - AOP 적용 전                                                     ch30.a, b
-- AOP 적용 후                                                     ch30.c
+- AOP 적용 후 - XML 사용                                          ch30.c
+- AOP 적용 후 - XML 사용 - 기능 추가의 위치                       ch30.d
+- 메서드 호출 전/후에 파라미터 값이나 리턴 값을 받기              ch30.e
+- 메서드 호출 전/후에 파라미터 값이나 리턴 값을 받기II            ch30.f
+- Java config로 AOP 설정하기                                      ch30.g
 

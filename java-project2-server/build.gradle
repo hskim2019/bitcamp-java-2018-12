@@ -50,9 +50,17 @@ dependencies {
     // Spring JDBC 관련 라이브러리(트랜잭션 라이브러리를 자동으로 추가한다)
     compile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.5.RELEASE'
     
+    // AOP 관련 라이브러리 (AspectJ Weaver)
+    compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.2'  
+    
+    // log4j 2.x 라이브러리
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.2'
     
     
 }
 
 // Define the main class for the application
-mainClassName = 'bitcamp.lms.App'
+// 만약 G?
+// $ gradle build 를 수행한 후
+// $ gradle run  을 실행하면 다음에서 설정한 ServerApp 클래스를 실행한다
+mainClassName = 'com.eomcs.lms.ServerApp'

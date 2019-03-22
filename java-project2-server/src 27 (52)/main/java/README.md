@@ -15,6 +15,12 @@
    => PhotoBoardServiceImpl 구현체 생성
 
 3) LessonCommand, MemberCommand에도 적용
-  
-  
-  
+
+
+
+
+PlatformTransactionManager 인터페이스
+  |
+  PlatformTransactionManager의 구현클래스 종류
+   => DataSourceTransactionManager
+      :JDBC 및 마이바티스 등으로 데이터베이스 접근시 이용
