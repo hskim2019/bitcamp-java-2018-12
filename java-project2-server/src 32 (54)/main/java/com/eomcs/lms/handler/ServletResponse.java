@@ -4,16 +4,20 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.sql.Date;
 
-public class Response {
+public class ServletResponse {
   
   BufferedReader in;
   PrintWriter out;
-
-  public Response (BufferedReader in, PrintWriter out) {
+  
+  public ServletResponse(BufferedReader in, PrintWriter out) {
     this.in = in;
     this.out = out;
   }
-
+  
+  public PrintWriter getWriter() {
+    return out;
+  }
+  
   public void println(String message) {
     out.println(message);
     out.flush();
@@ -31,8 +35,18 @@ public class Response {
   }
   
   public Date requestDate(String title) throws Exception {
-    return Date.valueOf((this.requestString(title)));
-  }
-  
-
+    return Date.valueOf(this.requestString(title));
+  }  
 }
+
+
+
+
+
+
+
+
+
+
+
+
