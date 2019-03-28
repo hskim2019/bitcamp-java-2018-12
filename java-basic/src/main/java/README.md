@@ -18,6 +18,7 @@ settings.gradle
 # 디자인 패턴
 -abstract_factory
 -builder (mybatis - SqlSessionFactory)
+-chain of responsiblity
 -command pattern
 -composite
 -decorater
