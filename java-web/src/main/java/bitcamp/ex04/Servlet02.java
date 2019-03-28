@@ -53,12 +53,13 @@ public class Servlet02 extends GenericServlet {
     //    반드시 getParamter()를 최초로 호출하기 전이어야 한다.
     //    한 번 getParameter()를 호출한 후에는 소용없다.
     //
-    req.setCharacterEncoding("UTF-8");
+    req.setCharacterEncoding("UTF-8");                   // 웹 브라우저(UTF-8) ---(변환 중 깨짐)--->getParameter(UTF-16)
+                                                        // getParameter호출 전에 원래 브라우저가 보낸 문자형식이 UTF-8임을 알려주기
 
     int age = Integer.parseInt(req.getParameter("age"));
     String name = req.getParameter("name");
     
-    res.setContentType("text/plain;charset=UTF-8");
+    res.setContentType("text/plain;charset=UTF-8");  // HTTP 통신 시 UTF-8로 출력
     PrintWriter out = res.getWriter();
     out.printf("이름=%s\n", name);
     out.printf("나이=%d\n", age);
