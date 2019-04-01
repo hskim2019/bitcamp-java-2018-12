@@ -21,7 +21,6 @@ public class PhotoBoardSearchServlet extends HttpServlet{
       throws ServletException, IOException {
 
     PhotoBoardService photoBoardService = InitServlet.iocContainer.getBean(PhotoBoardService.class);
-    request.setCharacterEncoding("UTF-8");
 
     int lessonNo = 0;
     try {

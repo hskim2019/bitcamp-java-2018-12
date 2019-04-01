@@ -21,7 +21,6 @@ public class BoardUpdateServlet extends HttpServlet{
 
     BoardService boardService = InitServlet.iocContainer.getBean(BoardService.class);
 
-    request.setCharacterEncoding("UTF-8");
     Board board = new Board();
     board.setNo(Integer.parseInt(request.getParameter("no")));
     board.setContents(request.getParameter("contents"));

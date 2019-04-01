@@ -45,7 +45,6 @@ public class BoardAddServlet extends HttpServlet{
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    request.setCharacterEncoding("UTF-8");
     
     // Spring IoC 컨테이너에서 BoardService 객체를 꺼낸다
     BoardService boardService = 

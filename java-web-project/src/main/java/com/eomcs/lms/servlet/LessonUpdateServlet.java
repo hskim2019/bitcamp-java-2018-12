@@ -21,7 +21,6 @@ public class LessonUpdateServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     
-    request.setCharacterEncoding("UTF-8");
     LessonService lessonService = InitServlet.iocContainer.getBean(LessonService.class);
     Lesson lesson = new Lesson();
     lesson.setNo(Integer.parseInt(request.getParameter("no")));
