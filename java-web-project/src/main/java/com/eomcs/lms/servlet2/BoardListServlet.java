@@ -1,4 +1,4 @@
-package com.eomcs.lms.servlet;
+package com.eomcs.lms.servlet2;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -11,7 +11,7 @@ import com.eomcs.lms.InitServlet;
 import com.eomcs.lms.domain.Board;
 import com.eomcs.lms.service.BoardService;
 
-@WebServlet("/board/list")
+@WebServlet("/board2/list")
 @SuppressWarnings("serial")
 public class BoardListServlet extends HttpServlet {
   
@@ -26,23 +26,21 @@ public class BoardListServlet extends HttpServlet {
     
     List<Board> boards = boardService.list();
     
-    response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     
-    out.println("<html><head><title>게시물 목록</title></head>");
-    out.println("<body><h1>게시물 목록</h1>");
-    out.println("<p><a href='add'>새 글</a></p>");
+    out.println("<h1>게시물 목록</h1>");
+    out.println("<p><a href='board2?command=form'>새 글</a></p>");
     out.println("<table border='1'>");
     out.println("<tr> <th>번호</th> <th>제목</th> <th>등록일</th> <th>조회수</th> </tr>");
     for (Board board : boards) {
       out.println(String.format(
-          "<tr><td>%d</td> <td><a href='detail?no=%1$d'>%s</a></td> <td>%s</td> <td>%d</td></tr>", 
+          "<tr><td>%d</td> <td><a href='board2?command=detail&no=%1$d'>%s</a></td> <td>%s</td> <td>%d</td></tr>", 
             board.getNo(), 
             board.getContents(), 
             board.getCreatedDate(), 
             board.getViewCount()));
     }
-    out.println("</table></body></html>");
+    out.println("</table>");
   }
 
 }

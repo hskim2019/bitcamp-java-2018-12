@@ -14,7 +14,7 @@
   </resultMap>
   
   <sql id="select1">
-  select 
+    select 
       board_id, 
       conts, 
       cdt, 

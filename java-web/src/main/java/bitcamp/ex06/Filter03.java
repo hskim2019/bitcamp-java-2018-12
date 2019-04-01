@@ -9,18 +9,22 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-@WebFilter(value="/ex06/s5")
-public class Filter03 implements Filter{
+@WebFilter("/ex06/s5")
+public class Filter03 implements Filter {
 
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
-
+    
     // 필터의 DD 설정으로 지정한 파라미터 값 가져오기
-    System.out.printf("ex06.Fitler03 : encoding=%s\n",
-       request.getServletContext().getInitParameter("encoding"));
-
+    System.out.printf("ex06.Filter03 : encoding=%s\n", 
+        request.getServletContext().getInitParameter("encoding"));
+    
     chain.doFilter(request, response);
-
   }
 }
+
+
+
+
+

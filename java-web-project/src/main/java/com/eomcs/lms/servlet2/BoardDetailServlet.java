@@ -1,4 +1,4 @@
-package com.eomcs.lms.servlet;
+package com.eomcs.lms.servlet2;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,7 +11,7 @@ import com.eomcs.lms.domain.Board;
 import com.eomcs.lms.service.BoardService;
 
 @SuppressWarnings("serial")
-@WebServlet("/board/detail")
+@WebServlet("/board2/detail")
 public class BoardDetailServlet extends HttpServlet {
 
   @Override
@@ -27,17 +27,16 @@ public class BoardDetailServlet extends HttpServlet {
     
     Board board = boardService.get(no);
     
-    response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     
-    out.println("<html><head><title>게시물 조회</title></head>");
-    out.println("<body><h1>게시물 조회</h1>");
+    out.println("<h1>게시물 조회</h1>");
     
     if (board == null) {
       out.println("<p>해당 번호의 게시물이 없습니다.</p>");
       
     } else {
-      out.println("<form action='update' method='post'>");
+      out.println("<form action='board2' method='post'>");
+      out.println("<input type='hidden' name='command' value='update'>");
       out.println("<table border='1'>");
       out.printf("<tr>"
           + "<th>번호</th>"
@@ -53,13 +52,12 @@ public class BoardDetailServlet extends HttpServlet {
           "<tr> <th>조회수</th> <td>%d</td> </tr>", board.getViewCount()));
       
       out.println("</table>");
-      out.println("<p><a href='list'>목록</a>"
-          + " <a href='delete?no=" + board.getNo() + "'>삭제</a>"
+      out.println("<p><a href='board2'>목록</a>"
+          + " <a href='board2?command=delete&no=" + board.getNo() + "'>삭제</a>"
           + " <button type='submit'>변경</button>"
           + "<p>");
       out.println("</form>");
     }
-    out.println("</body></html>");
   }
 
 }

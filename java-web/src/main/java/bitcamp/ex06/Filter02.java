@@ -13,27 +13,31 @@ import javax.servlet.annotation.WebInitParam;
 
 @WebFilter(
     value="/ex06/*",
-    initParams= {
+    initParams={
         @WebInitParam(name="encoding", value="EUC-KR")
     })
-public class Filter02 implements Filter{
+public class Filter02 implements Filter {
 
   FilterConfig filterConfig;
-
+  
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
     this.filterConfig = filterConfig;
   }
-
+  
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
-
+    
     // 필터의 DD 설정으로 지정한 파라미터 값 가져오기
-    System.out.printf("ex06.Fitler02 : encoding=%s\n",
+    System.out.printf("ex06.Filter02 : encoding=%s\n", 
         filterConfig.getInitParameter("encoding"));
-
+    
     chain.doFilter(request, response);
-
   }
 }
+
+
+
+
+

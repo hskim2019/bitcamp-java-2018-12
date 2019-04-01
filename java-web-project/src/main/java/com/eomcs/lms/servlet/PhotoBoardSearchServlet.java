@@ -13,14 +13,15 @@ import com.eomcs.lms.service.PhotoBoardService;
 
 @SuppressWarnings("serial")
 @WebServlet("/photoboard/search")
-public class PhotoBoardSearchServlet extends HttpServlet{
-
+public class PhotoBoardSearchServlet extends HttpServlet {
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+  protected void doGet(
+      HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
 
-    PhotoBoardService photoBoardService = InitServlet.iocContainer.getBean(PhotoBoardService.class);
+    PhotoBoardService photoBoardService = 
+        InitServlet.iocContainer.getBean(PhotoBoardService.class);
 
     int lessonNo = 0;
     try {

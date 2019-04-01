@@ -1,5 +1,4 @@
 package com.eomcs.lms.servlet;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,7 +12,7 @@ import com.eomcs.lms.service.LessonService;
 
 @SuppressWarnings("serial")
 @WebServlet("/lesson/detail")
-public class LessonDetailServlet extends HttpServlet{
+public class LessonDetailServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -80,6 +79,6 @@ public class LessonDetailServlet extends HttpServlet{
     }
     out.println("</body>");
     out.println("</html>");
-  }
+  }  
 
 }

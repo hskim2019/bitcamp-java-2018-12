@@ -43,6 +43,6 @@ public class LessonListServlet extends HttpServlet {
     }
     out.println("</table>");
     out.println("</body></html>");
-  }
 
+  }
 }

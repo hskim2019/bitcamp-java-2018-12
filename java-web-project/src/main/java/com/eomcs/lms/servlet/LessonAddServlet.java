@@ -16,7 +16,6 @@ import com.eomcs.lms.service.LessonService;
 @WebServlet("/lesson/add")
 public class LessonAddServlet extends HttpServlet {
 
-
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -64,15 +63,15 @@ public class LessonAddServlet extends HttpServlet {
     out.println("</body>");
     out.println("</html>");
   }
-  
-  
+
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     LessonService lessonService = InitServlet.iocContainer.getBean(LessonService.class);
+
     Lesson lesson = new Lesson();
-    lesson.setTitle(request.getParameter("title") + request.getRemoteAddr());
+    lesson.setTitle(request.getParameter("title"));
     lesson.setContents(request.getParameter("contents"));
     lesson.setStartDate(Date.valueOf(request.getParameter("startDate")));
     lesson.setEndDate(Date.valueOf(request.getParameter("endDate")));
@@ -91,5 +90,7 @@ public class LessonAddServlet extends HttpServlet {
     out.println("<p>저장하였습니다.</p>");
     out.println("</body></html>");
   }
+
+
 
 }
