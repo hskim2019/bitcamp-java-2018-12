@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import javax.servlet.GenericServlet;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
