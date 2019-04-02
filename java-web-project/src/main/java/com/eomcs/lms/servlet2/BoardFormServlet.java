@@ -29,7 +29,7 @@ public class BoardFormServlet extends HttpServlet {
     out.println("</table>");
     out.println("<p>");
     out.println("  <button type='submit'>등록</button>");
-    out.println("  <a href='board2'>목록</a>");
+    out.println("  <a href='list'>목록</a>");
     out.println("</p>");
     out.println("</form>");
   }
