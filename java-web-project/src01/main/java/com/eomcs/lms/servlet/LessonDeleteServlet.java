@@ -12,13 +12,14 @@ import com.eomcs.lms.service.LessonService;
 
 @SuppressWarnings("serial")
 @WebServlet("/lesson/delete")
-public class LessonDeleteServlet extends HttpServlet {
+public class LessonDeleteServlet extends HttpServlet{
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     LessonService lessonService = InitServlet.iocContainer.getBean(LessonService.class);
+
     int no = Integer.parseInt(request.getParameter("no"));
 
     response.setContentType("text/html;charset=UTF-8");
@@ -37,5 +38,6 @@ public class LessonDeleteServlet extends HttpServlet {
 
     out.println("</body></html>");
   }
+
 
 }

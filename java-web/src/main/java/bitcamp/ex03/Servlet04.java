@@ -42,7 +42,6 @@ public class Servlet04 extends GenericServlet {
       out.write(b);
     }
     
-   
     out.flush(); // 버퍼 데코레이터에 보관된 데이터를 클라이언트로 방출한다.
     in.close();
   }

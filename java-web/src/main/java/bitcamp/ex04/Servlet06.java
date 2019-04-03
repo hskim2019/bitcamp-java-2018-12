@@ -18,24 +18,26 @@ public class Servlet06 extends GenericServlet {
   public void service(ServletRequest req, ServletResponse res)
       throws ServletException, IOException {
     
+    req.setCharacterEncoding("UTF-8");
+    
+    // POST 요청
+    // - 웹 페이지의 폼(method='POST' 일 때)에서 전송 버튼을 클릭하면 POST 요청을 보낸다.
     //
     // 테스트
     // - http://localhost:8080/java-web/ex04/test06.html 실행
     //
     
-    // 같은 이름으로 여러개의 데이터를 보낼 수 있다
+    // 같은 이름으로 여러 개의 데이터를 보낼 수 있다.
     // => 예) name=aaa&name=bbb&name=ccc
-    req.setCharacterEncoding("UTF-8");
+    
     String[] names = req.getParameterValues("name");
     
-    res.setContentType("text/plain;charset=UTF-8");  // HTTP 통신 시 UTF-8로 출력
+    res.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = res.getWriter();
-
+    
     for (String name : names) {
       out.printf("이름=%s\n", name);
     }
-    
-    
   }
 }
 
