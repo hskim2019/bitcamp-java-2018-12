@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
     out.println("</table>");
     out.println("<input type='checkbox' name='saveEmail' value='ookok'> 이메일 저장");
     out.println("<p>");
-    out.println("  <button>로그인</button>");
+    out.println("  <button>로그인</button>"); // submit 생략되어도 default로 있다
     out.println("</p>");
     out.println("</form>");
     out.println("</body>");
