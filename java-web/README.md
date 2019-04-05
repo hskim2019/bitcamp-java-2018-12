@@ -12,7 +12,7 @@
     - servlet-api 라이브러리 추가
 - 이클립스 IDE 용 설정파일 생성
     - $ gradle eclipse 실행
-- 이클립스 IDE로 프로젝트 import
+- 이클립스 IDE로 프로젝트 import..
 
 ## 자바 웹 프로젝트 배치와 실행
  - 톰캣 실행 환경 추가
