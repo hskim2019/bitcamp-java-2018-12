@@ -35,7 +35,7 @@ public class BoardDeleteServlet extends HttpServlet {
 		}
 
 		// 오류 내용을 출력하는 JSP로 포워딩한다
-		request.setAttribute("error.title", "게시물 변경");
+		request.setAttribute("error.title", "게시물 삭제");
 		request.setAttribute("error.content", "해당 번호의 게시물이 없습니다.");
 
 		request.getRequestDispatcher("/error.jsp").forward(request, response);
