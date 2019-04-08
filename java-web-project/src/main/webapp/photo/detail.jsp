@@ -4,11 +4,6 @@
 <%@page import="com.eomcs.lms.domain.PhotoBoard"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
  trimDirectiveWhitespaces="true"%>
- <%
- PhotoBoard board = (PhotoBoard) request.getAttribute("board");
- List<Lesson> lessons = (List<Lesson>) request.getAttribute("lessons");
- List<PhotoFile> files = (List<PhotoFile>) request.getAttribute("files");
- %>
 <!DOCTYPE html>
 
 <html>
@@ -17,8 +12,10 @@
 
 <jsp:include page="/header.jsp"></jsp:include>
 
-<h1>사진 조회(JSP)</h1>
-
+<h1>사진 조회(JSP2)</h1>
+<jsp:useBean scope="request" id="board" type="com.eomcs.lms.domain.PhotoBoard"/>
+<jsp:useBean scope="request" id="lessons" type="java.util.List<Lesson>"/>
+<jsp:useBean scope="request" id="files" type="java.util.List<PhotoFile>"/>
 <%if (board == null) {%>
       <p>해당 사진을 찾을 수 없습니다.</p>
 

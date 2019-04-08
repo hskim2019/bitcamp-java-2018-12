@@ -2,9 +2,6 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
  trimDirectiveWhitespaces="true"%>
- <%
- List<Lesson> lessons = (List<Lesson>) request.getAttribute("lessons");
- %>
 <!DOCTYPE html>
 
 <html>
@@ -12,13 +9,14 @@
 <body>
 
 <jsp:include page="/header.jsp"></jsp:include>
-<h1>새 사진(JSP)</h1>
+<h1>새 사진(JSP2)</h1>
 <form action='add' method='post' enctype='multipart/form-data'>
 <table border='1'>
 <tr>
   <th>수업</th>
   <td><select name='lessonNo'>
       <option value='0'>수업을 선택하세요</option>
+      <jsp:useBean scope="request" id="lessons" type="java.util.List<Lesson>"/>
       <%for (Lesson lesson : lessons) {%>
       <option value=<%=lesson.getNo()%>><%=lesson.getTitle()%></option>  
       <%}%>
