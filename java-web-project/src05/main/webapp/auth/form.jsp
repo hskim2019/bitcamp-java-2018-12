@@ -8,7 +8,7 @@ String email = (String) request.getAttribute("email");
 <head><title>로그인</title></head>
 <body>
 
-<jsp:include page="/header.jsp"/> 
+<jsp:include page="/header.jsp"/>
 
 <h1>로그인(JSP)</h1>
 <form action='login' method='post'>

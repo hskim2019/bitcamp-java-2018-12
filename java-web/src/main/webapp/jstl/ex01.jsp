@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>JSTL 개요</h1>
-<pre>
+<%--
 - JSTL(JSP Standard Tag Library)? 
   - JSP 확장 태그이다.
   - 기본으로 제공하지 않는다.
@@ -31,9 +31,18 @@
       &lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   - JSTL 태그 사용
       &lt;접두어명:태그명 속성="값" 속성="값"/> 
-</pre>
+--%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+scriptlet에서 java 코드로 작성
+<%
+out.println("<h2>오호라</h2>");
+%>
+expression element
+<%="<h2>오호라</h2>"%>
+
+expression language
+${"<h2>오호라</h2>"}
 
 <c:out value="<h2>오호라!!!<h2>"/>
 

@@ -1,16 +1,13 @@
 package com.eomcs.lms.servlet;
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.context.ApplicationContext;
-
 import com.eomcs.lms.domain.Member;
 import com.eomcs.lms.service.MemberService;
 
@@ -23,17 +20,20 @@ public class MemberSearchServlet extends HttpServlet {
       throws ServletException, IOException {
 
     ServletContext sc = this.getServletContext();
-    ApplicationContext iocContainer = 
-        (ApplicationContext) sc.getAttribute("iocContainer");
+    ApplicationContext iocContainer = (ApplicationContext) sc.getAttribute("iocContainer");
     MemberService memberService = iocContainer.getBean(MemberService.class);
     
     String keyword = request.getParameter("keyword");
+    
     List<Member> members = memberService.list(keyword);
 
-    request.setAttribute("list", members);
     response.setContentType("text/html;charset=UTF-8");
-    // 헤더를 출력한다.
+    
+    request.setAttribute("member", members);
+    
     request.getRequestDispatcher("/member/search.jsp").include(request, response);
+    
+
   }
   
 }

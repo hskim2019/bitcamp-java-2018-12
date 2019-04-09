@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta http-equiv="Refresh" content="2;url=login">
-<title>로그인 실패</title></head>
+  <meta http-equiv="Refresh" content="2;url=login">
+  <title>로그인 실패</title>
+</head>
 <body>
 
-<jsp:include page="/header.jsp"/> 
+<jsp:include page="/header.jsp"/>
 
 <h1>로그인 실패</h1>
-<p>이메일 또는 암호가 맞지 않습니다</p>
-
+<p>이메일 또는 암호가 맞지 않습니다.</p>
 </body>
 </html>
