@@ -9,7 +9,7 @@
 </head>
 <body>
  <jsp:include page="/header.jsp" />
- <h1>회원 검색(JSP2)</h1>
+ <h1>회원 검색(JSP2+EL)</h1>
  <table border='1'>
   <tr>
    <th>번호</th>
@@ -19,13 +19,14 @@
    <th>가입일</th>
   </tr>
   <jsp:useBean scope="request" id="list" type="java.util.List<Member>"/>
-  <%for (Member member : list) {%>
+  <%for (Member member : list) {
+         pageContext.setAttribute("member", member);%>
   <tr>
-   <td><%= member.getNo()%></td>
-   <td><a href='detail?no=<%=member.getNo()%>'><%=member.getName()%></a></td>
-   <td><%=member.getEmail()%></td>
-   <td><%=member.getTel()%></td>
-   <td><%=member.getRegisteredDate()%></td>
+   <td>${member.no}</td>
+   <td><a href='detail?no=${member.no}'>${member.name}</a></td>
+   <td>${member.email}</td>
+   <td>${member.tel}</td>
+   <td>${member.registeredDate}</td>
   </tr>
   <%}%>
  </table>

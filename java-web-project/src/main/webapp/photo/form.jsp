@@ -9,7 +9,7 @@
 <body>
 
 <jsp:include page="/header.jsp"></jsp:include>
-<h1>새 사진(JSP2)</h1>
+<h1>새 사진(JSP2+EL)</h1>
 <form action='add' method='post' enctype='multipart/form-data'>
 <table border='1'>
 <tr>
@@ -17,8 +17,9 @@
   <td><select name='lessonNo'>
       <option value='0'>수업을 선택하세요</option>
       <jsp:useBean scope="request" id="lessons" type="java.util.List<Lesson>"/>
-      <%for (Lesson lesson : lessons) {%>
-      <option value=<%=lesson.getNo()%>><%=lesson.getTitle()%></option>  
+      <%for (Lesson lesson : lessons) {
+             pageContext.setAttribute("lesson", lesson);%>
+      <option value='${lesson.no}'>${lesson.title}</option>  
       <%}%>
       </select></td>
 </tr>

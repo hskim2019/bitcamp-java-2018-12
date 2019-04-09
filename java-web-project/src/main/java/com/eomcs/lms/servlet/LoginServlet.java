@@ -1,6 +1,6 @@
 package com.eomcs.lms.servlet;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.context.ApplicationContext;
+
 import com.eomcs.lms.domain.Member;
 import com.eomcs.lms.service.MemberService;
 
@@ -32,20 +34,6 @@ public class LoginServlet extends HttpServlet {
     // 
     HttpSession session = request.getSession();
     session.setAttribute(REFERER_URL, request.getHeader("Referer"));
-    
-    // 이메일 쿠키 값을 꺼내온다.
-    Cookie[] cookies = request.getCookies();
-    String email = "";
-    if (cookies != null) {
-      for (Cookie c : cookies) {
-        if (c.getName().equals("email")) {
-          email = c.getValue();
-          break;
-        }
-      }
-    }
-    
-    request.setAttribute("email", email);
     
     response.setContentType("text/html;charset=UTF-8");
     request.getRequestDispatcher("/auth/form.jsp").include(request, response);

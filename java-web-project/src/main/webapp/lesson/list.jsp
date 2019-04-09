@@ -10,7 +10,7 @@
 <body>
  <jsp:include page="/header.jsp"/>
  
- <h1>수업 목록(JSP2)</h1>
+ <h1>수업 목록(JSP2+EL)</h1>
  <p>
   <a href='add'>새 수업</a>
  </p>
@@ -23,11 +23,12 @@
   </tr>
   <tr>
   <jsp:useBean scope="request" id="list" type="java.util.List<Lesson>"/>
-  <%for (Lesson lesson : list) {%>
-   <td><%=lesson.getNo()%></td>
-   <td><a href='detail?no=<%=lesson.getNo()%>'><%=lesson.getTitle()%></a></td>
-   <td><%=lesson.getStartDate()%>~<%=lesson.getEndDate()%></td>
-   <td><%=lesson.getTotalHours()%></td>
+  <%for (Lesson lesson : list) {
+       pageContext.setAttribute("lesson", lesson);%>
+   <td>${lesson.no}</td>
+   <td><a href='detail?no=${lesson.no}'>${lesson.title}</a></td>
+   <td>${lesson.startDate}~${lesson.endDate}</td>
+   <td>${lesson.totalHours}</td>
   </tr>
   <%}%>
  </table>

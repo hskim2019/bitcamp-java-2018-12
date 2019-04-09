@@ -12,7 +12,7 @@
 
  <jsp:include page="/header.jsp"></jsp:include>
 
- <h1>사진 목록(JSP2)</h1>
+ <h1>사진 목록(JSP2+EL)</h1>
  <p>
   <a href='add'>사진 추가</a>
  </p>
@@ -27,13 +27,14 @@
     <jsp:useBean scope="request" id="list" type="java.util.List<PhotoBoard>"/>
   <%
   	for (PhotoBoard photoBoard : list) {
+             pageContext.setAttribute("photoBoard", photoBoard);
   %>
-  <tr>
-   <td><%=photoBoard.getNo()%></td>
-   <td><a href='detail?no=<%=photoBoard.getNo()%>'><%=photoBoard.getTitle()%></a></td>
-   <td><%=photoBoard.getCreatedDate()%></td>
-   <td><%=photoBoard.getViewCount()%></td>
-   <td><%=photoBoard.getLessonNo()%></td>
+  <tr>  
+   <td>${photoBoard.no}</td>
+   <td><a href='detail?no=${photoBoard.no}'>${photoBoard.title}</a></td>
+   <td>${photoBoard.createdDate}</td>
+   <td>${photoBoard.viewCount}</td>
+   <td>${photoBoard.lessonNo}</td>
    <%
    	}
    %>

@@ -11,7 +11,7 @@
 
  <jsp:include page="/header.jsp"></jsp:include>
 
- <h1>사진 검색 결과(JSP2)</h1>
+ <h1>사진 검색 결과(JSP2+EL)</h1>
  <table border='1'>
   <tr>
    <th>번호</th>
@@ -23,13 +23,13 @@
   <jsp:useBean scope="request" id="list" type="java.util.List<PhotoBoard>"/>
   <%
   	for (PhotoBoard board : list) {
-  %>
-  <tr>
-   <td><%=board.getNo()%></td>
-   <td><a href='detail?no=<%= board.getNo()%>'><%=board.getTitle()%></a></td>
-   <td><%=board.getCreatedDate()%></td>
-   <td><%=board.getViewCount()%></td>
-   <td><%=board.getLessonNo()%></td>
+  		pageContext.setAttribute("board", board); %>
+  <tr>   
+   <td>${board.no}</td>
+   <td><a href='detail?no=${board.no}'>${board.title}</a></td>
+   <td>${board.createdDate}</td>
+   <td>${board.viewCount}</td>
+   <td>${board.lessonNo}</td>
   </tr>
   <%}%>
  </table>
