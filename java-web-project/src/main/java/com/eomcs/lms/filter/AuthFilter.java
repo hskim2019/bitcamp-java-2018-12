@@ -49,7 +49,7 @@ public class AuthFilter implements Filter {
         // 막연히 상대경로로 로그인 폼의 URL을 지정할 수 없다.
         // 절대 경로로 정확하게 지정하라.
         
-        httpResp.sendRedirect(contextRootPath + "/app/auth/login");
+        httpResp.sendRedirect(contextRootPath + "/app/auth/form");
         return;
       }
     }
