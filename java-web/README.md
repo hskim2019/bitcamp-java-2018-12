@@ -5,7 +5,7 @@
 - $gradle init 실행
 
 - java-web/src/main/webapp 디렉토리 생성
-- webapp/index.html 생성 및 편집
+- webapp/index.html 생성 및 편집	
 - build.gralde 파일 편집
     - 'application' 플러그인 제거 및 그와 관계 된 설정 제거
     - 'eclipse-wtp' 'war' 플러그인 추가
