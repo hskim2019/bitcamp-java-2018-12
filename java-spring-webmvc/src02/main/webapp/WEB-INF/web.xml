@@ -24,7 +24,7 @@
            왜? DispatcherServlet이 다음 경로에서 파일을 찾기 때문이다.
                /WEB-INF/서블릿명-servlet.xml 
            설정하고 싶지 않다면 이 파라미터의 값을 비워둬야 하지 
-           파라미터를 차체를 선언하지 않으면 오류가 발생한다.-->
+           파라미터를 자체를 선언하지 않으면 오류가 발생한다.-->
   <servlet>
     <servlet-name>app1</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
