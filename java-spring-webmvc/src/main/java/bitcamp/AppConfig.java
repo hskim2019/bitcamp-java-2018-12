@@ -2,7 +2,7 @@ package bitcamp;
 
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan("bitcamp")
+@ComponentScan(basePackages="bitcamp")
 public class AppConfig {
 
 }

@@ -7,7 +7,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
 
-// WebApplicationInitializer 구현체를 만드는 번째 방법
+// WebApplicationInitializer 구현체를 만드는 세번째 방법 - 잘 사용하지 않는 방법
 //    AbstractDispatcherServletInitializer 클래스 상속 받기 + xml로 설정
 public class WebApplicationInitializerImpl3 extends AbstractDispatcherServletInitializer{
 
