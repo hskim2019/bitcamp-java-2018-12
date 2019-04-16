@@ -5,6 +5,7 @@
 비회원
 
 ## 보조 액터 (Secondary Actor)
+facebook
 
 ## 사전 조건(Preconditions)
 - 회원에 가입하지 않은 상태이다
