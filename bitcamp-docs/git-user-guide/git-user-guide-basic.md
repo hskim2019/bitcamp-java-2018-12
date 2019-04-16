@@ -747,7 +747,10 @@ Date:   Mon Aug 27 00:13:30 2018 +0900
 예1) v0.1 태그가 붙은 커밋 파일들로 version2 라는 이름의 브랜치를 만들고 작업 디렉토리에 가져오기
 $ git checkout -b version2 v0.1
 Switched to a new branch 'version2'   <=== 작업 디렉토리의 파일들이 변경된다.
+
 ```
+- 브랜치 전환
+  git checkout master / git checkout b1
 
 ### git config --global alias.별명 [원래명령어]
 
