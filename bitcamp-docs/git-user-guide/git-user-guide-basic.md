@@ -413,6 +413,7 @@ $ git mv test01.html test02.html
 예1) 저장소의 변경 내력을 최신 커밋 순으로 출력하기
 $ git log
 ...
+git log --oneline
 commit 80e779cf97f2b8857b1fd4e3796a612470255852   <=== 커밋 체크섬
 Author: eomjinyoung <jinyoung.eom@gmail.com>      <=== 커밋한 사람의 이름과 이메일
 Date:   Tue Aug 21 10:04:49 2018 +0900            <=== 커밋한 날짜
@@ -427,6 +428,9 @@ Date:   Tue Aug 21 09:35:48 2018 +0900
 ```
 
 ```
+
+*****git log --oneline --graph --all
+
 예2) 저장소의 변경 내력을 최신 커밋 순서로 출력하는데 최근 두 개의 결과만 출력하기(-2 옵션)
     각 커밋의 변경 내용을 보여주기(-p 옵션)
 $ git log -p -2
@@ -587,6 +591,7 @@ origin
 - 로컬에는 없고 원격 저장소에만 있는 데이터를 모두 가져온다.
 - 단 가져온 데이터를 로컬 파일에 자동으로 합치지는(merge) 않는다.
 - 개발자가 직접 merge 해야 한다.
+   ($ git merge origin/master  : fetch로 가져오면 head는 working area를 보여주고, 서버에서 가져온 것은 .git안에만 있음, 합쳐주려면 이 명령어 실행해야 함)
 
 ```
 예1) 원격 저장소에 마지막으로 push 한 다음에 변경된 모든 것을 가져오기

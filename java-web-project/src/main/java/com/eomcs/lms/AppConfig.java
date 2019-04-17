@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
+      
 @ComponentScan(basePackages="com.eomcs.lms")
 
 // 트랜잭션을 설정한 파일을 로딩한다.
