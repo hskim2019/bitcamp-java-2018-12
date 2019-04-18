@@ -19,7 +19,8 @@
     <max-file-size>50000000</max-file-size>
     </multipart-config>
   </servlet>
-  <!-- contextClass가 없으면 xml 설정/ contextLocation 없으면 WEB-INF/아래에 있다는 것 -->
+  <!-- contextClass가 없으면 xml 설정임
+       contextConfigLocation 없으면 WEB-INF/아래에 servlet이름-servlet.xml파일 있다는 것 -->
   
   
   <servlet-mapping>

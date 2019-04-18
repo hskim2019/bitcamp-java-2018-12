@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class Controller01_2 {
 	
-	@RequestMapping("/c01_2_h1") // 핸들러에서 ㅕURL을 지정한다
+	@RequestMapping("/c01_2_h1") // 핸들러에서 URL을 지정한다
 	@ResponseBody   // 메서드의 리턴 값이 클라이언트에게 출력할 내용임을 표시한다
 	public String handler() {
 		return "c01_2_h1";
