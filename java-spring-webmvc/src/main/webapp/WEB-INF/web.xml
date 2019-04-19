@@ -28,6 +28,25 @@
     <url-pattern>/app1/*</url-pattern>
   </servlet-mapping>
   
+  
+  <servlet>
+    <servlet-name>app2</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+    <multipart-config>
+    <max-file-size>50000000</max-file-size>
+    </multipart-config>
+  </servlet>
+  <!-- contextClass가 없으면 xml 설정임
+       contextConfigLocation 없으면 WEB-INF/아래에 servlet이름-servlet.xml파일 있다는 것 -->
+  
+  
+  <servlet-mapping>
+    <servlet-name>app2</servlet-name>
+    <url-pattern>/app2/*</url-pattern>
+  </servlet-mapping>
+  
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

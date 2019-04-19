@@ -77,13 +77,6 @@ Date: Fri, 19 Apr 2019 07:57:26 GMT
 		// 포워드를 지정할 때는 URL 앞에 "forward:" 접두어를 붙인다
 		return "forward:h4";
 	}
-	
-	// 테스트:
-	//   http://localhost:8080/java-spring-webmvc/app1/c05_2/h6
-	@GetMapping("h6")
-	public String handler6() {
-		// 포워드를 지정할 때는 URL 앞에 "forward:" 접두어를 붙인다
-		return "forward:h4";
-	}
 
+	
 }
