@@ -37,11 +37,11 @@
     </tr>
 </c:forEach>
   </table>
+  <p>
+     <a href='.' class="btn btn-primary btn-sm">목록</a>
+  </p>
    </div>
   <!-- .bit-list -->
-  <p>
-    <a href='.'>목록</a>
-  </p>
   <jsp:include page="../javascript.jsp" />
 </body>
 </html>
