@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/home") // ../java-web-project/app/home
+@RequestMapping("/home") // http://.../java-web-project/app/home
 public class HomeController {
 
   final static Logger logger = LogManager.getLogger(HomeController.class);
-  
+
   @GetMapping
   public void home() {
-	  // home.jsp return 됨
   }
+  
 }
 
 

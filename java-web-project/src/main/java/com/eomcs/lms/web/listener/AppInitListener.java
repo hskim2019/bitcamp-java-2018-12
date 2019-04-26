@@ -14,9 +14,9 @@ public class AppInitListener implements ServletContextListener {
     // => Log4J2를 사용하도록 설정한다.
     LogFactory.useLog4J2Logging();
     
-    // JSP 에서 컨텍스트 루트 경로를 사용할 수 있도록
-    // ServletContext 보관소에 저장한다
+    // JSP에서 컨텍스트 루트 경로를 사용할 수 있도록 
+    // ServletContext 보관소에 저장한다.
     ServletContext sc = sce.getServletContext();
-    sc.setAttribute("contextRootPath", sc.getContextPath());
+    sc.setAttribute("contextRootPath", sc.getContextPath()); 
   }
 }

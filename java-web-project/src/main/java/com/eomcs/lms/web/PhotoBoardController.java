@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.eomcs.lms.domain.Lesson;
 import com.eomcs.lms.domain.PhotoBoard;
 import com.eomcs.lms.domain.PhotoFile;
@@ -27,8 +29,11 @@ public class PhotoBoardController {
   @Autowired ServletContext servletContext;
   
   @GetMapping("form")
-  public void form(Model model) {
-    List<Lesson> lessons = lessonService.list();
+  public void form(
+		  @RequestParam(defaultValue="1") int pageNo,
+		  @RequestParam(defaultValue="3") int pageSize,
+		  Model model) {
+    List<Lesson> lessons = lessonService.list(pageNo, pageSize);
     model.addAttribute("lessons", lessons);
   }
   
@@ -76,9 +81,12 @@ public class PhotoBoardController {
   }
   
   @GetMapping("{no}")
-  public String detail(@PathVariable int no, Model model) {
+  public String detail(
+		  @RequestParam(defaultValue="1") int pageNo,
+		  @RequestParam(defaultValue="3") int pageSize,
+		  @PathVariable int no, Model model) {
     PhotoBoard board = photoBoardService.get(no);
-    List<Lesson> lessons = lessonService.list();
+    List<Lesson> lessons = lessonService.list(pageNo, pageSize);
     model.addAttribute("board", board);
     model.addAttribute("lessons", lessons);
     return "photoboard/detail";
