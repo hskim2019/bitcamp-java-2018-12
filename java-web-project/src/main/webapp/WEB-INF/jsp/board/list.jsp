@@ -53,7 +53,6 @@
         href="?pageNo=${pageNo + 1}&pageSize=${pageSize}">다음</a></li>
   </ul>
 </nav>
-
 </div><!-- .container -->
 
 <jsp:include page="../javascript.jsp"/>

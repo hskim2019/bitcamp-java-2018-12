@@ -22,9 +22,14 @@ public class MemberServiceImpl implements MemberService {
   
   // 비지니스 객체에서 메서드 이름은 가능한 업무 용어를 사용한다.
   @Override
-  public List<Member> list(String keyword) {
-    if (keyword == null)
-      return memberDao.findAll();
+  public List<Member> list(String keyword, int pageNo, int pageSize) {
+    
+	  HashMap<String,Object> params = new HashMap<>();
+	  params.put("size", pageSize);
+	  params.put("rowNo", (pageNo -1) * pageSize);
+	  
+	  if (keyword == null)
+      return memberDao.findAll(params);
     else 
       return memberDao.findByKeyword(keyword);
   }
@@ -57,6 +62,11 @@ public class MemberServiceImpl implements MemberService {
     
     return memberDao.findByEmailPassword(paramMap);
   }
+  
+  @Override
+	public int size() {
+		return memberDao.countAll();
+	}
 }
 
 
