@@ -5,11 +5,17 @@
 <html>
 <head>
 <title>사진 조회</title>
+<link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+ crossorigin="anonymous">
+<link rel="stylesheet" href="${contextRootPath}/css/common.css">
 </head>
 <body>
 
   <jsp:include page="../header.jsp" />
 
+ <div class="container">
   <h1>사진 조회</h1>
 <c:choose>
 <c:when test="${empty board}">
@@ -17,26 +23,39 @@
 </c:when>
 <c:otherwise>
   <form action='update' method='post' enctype='multipart/form-data'>
-    <table border='1'>
-      <tr>
-        <th>번호</th>
-        <td><input name='no' value='${board.no}' readonly></td>
-      </tr>
-      <tr>
-        <th>제목</th>
-        <td><input name='title' value='${board.title}'></td>
-      </tr>
-      <tr>
-        <th>등록일</th>
-        <td>${board.createdDate}</td>
-      </tr>
-      <tr>
-        <th>조회수</th>
-        <td>${board.viewCount}</td>
-      </tr>
-      <tr>
-        <th>수업</th>
-        <td><select name='lessonNo'>
+    <div class="form-group row">
+      <label for="no" class="col-sm-2 col-form-label">번호</label>
+      <div class="col-sm-10">
+       <input type="text" class="form-control-plaintext" id="no" name='no' value='${board.no}'
+        readonly>
+      </div>
+     </div>
+   
+      <div class="form-group row">
+      <label for="title" class="col-sm-2 col-form-label">제목</label>
+      <div class="col-sm-8">
+       <input type="text" class="form-control" id="title" name='title' value='${board.title}'>
+      </div>
+     </div>
+      <div class="form-group row">
+    <label for="startDate" class="col-sm-2 col-form-label">등록일</label>
+    <div class="col-sm-3">
+      <input type="date" class="form-control-plaintext"  id="createdDate" 
+         name='createdDate' value='${board.createdDate}' readonly>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="startDate" class="col-sm-2 col-form-label">조회수</label>
+    <div class="col-sm-3">
+      <input type="number" class="form-control-plaintext"  id="createdDate" 
+         name='createdDate' value='${board.viewCount}' readonly>
+    </div>
+  </div>
+  
+     <div class="form-group row">
+    <label for="startDate" class="col-sm-2 col-form-label">수업</label>
+    <div class="col-sm-3">
+       <td><select name='lessonNo'>
           <c:forEach items="${lessons}" var="lesson">
             <option value="${lesson.no}"
               ${board.lessonNo == lesson.no ? "selected" : ""}>${lesson.title}(${lesson.startDate}
@@ -45,30 +64,50 @@
             </option>
           </c:forEach>
         </select></td>
-      </tr>
-      <tr>
-        <td colspan='2'>최소 한 개의 사진 파일을 등록해야 합니다.</td>
-      </tr>
-      <tr>
-        <th>사진1</th>
-        <td><input type='file' name='photo'></td>
-      </tr>
-      <tr>
-        <th>사진2</th>
-        <td><input type='file' name='photo'></td>
-      </tr>
-      <tr>
-        <th>사진3</th>
-        <td><input type='file' name='photo'></td>
-      </tr>
-      <tr>
-        <th>사진4</th>
-        <td><input type='file' name='photo'></td>
-      </tr>
-      <tr>
-        <th>사진5</th>
-        <td><input type='file' name='photo'></td>
-      </tr>
+    </div>
+  </div>
+    
+ <div class="form-group row">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-8">
+    <p>최소 한 개의 사진 파일을 등록해야 합니다.</p>
+    </div>
+  </div>
+  
+  
+   <div class="form-group row">
+    <label for="startDate" class="col-sm-2 col-form-label">사진1</label>
+    <div class="col-sm-8">
+     <td><input type='file' name='photo'></td>
+    </div>
+  </div>
+     <div class="form-group row">
+    <label for="startDate" class="col-sm-2 col-form-label">사진2</label>
+    <div class="col-sm-8">
+     <td><input type='file' name='photo'></td>
+    </div>
+  </div>
+     <div class="form-group row">
+    <label for="startDate" class="col-sm-2 col-form-label">사진3</label>
+    <div class="col-sm-8">
+     <td><input type='file' name='photo'></td>
+    </div>
+  </div>
+     <div class="form-group row">
+    <label for="startDate" class="col-sm-2 col-form-label">사진4</label>
+    <div class="col-sm-8">
+     <td><input type='file' name='photo'></td>
+    </div>
+  </div>
+     <div class="form-group row">
+    <label for="startDate" class="col-sm-2 col-form-label">사진5</label>
+    <div class="col-sm-8">
+     <td><input type='file' name='photo'></td>
+    </div>
+  </div>
+  
+    <table border='1'>
+      
       <tr>
         <th>사진</th>
         <td>
@@ -88,5 +127,9 @@
   </form>
 </c:otherwise>
 </c:choose>
+
+ </div> <!-- .container -->
+
+ <jsp:include page="../javascript.jsp" />
 </body>
 </html>

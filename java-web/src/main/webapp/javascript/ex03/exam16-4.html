@@ -16,11 +16,22 @@
 //    객체를 리턴 받는다.
 // => 물론 입력 값은 자바스크립트 객체 생성 코드여야 한다.
 //  
+/* 
+ * (
+     {name:"홍길동",age:20}
+ )
+ */
+ 
+ /* JSON 형식
+ {"name":"홍길동","age":20}
+ */
+
 var ta = document.getElementById("ta");
 
 document.getElementById("btn1").onclick = () => {
 	var str = ta.value;
-    var obj = eval(str);
+    var obj = eval(str); // JavaScript 객체 생성 코드를 실행한다. JSON 과 다르다
+    //var obj = JSON.parse(str);  // JSON 형식으로 된 자바스크립트 객체 생성 코드를 실행한다
 	console.log(obj);
 	
 	// 1) 단일 객체 생성
