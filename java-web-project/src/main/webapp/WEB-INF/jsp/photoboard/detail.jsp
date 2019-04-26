@@ -66,6 +66,8 @@
         </select></td>
     </div>
   </div>
+  
+  
     
  <div class="form-group row">
     <label class="col-sm-2 col-form-label"></label>
@@ -106,24 +108,25 @@
     </div>
   </div>
   
-    <table border='1'>
-      
-      <tr>
-        <th>사진</th>
-        <td>
+   <div class="form-group row">
+      <label for="photoFile" class="col-sm-2 col-form-label">사진</label>
+      <div class="col-sm-8">
+  <td>
           <c:set var="contextRootPath" value="${pageContext.servletContext.contextPath}"></c:set>
           <c:forEach items="${board.files}" var="file"> 
             <img src='${contextRootPath}/upload/photoboard/${file.filePath}' style='height: 80px'> 
           </c:forEach>
         </td>
-      </tr>
-    </table>
-
-    <p>
-      <a href='.'>목록</a>
-      <a href='delete/${board.no}'>삭제</a>
-      <button type='submit'>변경</button>
-    <p>
+        </div>
+        </div>
+        
+       <div class="form-group row">
+      <div class="col-sm-10">
+       <a class="btn btn-primary" href='.'>목록</a> <a class="btn btn-primary"
+        href='delete/${board.no}'>삭제</a>
+       <button class="btn btn-primary">변경</button>
+      </div>
+     </div>
   </form>
 </c:otherwise>
 </c:choose>
