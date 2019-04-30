@@ -73,7 +73,7 @@
       name='dayHours' value='${lesson.dayHours}'>
     </div>
   </div>
-  <div class="form-group row">
+<div class="form-group row">
     <div class="col-sm-10">
       <a class="btn btn-primary" href='.'>목록</a> 
       <a class="btn btn-primary" href='delete/${lesson.no}'>삭제</a> 
