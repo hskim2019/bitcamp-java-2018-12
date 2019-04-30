@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ImportResource;
 // 이 애노테이션 설정은 application-context.xml의 다음 설정과 같다.
 /*
   <context:component-scan base-package="com.eomcs.lms">
-    <context:exclude-filter type="regex" expression="com.eomcs.lms.web.*"/>
+    <context:exclude-filter type="regex" expression="com.eomcs.lms.web.*"/> DispatcherServlet의 IoC 컨테이너가 관리하는 웹 관련 객체들은 제외한다.
   </context:component-scan>
  */
 @ComponentScan(
