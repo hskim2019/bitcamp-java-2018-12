@@ -2,18 +2,18 @@
 // 헤더 가져오기
 (function () {
   var header = document.querySelector('.bit-main-header');
-  var xhr = new XMLHttpRequest()
-  xhr.onreadystatechange = function() {
+  var xhr = new XMLHttpRequest()  // XMLHttpRequest()동기/비동기 요청 도구
+  xhr.onreadystatechange = function() { // 서버에서 응답이 왔을 때 호출할 메서드 등록, open 호출보다 먼저 등록
     if (xhr.readyState != 4 || xhr.status != 200)
       return;
-    header.innerHTML = xhr.responseText
+    header.innerHTML = xhr.responseText //서버가 응답한 콘텐트
     
     // body 태그 쪽에 헤더 로딩 완료 이벤트를 보낸다.
     var e = new Event('loaded.header');
     document.body.dispatchEvent(e);
   };
-  xhr.open('GET', '/java-web-project/html/header.html', true)
-  xhr.send()
+  xhr.open('GET', '/java-web-project/html/header.html', true) //서버에 소켓 연결
+  xhr.send() // 서버에 요청 보냄
 })();
 
 // header.html의 내용을 웹 페이지에 삽입했다고 연락이 오면,
@@ -27,7 +27,7 @@ document.body.addEventListener('loaded.header', () => {
   
   // 로그아웃 버튼의 click 리스너를 등록한다.
   document.querySelector('#logout-menu').addEventListener('click', (e) => {
-    e.preventDefault();
+    e.preventDefault();  // a 태그의 기본 동작 취소
     var xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function() {
       if (xhr.readyState != 4 || xhr.status != 200)
@@ -61,6 +61,7 @@ function loadLoginUser() {
       document.querySelector('#login-username').innerHTML = data.user.name;
       document.querySelector('#login-userphoto').src = 
         "/java-web-project/upload/member/" + data.user.photo;
+     // console.log(data.user.name + 'test');
     } else {
       notLoginState.className = 
         notLoginState.className.replace('bit-invisible', '');
