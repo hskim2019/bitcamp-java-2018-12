@@ -42,7 +42,7 @@ function loadList(pn) {
    }
    
     document.body.dispatchEvent(new Event('loaded-list'));
-    
+    document.body.dispatchEvent(new Event('search-list'));
   };
   xhr.open('GET', '../../app/json/member/list?pageNo=' + pn + '&pageSize=' + pageSize, true)
   xhr.send();
@@ -72,6 +72,15 @@ document.body.addEventListener('loaded-list', () => {
    }
 });
 
+document.body.addEventListener('search-list', () => {
+  
+  var searchlist = document.querySelectorAll('#searchWord');
+  
+  searchlist.onclick = (e) => {
+      e.preventDefault();
+      window.location.href = 'search.html?keyword=' + e.target.getAttribute('search');
+    }
+});
 
 /*document.querySelector('#search-btn').onclick = () => {
 

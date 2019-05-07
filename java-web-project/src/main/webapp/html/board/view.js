@@ -4,13 +4,13 @@ if (param) {
   loadData(param.split('=')[1])
   var el = document.querySelectorAll('.bit-new-item');
   for (e of el) {
-    e.style.display = 'none';
+   // e.style.display = 'none';
   }
 } else {
   document.querySelector('h1').innerHTML = "새 글"
   var el = document.querySelectorAll('.bit-view-item');
   for (e of el) {
-    e.style.display = 'none';
+   // e.style.display = 'none';
   }
 }
 
