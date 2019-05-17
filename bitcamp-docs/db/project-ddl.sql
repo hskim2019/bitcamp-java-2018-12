@@ -69,7 +69,14 @@ create table lms_photo_file (
     references lms_photo (photo_id)
 ) comment '사진 게시물 첨부파일 테이블'; 
 
-update lms_member set pwd=password('1111');
+
+-- 수정
+update lms_member set pwd=password('1111')
+alter table member add photo varchar(100) not null default 'default.jpg'
+alter table member modify tel varchar(50)
+
+alter table member modify photo varchar(255) not null default 'default.jpg';
+
 
 
 

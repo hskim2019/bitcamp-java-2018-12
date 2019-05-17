@@ -37,17 +37,6 @@
     </div>
     <!-- .bit-list -->
 
-    <nav aria-label="목록 페이지 이동">
-      <ul class="pagination justify-content-center">
-        <li class="page-item${pageNo <= 1 ? 'disabled' : ''}"><a class="page-link"
-          href="?pageNo=${pageNo - 1}&pageSize=${pageSize}">이전</a></li>
-        <li class="page-item"><span class="page-link" href="#">${pageNo}</span></li>
-        <li class="page-item"${pageNo >= totalpage ? 'disabled' : ''}"><a class="page-link"
-          href="?pageNo=${pageNo + 1}&pageSize=${pageSize}">다음</a></li>
-      </ul>
-    </nav>
-
-
     <p>
       <a href='.' class="btn btn-primary btn-sm">목록</a>
     </p>

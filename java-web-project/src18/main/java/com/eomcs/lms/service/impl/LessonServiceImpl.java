@@ -2,9 +2,7 @@ package com.eomcs.lms.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
@@ -35,12 +33,13 @@ public class LessonServiceImpl implements LessonService {
   
   // 비지니스 객체에서 메서드 이름은 가능한 업무 용어를 사용한다.
   @Override
-  public List<Lesson> list(int pageNo, int pageSize) {
-	  
-	  HashMap<String,Object> params = new HashMap<>();
-	  params.put("size", pageSize);
-	  params.put("rowNo", (pageNo -1) * pageSize);
-	  
+  public List<Lesson> list(int pageNo, int pageSize, String search) {
+    
+    HashMap<String,Object> params = new HashMap<>();
+    params.put("size", pageSize);
+    params.put("rowNo", (pageNo - 1) * pageSize);
+    params.put("search", search);
+    
     return lessonDao.findAll(params);
   }
   
@@ -72,14 +71,13 @@ public class LessonServiceImpl implements LessonService {
     
     int count = lessonDao.delete(no);
     
-    
     return count;
   }
   
   @Override
-	public int size() {
-		return lessonDao.countAll();
-	}
+  public int size(String search) {
+    return lessonDao.countAll(search);
+  }
 }
 
 
