@@ -14,7 +14,6 @@
 pageContext.setAttribute("names", new String[]{"홍길동","임꺽정","유관순"});
 %>
 
-EL에서는 없는 값을 꺼내도 오류가 발생하지 않는다<br>
 ${names[0]}<br>
 ${names[1]}<br>
 ${names[2]}<br>

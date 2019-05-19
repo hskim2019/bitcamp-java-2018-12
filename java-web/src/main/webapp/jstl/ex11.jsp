@@ -14,7 +14,7 @@
 <pre>
 - redirect 응답하기
 </pre>
-<%--테스트: http://localhost:8080/java-web/jstl/ex11.jsp?serach=daum --%>
+
 <c:if test="${param.search == 'naver'}">
     <c:redirect url="http://www.naver.com"/>
 </c:if>

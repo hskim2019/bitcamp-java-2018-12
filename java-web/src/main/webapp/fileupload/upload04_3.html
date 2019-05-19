@@ -31,7 +31,7 @@ $('#fileupload').fileupload({
     add: function (e, data) { // 각 파일에 대해 호출된다.
         console.log('add()...');
         // 사용자가 선택한 각 파일에 대해 업로드 정보를 출력해보자.
-        $('<p/>').text(data.files[0].name + '  업로드중...').appendTo(document.body);
+        $('<p/>').text(data.files[0].name + ' 업로드중...').appendTo(document.body);
         data.submit(); // 해당 파일의 서버 전송을 시작한다.
     },
     done: function (e, data) {

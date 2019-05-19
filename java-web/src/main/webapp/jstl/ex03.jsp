@@ -32,22 +32,24 @@
 <%--
 Member m1 = (Member) pageContext.getAttribute("m1");
 if (m1 == null) {
-   m1 = new Member();
-   pageContext.setAttribute("m1", m1);
-  }
---%>
-<jsp:setProperty name="m1" property="no" value="100"/>
-<%--
-m1.setNo(100);
+  m1 = new Member();
+  pageContext.setAttribute("m1", m1);
+}
  --%>
+<jsp:setProperty name="m1" property="no" value="100"/>
+<%-- 
+m1.setNo(100);
+--%>
+
 <c:set target="${pageScope.m1}" property="email" value="hong@test.com"/>
 <%--
 Object obj = pageContext.getAttribute("m1");
 Method m = obj.getClass().getMethod("setEmail", String.class);
-m.invoke(obj, "hong@test.com"); (객체, 파라미터)
+m.invoke(obj, "hong@test.com");
 
-=> m1.setEmail("hong@test.com);
- --%>
+=> m1.setEmail("hong@test.com");
+--%>
+
 ${pageScope.m1.no}<br>
 ${pageScope.m1.email}<br>
 </body>

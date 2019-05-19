@@ -14,14 +14,14 @@ ArrayList<FileInfo> files = new ArrayList<>();
 out.println("{");
 
 for (Part part : parts) {
-  if (part.getContentType() == null) {  // 일반데이터라면
+  if (part.getContentType() == null) {
     out.println(String.format("  %s\"%s\": \"%s\"",
         (count++ > 0 ? "," : ""),
         part.getName(),
         request.getParameter(part.getName())));
-  } else if (part.getSize() > 0) {   // 파일 데이터라면
+  } else if (part.getSize() > 0) {
     // 파일을 저장한다.
-    String filename = UUID.randomUUID().toString(); //반환되는 객체가 UUID 객체이므로 문자열 표현을 얻기 위해 toString 호출
+    String filename = UUID.randomUUID().toString();
     String filepath = application.getRealPath("/upload/" + filename);
     part.write(filepath);
     

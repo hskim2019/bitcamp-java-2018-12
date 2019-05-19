@@ -9,19 +9,18 @@
     => 만약 조상 중에 absolute나 relative가 없다면,
        html 태그를 기준으로 자신의 위치를 조정한다.
     => absolute 태그는 width, height를 지정하지 않으면 콘텐츠의 크기에 맞춘다.
-       (자식 크기에 맞춰서 결정 됨)
     => 기준이 되는 태그가 움직이면 자신도 같이 움직인다.
-    => relative를 사용하는 경우: 자식들의 기준이 되고 싶을 때
   */
-   html {
-     border: 5px solid navy;
-     /* position: relative; */
-   }
+  html {
+    border: 10px solid navy; 
+    position: relative;
+  }
+
   body {
     border: 1px dashed black;
     padding: 10px;
     /* margin: 0px; */
-    /* position: relative; */
+    position: relative;
   }
 
   div {
@@ -35,13 +34,14 @@
     background-color: gray;
   }
 
-  #d1 {background-color: red;  
-  /* position: absolute; */
+  #d1 {
+    background-color: red;
+    position: relative;
   }
-    
+
   #d11 {
     background-color: orange;
-    /* position: relative; */
+    position: relative;
   }
   #d2 {
     background-color: green;
