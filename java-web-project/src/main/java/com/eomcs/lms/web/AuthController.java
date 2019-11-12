@@ -24,6 +24,7 @@ public class AuthController {
 
   @Autowired MemberService memberService;
   @Autowired ServletContext servletContext;
+
   
   @GetMapping("form")
   public void form(
@@ -77,6 +78,9 @@ public class AuthController {
       return "redirect:" + refererUrl;
     }
   }
+  
+  
+  
   
   @GetMapping("logout")
   public String logout(HttpSession session) throws Exception {
